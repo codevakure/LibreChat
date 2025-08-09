@@ -12,6 +12,10 @@ const GoogleSearchAPI = require('./structured/GoogleSearch');
 const TraversaalSearch = require('./structured/TraversaalSearch');
 const createOpenAIImageTools = require('./structured/OpenAIImageTools');
 const TavilySearchResults = require('./structured/TavilySearchResults');
+const BedrockKnowledgeBase = require('./structured/BedrockKnowledgeBase');
+const PostgreSQL = require('./structured/PostgreSQL');
+const MySQL = require('./structured/MySQL');
+const SQLServer = require('./structured/SQLServer');
 
 /** @type {Record<string, TPlugin | undefined>} */
 const manifestToolMap = {};
@@ -42,4 +46,8 @@ module.exports = {
   createYouTubeTools,
   TavilySearchResults,
   createOpenAIImageTools,
+  BedrockKnowledgeBase,
+  PostgreSQL,
+  MySQL,
+  SQLServer,
 };

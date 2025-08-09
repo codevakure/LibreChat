@@ -192,5 +192,132 @@
         "description": "Provide your Flux API key from your user profile."
       }
     ]
+  },
+  {
+    "name": "AWS Bedrock Knowledge Base",
+    "pluginKey": "bedrock-knowledge-base",
+    "description": "Search and retrieve information from AWS Bedrock Knowledge Base using natural language queries. Uses existing AWS credentials from Bedrock endpoint configuration.",
+    "icon": "https://d2q66yyjeovezo.cloudfront.net/icon/464f53c8ab7b9e8c92c7914b1e3fd7eb-13a30f9b3b0b6dd6b0b3ec6da0.svg",
+    "authConfig": [
+      {
+        "authField": "BEDROCK_KNOWLEDGE_BASE_ID",
+        "label": "Bedrock Knowledge Base ID",
+        "description": "Enter your AWS Bedrock Knowledge Base ID. You can find this in the AWS Bedrock console under 'Knowledge bases'."
+      }
+    ]
+  },
+  {
+    "name": "PostgreSQL",
+    "pluginKey": "postgresql",
+    "description": "Execute SQL queries against PostgreSQL databases. Use this tool to retrieve data, analyze database content, and answer questions about PostgreSQL database information.",
+    "icon": "https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg",
+    "authConfig": [
+      {
+        "authField": "POSTGRES_CONNECTION_STRING||POSTGRES_HOST",
+        "label": "PostgreSQL Connection",
+        "description": "Provide either a connection string (postgresql://user:pass@host:port/db) or individual connection parameters"
+      },
+      {
+        "authField": "POSTGRES_HOST",
+        "label": "PostgreSQL Host",
+        "description": "The hostname or IP address of your PostgreSQL server"
+      },
+      {
+        "authField": "POSTGRES_PORT",
+        "label": "PostgreSQL Port",
+        "description": "PostgreSQL port (default: 5432)"
+      },
+      {
+        "authField": "POSTGRES_DATABASE",
+        "label": "Database Name",
+        "description": "The name of the PostgreSQL database to connect to"
+      },
+      {
+        "authField": "POSTGRES_USERNAME",
+        "label": "Username",
+        "description": "Username for PostgreSQL authentication"
+      },
+      {
+        "authField": "POSTGRES_PASSWORD",
+        "label": "Password",
+        "description": "Password for PostgreSQL authentication"
+      }
+    ]
+  },
+  {
+    "name": "MySQL",
+    "pluginKey": "mysql",
+    "description": "Execute SQL queries against MySQL databases. Use this tool to retrieve data, analyze database content, and answer questions about MySQL database information.",
+    "icon": "https://labs.mysql.com/common/logos/mysql-logo.svg",
+    "authConfig": [
+      {
+        "authField": "MYSQL_CONNECTION_STRING||MYSQL_HOST",
+        "label": "MySQL Connection",
+        "description": "Provide either a connection string (mysql://user:pass@host:port/db) or individual connection parameters"
+      },
+      {
+        "authField": "MYSQL_HOST",
+        "label": "MySQL Host",
+        "description": "The hostname or IP address of your MySQL server"
+      },
+      {
+        "authField": "MYSQL_PORT",
+        "label": "MySQL Port",
+        "description": "MySQL port (default: 3306)"
+      },
+      {
+        "authField": "MYSQL_DATABASE",
+        "label": "Database Name",
+        "description": "The name of the MySQL database to connect to"
+      },
+      {
+        "authField": "MYSQL_USERNAME",
+        "label": "Username",
+        "description": "Username for MySQL authentication"
+      },
+      {
+        "authField": "MYSQL_PASSWORD",
+        "label": "Password",
+        "description": "Password for MySQL authentication"
+      }
+    ]
+  },
+  {
+    "name": "SQL Server",
+    "pluginKey": "sql_server",
+    "description": "Execute SQL queries against Microsoft SQL Server databases. Use this tool to retrieve data, analyze database content, and answer questions about SQL Server database information.",
+    "icon": "https://www.microsoft.com/favicon.ico",
+    "authConfig": [
+      {
+        "authField": "SQLSERVER_CONNECTION_STRING||SQLSERVER_HOST",
+        "label": "SQL Server Connection",
+        "description": "Provide either a connection string (mssql://user:pass@host:port/db) or individual connection parameters"
+      },
+      {
+        "authField": "SQLSERVER_HOST",
+        "label": "SQL Server Host",
+        "description": "The hostname or IP address of your SQL Server"
+      },
+      {
+        "authField": "SQLSERVER_PORT",
+        "label": "SQL Server Port",
+        "description": "SQL Server port (default: 1433)"
+      },
+      {
+        "authField": "SQLSERVER_DATABASE",
+        "label": "Database Name",
+        "description": "The name of the SQL Server database to connect to"
+      },
+      {
+        "authField": "SQLSERVER_USERNAME",
+        "label": "Username",
+        "description": "Username for SQL Server authentication"
+      },
+      {
+        "authField": "SQLSERVER_PASSWORD",
+        "label": "Password",
+        "description": "Password for SQL Server authentication"
+      }
+    ]
   }
 ]

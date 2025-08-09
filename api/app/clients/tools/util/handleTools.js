@@ -20,6 +20,10 @@ const {
   createYouTubeTools,
   TavilySearchResults,
   createOpenAIImageTools,
+  BedrockKnowledgeBase,
+  PostgreSQL,
+  MySQL,
+  SQLServer,
 } = require('../');
 const { primeFiles: primeCodeFiles } = require('~/server/services/Files/Code/process');
 const { createFileSearchTool, primeFiles: primeSearchFiles } = require('./fileSearch');
@@ -151,8 +155,12 @@ const loadTools = async ({
     wolfram: StructuredWolfram,
     'stable-diffusion': StructuredSD,
     'azure-ai-search': StructuredACS,
+    'bedrock-knowledge-base': BedrockKnowledgeBase,
     traversaal_search: TraversaalSearch,
     tavily_search_results_json: TavilySearchResults,
+    postgresql: PostgreSQL,
+    mysql: MySQL,
+    sql_server: SQLServer,
   };
 
   const customConstructors = {
@@ -269,6 +277,75 @@ const loadTools = async ({
           toolContextMap[tool] = toolContext;
         }
         return createFileSearchTool({ req: options.req, files, entity_id: agent?.id });
+      };
+      continue;
+    } else if (tool === 'postgresql') {
+      requestedTools[tool] = async () => {
+        const authFields = getAuthFields(tool);
+        const authValues = await loadAuthValues({ userId: user, authFields });
+        
+        // Add context about PostgreSQL capabilities
+        toolContextMap[tool] = `# \`${tool}\`:
+This tool allows you to query PostgreSQL databases for information. Key capabilities:
+- Execute SELECT queries against PostgreSQL
+- Access PostgreSQL-specific features (arrays, JSON, etc.)
+- Only SELECT and WITH (CTE) queries are allowed for safety
+- Results are automatically limited to prevent large responses
+- Schema information available via getSchema() method
+
+Database: ${authValues.POSTGRES_DATABASE || 'Not specified'}
+Host: ${authValues.POSTGRES_HOST || 'Not specified'}
+
+Important: Only use SELECT statements. DDL/DML operations (INSERT, UPDATE, DELETE, DROP) are blocked for security.
+`.trim();
+        
+        return new PostgreSQL(authValues);
+      };
+      continue;
+    } else if (tool === 'mysql') {
+      requestedTools[tool] = async () => {
+        const authFields = getAuthFields(tool);
+        const authValues = await loadAuthValues({ userId: user, authFields });
+        
+        // Add context about MySQL capabilities
+        toolContextMap[tool] = `# \`${tool}\`:
+This tool allows you to query MySQL databases for information. Key capabilities:
+- Execute SELECT queries against MySQL
+- Access MySQL-specific features and functions
+- Only SELECT and WITH (CTE) queries are allowed for safety
+- Results are automatically limited to prevent large responses
+- Schema information available via getSchema() method
+
+Database: ${authValues.MYSQL_DATABASE || 'Not specified'}
+Host: ${authValues.MYSQL_HOST || 'Not specified'}
+
+Important: Only use SELECT statements. DDL/DML operations (INSERT, UPDATE, DELETE, DROP) are blocked for security.
+`.trim();
+        
+        return new MySQL(authValues);
+      };
+      continue;
+    } else if (tool === 'sql_server') {
+      requestedTools[tool] = async () => {
+        const authFields = getAuthFields(tool);
+        const authValues = await loadAuthValues({ userId: user, authFields });
+        
+        // Add context about SQL Server capabilities
+        toolContextMap[tool] = `# \`${tool}\`:
+This tool allows you to query Microsoft SQL Server databases for information. Key capabilities:
+- Execute SELECT queries against SQL Server
+- Access SQL Server-specific features (T-SQL, CTEs, window functions)
+- Only SELECT and WITH (CTE) queries are allowed for safety
+- Results are automatically limited to prevent large responses
+- Schema information available via getSchema() method
+
+Database: ${authValues.SQLSERVER_DATABASE || 'Not specified'}
+Host: ${authValues.SQLSERVER_HOST || 'Not specified'}
+
+Important: Only use SELECT statements. DDL/DML operations (INSERT, UPDATE, DELETE, DROP) are blocked for security.
+`.trim();
+        
+        return new SQLServer(authValues);
       };
       continue;
     } else if (tool === Tools.web_search) {
