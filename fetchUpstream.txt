@@ -1,0 +1,15 @@
+# 1. Switch to main branch
+git checkout main
+
+# 2. Fetch latest changes from original repo
+git fetch upstream
+
+# 3. Merge upstream changes into your main
+git merge upstream/main
+
+# 4. Push updated main to your fork
+git push origin main
+
+# 5. Update your feature branch (optional)
+git checkout feature/sql-database-tools
+git merge main  # or git rebase main
