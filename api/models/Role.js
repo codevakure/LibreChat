@@ -133,6 +133,8 @@ async function updateAccessPermissions(roleName, permissionsUpdate) {
     if (hasChanges) {
       const updateObj = { permissions: updatedPermissions };
 
+      console.log(`[DEBUG] About to update ${roleName} role with:`, JSON.stringify(updateObj, null, 2));
+
       if (Object.keys(unsetFields).length > 0) {
         logger.info(
           `Unsetting old schema fields for '${roleName}' role: ${Object.keys(unsetFields).join(', ')}`,
@@ -149,6 +151,7 @@ async function updateAccessPermissions(roleName, permissionsUpdate) {
 
           const cache = getLogStores(CacheKeys.ROLES);
           const updatedRole = await Role.findOne({ name: roleName }).select('-__v').lean().exec();
+          console.log(`[DEBUG] Role ${roleName} after database update:`, JSON.stringify(updatedRole?.permissions, null, 2));
           await cache.set(roleName, updatedRole);
 
           logger.info(`Updated role '${roleName}' and removed old schema fields`);
@@ -159,6 +162,10 @@ async function updateAccessPermissions(roleName, permissionsUpdate) {
       } else {
         // Standard update if no migration needed
         await updateRoleByName(roleName, updateObj);
+        
+        // Debug: verify the update worked
+        const verifyRole = await Role.findOne({ name: roleName }).select('-__v').lean().exec();
+        console.log(`[DEBUG] Role ${roleName} after standard update:`, JSON.stringify(verifyRole?.permissions, null, 2));
       }
 
       logger.info(`Updated '${roleName}' role permissions`);

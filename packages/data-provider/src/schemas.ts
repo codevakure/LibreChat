@@ -182,6 +182,7 @@ export const defaultAgentFormValues = {
   [Tools.execute_code]: false,
   [Tools.file_search]: false,
   [Tools.web_search]: false,
+  [Tools.charts]: false,
 };
 
 export const ImageVisionTool: FunctionTool = {
@@ -650,6 +651,8 @@ export const tConversationSchema = z.object({
   useResponsesApi: z.boolean().optional(),
   /* OpenAI Responses API / Anthropic API / Google API */
   web_search: z.boolean().optional(),
+  /* Charts support */
+  charts: z.boolean().optional(),
   /* disable streaming */
   disableStreaming: z.boolean().optional(),
   /* assistant */
@@ -758,6 +761,8 @@ export const tQueryParamsSchema = tConversationSchema
     useResponsesApi: true,
     /** @endpoints openAI, anthropic, google */
     web_search: true,
+    /** @endpoints openAI, anthropic, google */
+    charts: true,
     /** @endpoints openAI, custom, azureOpenAI */
     disableStreaming: true,
     /** @endpoints google, anthropic, bedrock */
@@ -843,6 +848,7 @@ export const googleBaseSchema = tConversationSchema.pick({
   thinking: true,
   thinkingBudget: true,
   web_search: true,
+  charts: true,
   iconURL: true,
   greeting: true,
   spec: true,
@@ -875,6 +881,7 @@ export const googleGenConfigSchema = z
       })
       .optional(),
     web_search: z.boolean().optional(),
+    charts: z.boolean().optional(),
   })
   .strip()
   .optional();
@@ -1093,6 +1100,7 @@ export const openAIBaseSchema = tConversationSchema.pick({
   verbosity: true,
   useResponsesApi: true,
   web_search: true,
+  charts: true,
   disableStreaming: true,
 });
 
@@ -1138,6 +1146,7 @@ export const anthropicBaseSchema = tConversationSchema.pick({
   spec: true,
   maxContextTokens: true,
   web_search: true,
+  charts: true,
 });
 
 export const anthropicSchema = anthropicBaseSchema

@@ -76,6 +76,9 @@ const loadEphemeralAgent = async ({ req, agent_id, endpoint, model_parameters: _
   if (ephemeralAgent?.web_search === true) {
     tools.push(Tools.web_search);
   }
+  if (ephemeralAgent?.charts === true) {
+    tools.push(Tools.charts);
+  }
 
   if (mcpServers.size > 0) {
     for (const toolName of Object.keys(availableTools)) {
@@ -101,6 +104,9 @@ const loadEphemeralAgent = async ({ req, agent_id, endpoint, model_parameters: _
 
   if (ephemeralAgent?.artifacts != null && ephemeralAgent.artifacts) {
     result.artifacts = ephemeralAgent.artifacts;
+  }
+  if (ephemeralAgent?.charts === true) {
+    result.charts = true;
   }
   return result;
 };

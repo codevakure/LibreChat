@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { useToastContext } from '@librechat/client';
 import { PermissionTypes, Permissions } from 'librechat-data-provider';
 import CodeBlock from '~/components/Messages/Content/CodeBlock';
+import InlineChart from './InlineChart';
 import useHasAccess from '~/hooks/Roles/useHasAccess';
 import { useFileDownload } from '~/data-provider';
 import { useCodeBlockContext } from '~/Providers';
@@ -24,6 +25,7 @@ export const code: React.ElementType = memo(({ className, children }: TCodeProps
   const match = /language-(\w+)/.exec(className ?? '');
   const lang = match && match[1];
   const isMath = lang === 'math';
+  const isChart = lang === 'chart';
   const isSingleLine = typeof children === 'string' && children.split('\n').length === 1;
 
   const { getNextIndex, resetCounter } = useCodeBlockContext();
@@ -35,6 +37,23 @@ export const code: React.ElementType = memo(({ className, children }: TCodeProps
 
   if (isMath) {
     return <>{children}</>;
+  } else if (isChart && typeof children === 'string') {
+    // Check if the chart JSON is incomplete (being streamed)
+    const isIncompleteChart = !children.trim().endsWith('}');
+    
+    if (isIncompleteChart) {
+      // Show loading indicator instead of partial JSON
+      return (
+        <div className="chart-loading-container p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg my-4">
+          <div className="flex items-center justify-center space-x-2">
+            <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+            <span className="text-sm text-gray-600 dark:text-gray-400">Generating chart...</span>
+          </div>
+        </div>
+      );
+    }
+    
+    return <InlineChart content={children} fallbackToCodeBlock />;
   } else if (isSingleLine) {
     return (
       <code onDoubleClick={handleDoubleClick} className={className}>
@@ -56,9 +75,12 @@ export const code: React.ElementType = memo(({ className, children }: TCodeProps
 export const codeNoExecution: React.ElementType = memo(({ className, children }: TCodeProps) => {
   const match = /language-(\w+)/.exec(className ?? '');
   const lang = match && match[1];
+  const isChart = lang === 'chart';
 
   if (lang === 'math') {
     return children;
+  } else if (isChart && typeof children === 'string') {
+    return <InlineChart content={children} fallbackToCodeBlock />;
   } else if (typeof children === 'string' && children.split('\n').length === 1) {
     return (
       <code onDoubleClick={handleDoubleClick} className={className}>

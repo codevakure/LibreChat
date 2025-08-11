@@ -5,6 +5,7 @@ interface AgentCapabilitiesResult {
   toolsEnabled: boolean;
   actionsEnabled: boolean;
   artifactsEnabled: boolean;
+  chartsEnabled: boolean;
   ocrEnabled: boolean;
   fileSearchEnabled: boolean;
   webSearchEnabled: boolean;
@@ -26,6 +27,11 @@ export default function useAgentCapabilities(
 
   const artifactsEnabled = useMemo(
     () => capabilities?.includes(AgentCapabilities.artifacts) ?? false,
+    [capabilities],
+  );
+
+  const chartsEnabled = useMemo(
+    () => capabilities?.includes(AgentCapabilities.charts) ?? false,
     [capabilities],
   );
 
@@ -55,6 +61,7 @@ export default function useAgentCapabilities(
     toolsEnabled,
     actionsEnabled,
     artifactsEnabled,
+    chartsEnabled,
     webSearchEnabled,
     fileSearchEnabled,
   };

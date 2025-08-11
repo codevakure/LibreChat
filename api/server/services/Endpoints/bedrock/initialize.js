@@ -34,6 +34,10 @@ const initializeClient = async ({ req, res, endpointOption }) => {
     agent.instructions = `${agent.instructions ?? ''}\n${endpointOption.artifactsPrompt}`.trim();
   }
 
+  if (typeof endpointOption.chartsPrompt === 'string' && endpointOption.chartsPrompt) {
+    agent.instructions = `${agent.instructions ?? ''}\n${endpointOption.chartsPrompt}`.trim();
+  }
+
   // TODO: pass-in override settings that are specific to current run
   const options = await getOptions({
     req,

@@ -168,6 +168,7 @@ export enum AgentCapabilities {
   execute_code = 'execute_code',
   file_search = 'file_search',
   web_search = 'web_search',
+  charts = 'charts',
   artifacts = 'artifacts',
   actions = 'actions',
   tools = 'tools',
@@ -241,6 +242,7 @@ export const defaultAgentCapabilities = [
   AgentCapabilities.execute_code,
   AgentCapabilities.file_search,
   AgentCapabilities.web_search,
+  AgentCapabilities.charts,
   AgentCapabilities.artifacts,
   AgentCapabilities.actions,
   AgentCapabilities.tools,
@@ -518,6 +520,7 @@ export const intefaceSchema = z
     runCode: z.boolean().optional(),
     webSearch: z.boolean().optional(),
     fileSearch: z.boolean().optional(),
+    charts: z.boolean().optional(),
   })
   .default({
     endpointsMenu: true,
@@ -534,6 +537,7 @@ export const intefaceSchema = z
     runCode: true,
     webSearch: true,
     fileSearch: true,
+    charts: true,
   });
 
 export type TInterfaceConfig = z.infer<typeof intefaceSchema>;
@@ -704,6 +708,12 @@ export const webSearchSchema = z.object({
 
 export type TWebSearchConfig = z.infer<typeof webSearchSchema>;
 
+export const chartsSchema = z.object({
+  enabledByDefault: z.boolean().optional().default(true),
+});
+
+export type TChartsConfig = z.infer<typeof chartsSchema>;
+
 export const ocrSchema = z.object({
   mistralModel: z.string().optional(),
   apiKey: z.string().optional().default('${OCR_API_KEY}'),
@@ -752,6 +762,7 @@ export const configSchema = z.object({
   cache: z.boolean().default(true),
   ocr: ocrSchema.optional(),
   webSearch: webSearchSchema.optional(),
+  charts: chartsSchema.optional(),
   memory: memorySchema.optional(),
   secureImageLinks: z.boolean().optional(),
   imageOutputType: z.nativeEnum(EImageOutputType).default(EImageOutputType.PNG),
@@ -1543,6 +1554,8 @@ export enum LocalStorageKeys {
   LAST_FILE_SEARCH_TOGGLE_ = 'LAST_FILE_SEARCH_TOGGLE_',
   /** Last checked toggle for Artifacts per conversation ID */
   LAST_ARTIFACTS_TOGGLE_ = 'LAST_ARTIFACTS_TOGGLE_',
+  /** Last checked toggle for Charts per conversation ID */
+  LAST_CHARTS_TOGGLE_ = 'LAST_CHARTS_TOGGLE_',
   /** Key for the last selected agent provider */
   LAST_AGENT_PROVIDER = 'lastAgentProvider',
   /** Key for the last selected agent model */
@@ -1553,6 +1566,8 @@ export enum LocalStorageKeys {
   PIN_WEB_SEARCH_ = 'PIN_WEB_SEARCH_',
   /** Pin state for Code Interpreter per conversation ID */
   PIN_CODE_INTERPRETER_ = 'PIN_CODE_INTERPRETER_',
+  /** Pin state for Charts per conversation ID */
+  PIN_CHARTS_ = 'PIN_CHARTS_',
 }
 
 export enum ForkOptions {

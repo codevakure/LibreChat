@@ -125,6 +125,9 @@ export const roleDefaults = defaultRolesSchema.parse({
       [PermissionTypes.FILE_SEARCH]: {
         [Permissions.USE]: true,
       },
+      [PermissionTypes.CHARTS]: {
+        [Permissions.USE]: true,
+      },
     },
   },
   [SystemRoles.USER]: {
@@ -139,6 +142,7 @@ export const roleDefaults = defaultRolesSchema.parse({
       [PermissionTypes.RUN_CODE]: {},
       [PermissionTypes.WEB_SEARCH]: {},
       [PermissionTypes.FILE_SEARCH]: {},
+      [PermissionTypes.CHARTS]: {},
     },
   },
 });

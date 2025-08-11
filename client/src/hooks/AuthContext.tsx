@@ -46,6 +46,16 @@ const AuthContextProvider = ({
     enabled: !!(isAuthenticated && user?.role === SystemRoles.ADMIN),
   });
 
+  // Debug logging to check role permissions
+  if (userRole) {
+    console.log('[AuthContext] USER role permissions:', userRole.permissions);
+    console.log('[AuthContext] USER role keys:', Object.keys(userRole.permissions || {}));
+  }
+  if (adminRole) {
+    console.log('[AuthContext] ADMIN role permissions:', adminRole.permissions);
+    console.log('[AuthContext] ADMIN role keys:', Object.keys(adminRole.permissions || {}));
+  }
+
   const navigate = useNavigate();
 
   const setUserContext = useMemo(

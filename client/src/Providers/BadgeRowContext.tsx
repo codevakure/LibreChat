@@ -19,6 +19,7 @@ interface BadgeRowContextType {
   webSearch: ReturnType<typeof useToolToggle>;
   artifacts: ReturnType<typeof useToolToggle>;
   fileSearch: ReturnType<typeof useToolToggle>;
+  charts: ReturnType<typeof useToolToggle>;
   codeInterpreter: ReturnType<typeof useToolToggle>;
   codeApiKeyForm: ReturnType<typeof useCodeApiKeyForm>;
   searchApiKeyForm: ReturnType<typeof useSearchApiKeyForm>;
@@ -67,11 +68,13 @@ export default function BadgeRowProvider({
       const webSearchToggleKey = `${LocalStorageKeys.LAST_WEB_SEARCH_TOGGLE_}${key}`;
       const fileSearchToggleKey = `${LocalStorageKeys.LAST_FILE_SEARCH_TOGGLE_}${key}`;
       const artifactsToggleKey = `${LocalStorageKeys.LAST_ARTIFACTS_TOGGLE_}${key}`;
+      const chartsToggleKey = `${LocalStorageKeys.LAST_CHARTS_TOGGLE_}${key}`;
 
       const codeToggleValue = localStorage.getItem(codeToggleKey);
       const webSearchToggleValue = localStorage.getItem(webSearchToggleKey);
       const fileSearchToggleValue = localStorage.getItem(fileSearchToggleKey);
       const artifactsToggleValue = localStorage.getItem(artifactsToggleKey);
+      const chartsToggleValue = localStorage.getItem(chartsToggleKey);
 
       const initialValues: Record<string, any> = {};
 
@@ -107,6 +110,14 @@ export default function BadgeRowProvider({
         }
       }
 
+      if (chartsToggleValue !== null) {
+        try {
+          initialValues[AgentCapabilities.charts] = JSON.parse(chartsToggleValue);
+        } catch (e) {
+          console.error('Failed to parse charts toggle value:', e);
+        }
+      }
+
       // Always set values for all tools (use defaults if not in localStorage)
       // If ephemeralAgent is null, create a new object with just our tool values
       setEphemeralAgent((prev) => ({
@@ -115,6 +126,7 @@ export default function BadgeRowProvider({
         [Tools.web_search]: initialValues[Tools.web_search] ?? false,
         [Tools.file_search]: initialValues[Tools.file_search] ?? false,
         [AgentCapabilities.artifacts]: initialValues[AgentCapabilities.artifacts] ?? false,
+        [AgentCapabilities.charts]: initialValues[AgentCapabilities.charts] ?? false,
       }));
     }
   }, [key, isSubmitting, setEphemeralAgent]);
@@ -171,11 +183,20 @@ export default function BadgeRowProvider({
     isAuthenticated: true,
   });
 
+  /** Charts hook - using a custom key since it's not a Tool but a capability */
+  const charts = useToolToggle({
+    conversationId,
+    toolKey: AgentCapabilities.charts,
+    localStorageKey: LocalStorageKeys.LAST_CHARTS_TOGGLE_,
+    isAuthenticated: true,
+  });
+
   const value: BadgeRowContextType = {
     mcpSelect,
     webSearch,
     artifacts,
     fileSearch,
+    charts,
     agentsConfig,
     startupConfig,
     conversationId,

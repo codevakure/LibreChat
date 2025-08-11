@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import * as Ariakit from '@ariakit/react';
-import { Globe, Settings, Settings2, TerminalSquareIcon } from 'lucide-react';
+import { Globe, Settings, Settings2, TerminalSquareIcon, BarChart } from 'lucide-react';
 import { TooltipAnchor, DropdownPopup, PinIcon, VectorIcon } from '@librechat/client';
 import type { MenuItemProps } from '~/common';
 import {
@@ -29,13 +29,14 @@ const ToolsDropdown = ({ disabled }: ToolsDropdownProps) => {
     mcpSelect,
     artifacts,
     fileSearch,
+    charts,
     agentsConfig,
     startupConfig,
     codeApiKeyForm,
     codeInterpreter,
     searchApiKeyForm,
   } = useBadgeRowContext();
-  const { codeEnabled, webSearchEnabled, artifactsEnabled, fileSearchEnabled } =
+  const { codeEnabled, webSearchEnabled, artifactsEnabled, fileSearchEnabled, chartsEnabled } =
     useAgentCapabilities(agentsConfig?.capabilities ?? defaultAgentCapabilities);
 
   const { setIsDialogOpen: setIsCodeDialogOpen, menuTriggerRef: codeMenuTriggerRef } =
@@ -53,6 +54,7 @@ const ToolsDropdown = ({ disabled }: ToolsDropdownProps) => {
     authData: codeAuthData,
   } = codeInterpreter;
   const { isPinned: isFileSearchPinned, setIsPinned: setIsFileSearchPinned } = fileSearch;
+  const { isPinned: isChartsPinned, setIsPinned: setIsChartsPinned } = charts;
   const { isPinned: isArtifactsPinned, setIsPinned: setIsArtifactsPinned } = artifacts;
   const { mcpServerNames } = mcpSelect;
 
@@ -68,6 +70,11 @@ const ToolsDropdown = ({ disabled }: ToolsDropdownProps) => {
 
   const canUseFileSearch = useHasAccess({
     permissionType: PermissionTypes.FILE_SEARCH,
+    permission: Permissions.USE,
+  });
+
+  const canUseCharts = useHasAccess({
+    permissionType: PermissionTypes.CHARTS,
     permission: Permissions.USE,
   });
 
@@ -96,6 +103,11 @@ const ToolsDropdown = ({ disabled }: ToolsDropdownProps) => {
     const newValue = !fileSearch.toggleState;
     fileSearch.debouncedChange({ value: newValue });
   }, [fileSearch]);
+
+  const handleChartsToggle = useCallback(() => {
+    const newValue = !charts.toggleState;
+    charts.debouncedChange({ value: newValue });
+  }, [charts]);
 
   const handleArtifactsToggle = useCallback(() => {
     const currentState = artifacts.toggleState;
@@ -209,6 +221,38 @@ const ToolsDropdown = ({ disabled }: ToolsDropdownProps) => {
               </div>
             </button>
           </div>
+        </div>
+      ),
+    });
+  }
+
+  if (chartsEnabled && canUseCharts) {
+    dropdownItems.push({
+      onClick: handleChartsToggle,
+      hideOnClick: false,
+      render: (props) => (
+        <div {...props}>
+          <div className="flex items-center gap-2">
+            <BarChart className="icon-md" />
+            <span>{localize('com_ui_charts')}</span>
+          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsChartsPinned(!isChartsPinned);
+            }}
+            className={cn(
+              'rounded p-1 transition-all duration-200',
+              'hover:bg-surface-secondary hover:shadow-sm',
+              !isChartsPinned && 'text-text-secondary hover:text-text-primary',
+            )}
+            aria-label={isChartsPinned ? 'Unpin' : 'Pin'}
+          >
+            <div className="h-4 w-4">
+              <PinIcon unpin={isChartsPinned} />
+            </div>
+          </button>
         </div>
       ),
     });

@@ -17,10 +17,12 @@ export const useGetRole = (
   config?: UseQueryOptions<t.TRole>,
 ): QueryObserverResult<t.TRole> => {
   return useQuery<t.TRole>([QueryKeys.roles, roleName], () => dataService.getRole(roleName), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    refetchOnMount: false,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    refetchOnMount: true,
     retry: false,
+    staleTime: 0, // Always consider data stale to force refetch
+    cacheTime: 0, // Don't cache for debugging
     ...config,
   });
 };
