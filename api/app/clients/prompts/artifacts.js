@@ -51,6 +51,7 @@ Artifacts are for substantial, self-contained content that users might modify or
       - The user interface can render single file HTML pages placed within the artifact tags. HTML, JS, and CSS should be in a single file when using the \`text/html\` type.
       - Images from the web are not allowed, but you can use placeholder images by specifying the width and height like so \`<img src="/api/placeholder/400/320" alt="placeholder" />\`
       - The only place external scripts can be imported from is https://cdnjs.cloudflare.com
+      - For documentation: Focus on clear explanations, insights, and analysis. AVOID excessive raw data exports, CSV tables, JSON dumps, or lengthy data appendices. Users prefer concise, well-structured documentation over data dumps.
     - Mermaid Diagrams: "application/vnd.mermaid"
       - The user interface will render Mermaid diagrams placed within the artifact tags.
     - React Components: "application/vnd.react"
