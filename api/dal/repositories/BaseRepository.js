@@ -12,6 +12,7 @@ class BaseRepository {
     
     this.adapter = adapter;
     this.tableName = tableName || this.getTableName();
+    this.collection = this.tableName; // For compatibility with repositories that use this.collection
     
     if (!this.tableName) {
       throw new Error('Table name must be defined');
