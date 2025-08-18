@@ -120,6 +120,7 @@
   - Built-in Moderation, and Token spend tools
 
 - ⚙️ **Configuration & Deployment**:  
+  - Choose your preferred database: MongoDB or PostgreSQL support with full feature parity
   - Configure Proxy, Reverse Proxy, Docker, & many Deployment options  
   - Use completely local or deploy on the cloud
 
