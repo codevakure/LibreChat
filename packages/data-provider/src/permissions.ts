@@ -5,18 +5,7 @@ import { z } from 'zod';
  */
 export enum PermissionTypes {
   /**
-   * Type for Promexport const permissionsSchema = z.object({
-  [PermissionTypes.PROMPTS]: promptPermissionsSchema,
-  [PermissionTypes.BOOKMARKS]: bookmarkPermissionsSchema,
-  [PermissionTypes.MEMORY]: memoryPermissionsSchema,
-  [PermissionTypes.AGENTS]: agentPermissionsSchema,
-  [PermissionTypes.MULTI_CONVO]: multiConvoPermissionsSchema,
-  [PermissionTypes.TEMPORARY_CHAT]: temporaryChatPermissionsSchema,
-  [PermissionTypes.RUN_CODE]: runCodePermissionsSchema,
-  [PermissionTypes.WEB_SEARCH]: webSearchPermissionsSchema,
-  [PermissionTypes.FILE_SEARCH]: fileSearchPermissionsSchema,
-  [PermissionTypes.CHARTS]: chartsPermissionsSchema,
-});ns
+   * Type for Prompts
    */
   PROMPTS = 'PROMPTS',
   /**
@@ -48,9 +37,21 @@ export enum PermissionTypes {
    */
   WEB_SEARCH = 'WEB_SEARCH',
   /**
+   * Type for People Picker Permissions
+   */
+  PEOPLE_PICKER = 'PEOPLE_PICKER',
+  /**
+   * Type for Marketplace Permissions
+   */
+  MARKETPLACE = 'MARKETPLACE',
+  /**
    * Type for using the "File Search" feature
    */
   FILE_SEARCH = 'FILE_SEARCH',
+  /**
+   * Type for using the "File Citations" feature in agents
+   */
+  FILE_CITATIONS = 'FILE_CITATIONS',
   /**
    * Type for using the "Charts" feature
    */
@@ -70,6 +71,9 @@ export enum Permissions {
   SHARE = 'SHARE',
   /** Can disable if desired */
   OPT_OUT = 'OPT_OUT',
+  VIEW_USERS = 'VIEW_USERS',
+  VIEW_GROUPS = 'VIEW_GROUPS',
+  VIEW_ROLES = 'VIEW_ROLES',
 }
 
 export const promptPermissionsSchema = z.object({
@@ -122,6 +126,18 @@ export const webSearchPermissionsSchema = z.object({
 });
 export type TWebSearchPermissions = z.infer<typeof webSearchPermissionsSchema>;
 
+export const peoplePickerPermissionsSchema = z.object({
+  [Permissions.VIEW_USERS]: z.boolean().default(true),
+  [Permissions.VIEW_GROUPS]: z.boolean().default(true),
+  [Permissions.VIEW_ROLES]: z.boolean().default(true),
+});
+export type TPeoplePickerPermissions = z.infer<typeof peoplePickerPermissionsSchema>;
+
+export const marketplacePermissionsSchema = z.object({
+  [Permissions.USE]: z.boolean().default(false),
+});
+export type TMarketplacePermissions = z.infer<typeof marketplacePermissionsSchema>;
+
 export const fileSearchPermissionsSchema = z.object({
   [Permissions.USE]: z.boolean().default(true),
 });
@@ -131,6 +147,10 @@ export const chartsPermissionsSchema = z.object({
   [Permissions.USE]: z.boolean().default(true),
 });
 export type TChartsPermissions = z.infer<typeof chartsPermissionsSchema>;
+export const fileCitationsPermissionsSchema = z.object({
+  [Permissions.USE]: z.boolean().default(true),
+});
+export type TFileCitationsPermissions = z.infer<typeof fileCitationsPermissionsSchema>;
 
 // Define a single permissions schema that holds all permission types.
 export const permissionsSchema = z.object({
@@ -142,6 +162,9 @@ export const permissionsSchema = z.object({
   [PermissionTypes.TEMPORARY_CHAT]: temporaryChatPermissionsSchema,
   [PermissionTypes.RUN_CODE]: runCodePermissionsSchema,
   [PermissionTypes.WEB_SEARCH]: webSearchPermissionsSchema,
+  [PermissionTypes.PEOPLE_PICKER]: peoplePickerPermissionsSchema,
+  [PermissionTypes.MARKETPLACE]: marketplacePermissionsSchema,
   [PermissionTypes.FILE_SEARCH]: fileSearchPermissionsSchema,
   [PermissionTypes.CHARTS]: chartsPermissionsSchema,
+  [PermissionTypes.FILE_CITATIONS]: fileCitationsPermissionsSchema,
 });
