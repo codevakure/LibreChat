@@ -1,10 +1,15 @@
 const BaseRepository = require('./BaseRepository');
+const SearchIndexer = require('../plugins/SearchIndexer');
 
 /**
  * Conversation Repository
- * Handles conversation-specific database operations
+ * Handles conversation-specific database operations with search integration
  */
 class ConversationRepository extends BaseRepository {
+  constructor(adapter, config = {}) {
+    super(adapter);
+    this.searchIndexer = new SearchIndexer(adapter, config.search);
+  }
   /**
    * Get the table/collection name
    * @returns {string}
@@ -14,11 +19,53 @@ class ConversationRepository extends BaseRepository {
   }
 
   /**
-   * Validate conversation data
-   * @param {Object} data - Conversation data to validate
-   * @param {string} operation - Operation type
-   * @returns {Object} - Validated data
+   * Create a new conversation with search indexing
+   * @param {Object} data - Conversation data
+   * @returns {Promise<Object>} - Created conversation
    */
+  async create(data) {
+    const conversation = await super.create(data);
+    
+    // Index the conversation for search
+    if (conversation) {
+      await this.searchIndexer.indexDocument('conversations', conversation);
+    }
+    
+    return conversation;
+  }
+
+  /**
+   * Update a conversation with search re-indexing
+   * @param {string} id - Conversation ID
+   * @param {Object} data - Update data
+   * @returns {Promise<Object|null>} - Updated conversation
+   */
+  async updateById(id, data) {
+    const conversation = await super.updateById(id, data);
+    
+    // Re-index the updated conversation
+    if (conversation) {
+      await this.searchIndexer.updateDocument('conversations', conversation);
+    }
+    
+    return conversation;
+  }
+
+  /**
+   * Delete a conversation with search index cleanup
+   * @param {string} id - Conversation ID
+   * @returns {Promise<boolean>} - Success status
+   */
+  async deleteById(id) {
+    const success = await super.deleteById(id);
+    
+    // Remove from search index
+    if (success) {
+      await this.searchIndexer.deleteDocument('conversations', id);
+    }
+    
+    return success;
+  }
   validateData(data, operation = 'create') {
     const validated = super.validateData(data, operation);
     
@@ -240,7 +287,49 @@ class ConversationRepository extends BaseRepository {
   }
 
   /**
-   * Search conversations by user
+   * Search conversations using MeiliSearch with fallback to database search
+   * @param {string} userId - User ID
+   * @param {string} searchTerm - Search term
+   * @param {Object} options - Search options
+   * @returns {Promise<Array>} - Search results
+   */
+  async searchConversations(userId, searchTerm, options = {}) {
+    if (!userId || !searchTerm) {
+      return [];
+    }
+
+    // Try MeiliSearch first if available
+    if (this.searchIndexer.isEnabled()) {
+      try {
+        const searchResult = await this.searchIndexer.search('conversations', searchTerm, {
+          filter: `user = "${userId}"`,
+          limit: options.limit || 20,
+          offset: options.offset || 0,
+          attributesToHighlight: ['title', 'tags']
+        });
+
+        if (searchResult && searchResult.hits) {
+          // Get full conversation objects from database
+          const conversationIds = searchResult.hits.map(hit => hit.id);
+          const conversations = await this.findMany({ _id: { $in: conversationIds } });
+          
+          // Preserve search ranking order
+          const conversationMap = new Map(conversations.map(conv => [conv._id || conv.id, conv]));
+          return searchResult.hits
+            .map(hit => conversationMap.get(hit.id))
+            .filter(Boolean);
+        }
+      } catch (error) {
+        console.warn('MeiliSearch failed, falling back to database search:', error.message);
+      }
+    }
+
+    // Fallback to database search
+    return await this.searchByUser(userId, searchTerm, options);
+  }
+
+  /**
+   * Search conversations by user (database fallback)
    * @param {string} userId - User ID
    * @param {string} searchTerm - Search term
    * @param {Object} options - Query options
@@ -365,6 +454,23 @@ class ConversationRepository extends BaseRepository {
       oldestConversation: null,
       newestConversation: null
     };
+  }
+
+  /**
+   * Sync conversations with search index
+   * @param {Object} options - Sync options
+   * @returns {Promise<number>} - Number of conversations indexed
+   */
+  async syncSearchIndex(options = {}) {
+    return await this.searchIndexer.syncCollection('conversations', options);
+  }
+
+  /**
+   * Get search index statistics for conversations
+   * @returns {Promise<Object|null>} - Index stats
+   */
+  async getSearchStats() {
+    return await this.searchIndexer.getIndexStats('conversations');
   }
 }
 

@@ -1,10 +1,15 @@
 const BaseRepository = require('./BaseRepository');
+const SearchIndexer = require('../plugins/SearchIndexer');
 
 /**
  * Message Repository
- * Handles message-specific database operations
+ * Handles message-specific database operations with search integration
  */
 class MessageRepository extends BaseRepository {
+  constructor(adapter, config = {}) {
+    super(adapter);
+    this.searchIndexer = new SearchIndexer(adapter, config.search);
+  }
   /**
    * Get the table/collection name
    * @returns {string}
@@ -14,11 +19,65 @@ class MessageRepository extends BaseRepository {
   }
 
   /**
-   * Validate message data
-   * @param {Object} data - Message data to validate
-   * @param {string} operation - Operation type
-   * @returns {Object} - Validated data
+   * Create a new message with search indexing
+   * @param {Object} data - Message data
+   * @returns {Promise<Object>} - Created message
    */
+  async create(data) {
+    const message = await super.create(data);
+    
+    // Index the message for search (don't fail if indexing fails)
+    if (message) {
+      try {
+        await this.searchIndexer.indexDocument('messages', message);
+      } catch (error) {
+        console.warn('Failed to index message for search:', error.message);
+      }
+    }
+    
+    return message;
+  }
+
+  /**
+   * Update a message with search re-indexing
+   * @param {string} id - Message ID
+   * @param {Object} data - Update data
+   * @returns {Promise<Object|null>} - Updated message
+   */
+  async updateById(id, data) {
+    const message = await super.updateById(id, data);
+    
+    // Re-index the updated message (don't fail if indexing fails)
+    if (message) {
+      try {
+        await this.searchIndexer.updateDocument('messages', message);
+      } catch (error) {
+        console.warn('Failed to update message in search index:', error.message);
+      }
+    }
+    
+    return message;
+  }
+
+  /**
+   * Delete a message with search index cleanup
+   * @param {string} id - Message ID
+   * @returns {Promise<boolean>} - Success status
+   */
+  async deleteById(id) {
+    const success = await super.deleteById(id);
+    
+    // Remove from search index (don't fail if indexing fails)
+    if (success) {
+      try {
+        await this.searchIndexer.deleteDocument('messages', id);
+      } catch (error) {
+        console.warn('Failed to remove message from search index:', error.message);
+      }
+    }
+    
+    return success;
+  }
   validateData(data, operation = 'create') {
     const validated = super.validateData(data, operation);
     
@@ -147,7 +206,48 @@ class MessageRepository extends BaseRepository {
   }
 
   /**
-   * Search messages by text content
+   * Search messages using MeiliSearch with fallback to database search
+   * @param {string} searchTerm - Search term
+   * @param {Object} options - Search options
+   * @returns {Promise<Array>} - Search results
+   */
+  async searchMessages(searchTerm, options = {}) {
+    if (!searchTerm) {
+      return [];
+    }
+
+    // Try MeiliSearch first if available
+    if (this.searchIndexer.isEnabled()) {
+      try {
+        const searchResult = await this.searchIndexer.search('messages', searchTerm, {
+          filter: options.filter,
+          limit: options.limit || 20,
+          offset: options.offset || 0,
+          attributesToHighlight: ['text', 'content']
+        });
+
+        if (searchResult && searchResult.hits) {
+          // Get full message objects from database
+          const messageIds = searchResult.hits.map(hit => hit.id);
+          const messages = await this.findMany({ _id: { $in: messageIds } });
+          
+          // Preserve search ranking order
+          const messageMap = new Map(messages.map(msg => [msg._id || msg.id, msg]));
+          return searchResult.hits
+            .map(hit => messageMap.get(hit.id))
+            .filter(Boolean);
+        }
+      } catch (error) {
+        console.warn('MeiliSearch failed, falling back to database search:', error.message);
+      }
+    }
+
+    // Fallback to database search
+    return await this.searchByText(searchTerm, options.conversationId, options);
+  }
+
+  /**
+   * Search messages by text content (database fallback)
    * @param {string} searchTerm - Search term
    * @param {string} conversationId - Conversation ID (optional)
    * @param {Object} options - Query options
@@ -167,7 +267,7 @@ class MessageRepository extends BaseRepository {
     } else {
       // PostgreSQL full-text search
       query = {
-        text: { $search: searchTerm } // PostgreSQL adapter would need to handle this
+        text: { $search: searchTerm } // PostgreSQL adapter handles this
       };
     }
     
@@ -237,7 +337,7 @@ class MessageRepository extends BaseRepository {
   }
 
   /**
-   * Mark message as edited
+   * Mark message as edited with search re-indexing
    * @param {string} messageId - Message ID
    * @param {string} newText - New message text
    * @returns {Promise<Object|null>}
@@ -247,11 +347,35 @@ class MessageRepository extends BaseRepository {
       throw new Error('Message ID and new text are required');
     }
     
-    return await this.updateById(messageId, {
+    const message = await this.updateById(messageId, {
       text: newText,
       isEdited: true,
       editedAt: new Date()
     });
+    
+    // Re-index the edited message
+    if (message) {
+      await this.searchIndexer.updateDocument('messages', message);
+    }
+    
+    return message;
+  }
+
+  /**
+   * Sync messages with search index
+   * @param {Object} options - Sync options
+   * @returns {Promise<number>} - Number of messages indexed
+   */
+  async syncSearchIndex(options = {}) {
+    return await this.searchIndexer.syncCollection('messages', options);
+  }
+
+  /**
+   * Get search index statistics for messages
+   * @returns {Promise<Object|null>} - Index stats
+   */
+  async getSearchStats() {
+    return await this.searchIndexer.getIndexStats('messages');
   }
 }
 

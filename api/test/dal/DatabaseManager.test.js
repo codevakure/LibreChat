@@ -135,7 +135,7 @@ describe('DatabaseManager', () => {
     it('should get repository by name', () => {
       const userRepo = manager.getRepository('user');
       expect(userRepo).toBeDefined();
-      expect(userRepo.tableName).toBe('users');
+      expect(userRepo.getTableName()).toBe('users');
     });
 
     it('should throw error for non-existent repository', () => {

@@ -32,9 +32,10 @@ class DatabaseManager {
 
   /**
    * Initialize the database manager
+   * @param {Object} config - Configuration object
    * @returns {Promise<void>}
    */
-  async initialize() {
+  async initialize(config = {}) {
     if (this.isInitialized) {
       logger.warn('DatabaseManager already initialized');
       return;
@@ -56,8 +57,8 @@ class DatabaseManager {
       // Connect to database
       await this.adapter.connect();
 
-      // Initialize repositories
-      this.initializeRepositories();
+      // Initialize repositories with configuration
+      this.initializeRepositories(config);
 
       this.isInitialized = true;
       logger.info(`DatabaseManager initialized successfully with ${dbType} adapter`);
@@ -69,15 +70,25 @@ class DatabaseManager {
 
   /**
    * Initialize all repositories with the current adapter
+   * @param {Object} config - Configuration object
    */
-  initializeRepositories() {
+  initializeRepositories(config = {}) {
     try {
-      this.repositories.user = new UserRepository(this.adapter);
-      this.repositories.message = new MessageRepository(this.adapter);
-      this.repositories.conversation = new ConversationRepository(this.adapter);
-      this.repositories.agent = new AgentRepository(this.adapter);
-      this.repositories.file = new FileRepository(this.adapter);
-      this.repositories.preset = new PresetRepository(this.adapter);
+      const searchConfig = {
+        search: {
+          host: config.meilisearch?.host,
+          apiKey: config.meilisearch?.apiKey,
+          enabled: config.meilisearch?.enabled,
+          ...config.search
+        }
+      };
+
+      this.repositories.user = new UserRepository(this.adapter, searchConfig);
+      this.repositories.message = new MessageRepository(this.adapter, searchConfig);
+      this.repositories.conversation = new ConversationRepository(this.adapter, searchConfig);
+      this.repositories.agent = new AgentRepository(this.adapter, searchConfig);
+      this.repositories.file = new FileRepository(this.adapter, searchConfig);
+      this.repositories.preset = new PresetRepository(this.adapter, searchConfig);
       this.repositories.session = new SessionRepository(this.adapter);
       this.repositories.balance = new BalanceRepository(this.adapter);
       this.repositories.pluginAuth = new PluginAuthRepository(this.adapter);
@@ -86,9 +97,9 @@ class DatabaseManager {
       this.repositories.permission = new PermissionRepository(this.adapter);
       this.repositories.tool = new ToolRepository(this.adapter);
       this.repositories.action = new ActionRepository(this.adapter);
-      this.repositories.prompt = new PromptRepository(this.adapter);
+      this.repositories.prompt = new PromptRepository(this.adapter, searchConfig);
 
-      logger.info('All repositories initialized successfully');
+      logger.info('All repositories initialized successfully with search configuration');
     } catch (error) {
       logger.error('Repository initialization failed:', error);
       throw error;
@@ -176,7 +187,7 @@ class DatabaseManager {
   }
 
   /**
-   * Health check for the database connection
+   * Health check for the database connection and search indexing
    * @returns {Promise<Object>}
    */
   async healthCheck() {
@@ -191,12 +202,24 @@ class DatabaseManager {
 
       const isConnected = this.isConnected();
       const databaseType = this.getDatabaseType();
+      
+      // Check search health if available
+      let searchHealth = null;
+      try {
+        const messageRepo = this.getRepository('message');
+        if (messageRepo && messageRepo.searchIndexer) {
+          searchHealth = await messageRepo.searchIndexer.healthCheck();
+        }
+      } catch (error) {
+        searchHealth = { status: 'error', message: error.message };
+      }
 
       return {
         status: isConnected ? 'healthy' : 'unhealthy',
         databaseType,
         isConnected,
         repositoryCount: Object.keys(this.repositories).length,
+        search: searchHealth,
         timestamp: new Date().toISOString()
       };
     } catch (error) {
@@ -207,6 +230,63 @@ class DatabaseManager {
         timestamp: new Date().toISOString()
       };
     }
+  }
+
+  /**
+   * Sync all collections with search index
+   * @param {Object} options - Sync options
+   * @returns {Promise<Object>} - Sync results
+   */
+  async syncSearchIndex(options = {}) {
+    if (!this.isInitialized) {
+      throw new Error('DatabaseManager not initialized. Call initialize() first.');
+    }
+
+    const results = {};
+    const repositoriesToSync = ['message', 'conversation', 'file'];
+
+    for (const repoName of repositoriesToSync) {
+      try {
+        const repo = this.getRepository(repoName);
+        if (repo && repo.syncSearchIndex) {
+          const indexed = await repo.syncSearchIndex(options);
+          results[repoName] = { indexed, status: 'success' };
+          logger.info(`Synced ${indexed} documents for ${repoName}`);
+        }
+      } catch (error) {
+        results[repoName] = { error: error.message, status: 'error' };
+        logger.error(`Failed to sync ${repoName}:`, error);
+      }
+    }
+
+    return results;
+  }
+
+  /**
+   * Get search statistics for all indexed collections
+   * @returns {Promise<Object>} - Search statistics
+   */
+  async getSearchStats() {
+    if (!this.isInitialized) {
+      throw new Error('DatabaseManager not initialized. Call initialize() first.');
+    }
+
+    const stats = {};
+    const repositoriesToCheck = ['message', 'conversation', 'file'];
+
+    for (const repoName of repositoriesToCheck) {
+      try {
+        const repo = this.getRepository(repoName);
+        if (repo && repo.getSearchStats) {
+          stats[repoName] = await repo.getSearchStats();
+        }
+      } catch (error) {
+        stats[repoName] = { error: error.message };
+        logger.error(`Failed to get search stats for ${repoName}:`, error);
+      }
+    }
+
+    return stats;
   }
 }
 
