@@ -13,7 +13,9 @@ services:
       - "5433:5432"
 
   rag_api:
-    image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
+    build:
+      context: ./rag_api
+      dockerfile: Dockerfile
     environment:
       - DB_HOST=vectordb
       - DB_PORT=5432
