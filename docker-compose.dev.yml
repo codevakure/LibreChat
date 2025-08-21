@@ -20,7 +20,7 @@ services:
 
   mongodb:
     container_name: chat-mongodb-dev
-    image: mongo:7
+    image: mongo
     restart: unless-stopped
     command: mongod --noauth
     ports:
@@ -56,7 +56,9 @@ services:
 
   rag_api:
     container_name: rag_api-dev
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    build:
+      context: ./rag_api
+      dockerfile: Dockerfile.lite
     environment:
       - DB_HOST=vectordb
       - RAG_PORT=${RAG_PORT:-8000}
