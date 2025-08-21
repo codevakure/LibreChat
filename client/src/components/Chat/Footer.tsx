@@ -35,13 +35,10 @@ export default function Footer({ className }: { className?: string }) {
   );
 
   const mainContentParts = (
-    typeof config?.customFooter === 'string'
+    typeof config?.customFooter === 'string' && config.customFooter.trim() !== ''
       ? config.customFooter
-      : '[LibreChat ' +
-        Constants.VERSION +
-        '](https://librechat.ai) - ' +
-        localize('com_ui_latest_footer')
-  ).split('|');
+      : null // Don't show default LibreChat footer
+  )?.split('|') || [];
 
   useEffect(() => {
     if (config?.analyticsGtmId != null && typeof window.google_tag_manager === 'undefined') {
@@ -81,6 +78,11 @@ export default function Footer({ className }: { className?: string }) {
   const footerElements = [...mainContentRender, privacyPolicyRender, termsOfServiceRender].filter(
     Boolean,
   );
+
+  // Don't render footer if there are no elements to show
+  if (footerElements.length === 0) {
+    return null;
+  }
 
   return (
     <div className="relative w-full">

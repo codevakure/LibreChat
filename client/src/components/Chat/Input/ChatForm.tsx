@@ -32,6 +32,8 @@ import SendButton from './SendButton';
 import EditBadges from './EditBadges';
 import BadgeRow from './BadgeRow';
 import Mention from './Mention';
+import ChatModelSelector from './ChatModelSelector';
+import { useGetStartupConfig } from '~/data-provider';
 import store from '~/store';
 
 const ChatForm = memo(({ index = 0 }: { index?: number }) => {
@@ -49,6 +51,7 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
   const TextToSpeech = useRecoilValue(store.textToSpeech);
   const chatDirection = useRecoilValue(store.chatDirection);
   const automaticPlayback = useRecoilValue(store.automaticPlayback);
+  const { data: startupConfig } = useGetStartupConfig();
   const maximizeChatSpace = useRecoilValue(store.maximizeChatSpace);
   const centerFormOnLanding = useRecoilValue(store.centerFormOnLanding);
   const isTemporary = useRecoilValue(store.isTemporary);
@@ -213,7 +216,7 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
           !isSubmitting &&
           conversation?.messages?.length === 0
           ? 'transition-all duration-200 sm:mb-28'
-          : 'sm:mb-10',
+          : 'sm:mb-4',
       )}
     >
       <div className="relative flex h-full flex-1 items-stretch md:flex-col">
@@ -322,6 +325,9 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
                   isSubmitting={isSubmitting}
                 />
               )}
+              <div className="flex items-center">
+                <ChatModelSelector startupConfig={startupConfig} />
+              </div>
               <div className={`${isRTL ? 'ml-2' : 'mr-2'}`}>
                 {(isSubmitting || isSubmittingAdded) && (showStopButton || showStopAdded) ? (
                   <StopButton stop={handleStopGenerating} setShowStopButton={setShowStopButton} />
