@@ -1,6 +1,7 @@
 const { logger } = require('@librechat/data-schemas');
 const MongoAdapter = require('./adapters/MongoAdapter');
 const PostgresAdapter = require('./adapters/PostgresAdapter');
+const HealthMonitorService = require('./services/HealthMonitorService');
 
 // Import repositories
 const UserRepository = require('./repositories/UserRepository');
@@ -18,16 +19,25 @@ const PermissionRepository = require('./repositories/PermissionRepository');
 const ToolRepository = require('./repositories/ToolRepository');
 const ActionRepository = require('./repositories/ActionRepository');
 const PromptRepository = require('./repositories/PromptRepository');
+const BannerRepository = require('./repositories/BannerRepository');
+const PromptGroupRepository = require('./repositories/PromptGroupRepository');
+const SharedLinkRepository = require('./repositories/SharedLinkRepository');
+const TokenRepository = require('./repositories/TokenRepository');
+const TransactionRepository = require('./repositories/TransactionRepository');
+const MemoryEntryRepository = require('./repositories/MemoryEntryRepository');
 
 /**
- * Database Manager
+ * Database Manager with Health Monitoring and Performance Optimization
  * Central manager for database operations across different database types
+ * Features: Health monitoring, repository management, performance tracking
  */
 class DatabaseManager {
   constructor() {
     this.adapter = null;
     this.repositories = {};
+    this.healthMonitor = null;
     this.isInitialized = false;
+    this.searchService = null;
   }
 
   /**
@@ -98,6 +108,12 @@ class DatabaseManager {
       this.repositories.tool = new ToolRepository(this.adapter);
       this.repositories.action = new ActionRepository(this.adapter);
       this.repositories.prompt = new PromptRepository(this.adapter, searchConfig);
+      this.repositories.banner = new BannerRepository(this.adapter);
+      this.repositories.promptGroup = new PromptGroupRepository(this.adapter, searchConfig);
+      this.repositories.sharedLink = new SharedLinkRepository(this.adapter);
+      this.repositories.token = new TokenRepository(this.adapter);
+      this.repositories.transaction = new TransactionRepository(this.adapter);
+      this.repositories.memoryEntry = new MemoryEntryRepository(this.adapter, searchConfig);
 
       logger.info('All repositories initialized successfully with search configuration');
     } catch (error) {

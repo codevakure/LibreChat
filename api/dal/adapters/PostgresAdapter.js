@@ -4,18 +4,29 @@ const BaseAdapter = require('./BaseAdapter');
 const { getMigrationRunner } = require('../migrations/MigrationRunner');
 
 /**
- * PostgreSQL Database Adapter
+ * PostgreSQL Database Adapter with Enhanced Performance & Production Features
  * Implements the BaseAdapter interface for PostgreSQL with MongoDB-compatible methods
+ * Features: Connection pooling, query optimization, performance monitoring, prepared statements
  */
 class PostgresAdapter extends BaseAdapter {
   constructor() {
     super();
     this.pool = null;
     this.migrationRunner = null;
+    this.preparedStatements = new Map();
+    this.connectionMetrics = {
+      activeConnections: 0,
+      totalQueries: 0,
+      averageQueryTime: 0,
+      errors: 0,
+      slowQueries: 0
+    };
+    this.queryTimeHistory = [];
+    this.slowQueryThreshold = parseInt(process.env.POSTGRES_SLOW_QUERY_THRESHOLD) || 1000; // ms
   }
 
   /**
-   * Connect to PostgreSQL
+   * Connect to PostgreSQL with Enhanced Connection Pooling
    */
   async connect() {
     try {
@@ -26,12 +37,46 @@ class PostgresAdapter extends BaseAdapter {
         user: process.env.POSTGRES_USERNAME || 'librechat_user',
         password: process.env.POSTGRES_PASSWORD,
         ssl: process.env.POSTGRES_SSL === 'true' ? { rejectUnauthorized: false } : false,
+        // Enhanced connection pool settings for production
         max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS) || 20,
+        min: parseInt(process.env.POSTGRES_MIN_CONNECTIONS) || 2,
+        idleTimeoutMillis: parseInt(process.env.POSTGRES_IDLE_TIMEOUT) || 30000,
         connectionTimeoutMillis: parseInt(process.env.POSTGRES_CONNECTION_TIMEOUT) || 30000,
+        acquireTimeoutMillis: parseInt(process.env.POSTGRES_ACQUIRE_TIMEOUT) || 60000,
+        createTimeoutMillis: parseInt(process.env.POSTGRES_CREATE_TIMEOUT) || 20000,
+        destroyTimeoutMillis: parseInt(process.env.POSTGRES_DESTROY_TIMEOUT) || 5000,
+        reapIntervalMillis: parseInt(process.env.POSTGRES_REAP_INTERVAL) || 1000,
+        createRetryIntervalMillis: parseInt(process.env.POSTGRES_CREATE_RETRY_INTERVAL) || 200,
+        // Performance optimizations
+        statement_timeout: parseInt(process.env.POSTGRES_STATEMENT_TIMEOUT) || 30000,
+        query_timeout: parseInt(process.env.POSTGRES_QUERY_TIMEOUT) || 30000,
+        application_name: 'LibreChat',
+        keepAlive: true,
+        keepAliveInitialDelayMillis: 10000
       };
 
       this.pool = new Pool(config);
       
+      // Enhanced connection event handlers
+      this.pool.on('connect', (client) => {
+        this.connectionMetrics.activeConnections++;
+        logger.debug('PostgreSQL client connected', { 
+          activeConnections: this.connectionMetrics.activeConnections 
+        });
+      });
+
+      this.pool.on('remove', (client) => {
+        this.connectionMetrics.activeConnections--;
+        logger.debug('PostgreSQL client removed', { 
+          activeConnections: this.connectionMetrics.activeConnections 
+        });
+      });
+
+      this.pool.on('error', (err, client) => {
+        this.connectionMetrics.errors++;
+        logger.error('PostgreSQL pool error:', err);
+      });
+
       // Test connection
       const client = await this.pool.connect();
       await client.query('SELECT NOW()');
@@ -43,12 +88,181 @@ class PostgresAdapter extends BaseAdapter {
         await this.migrationRunner.runMigrations();
       }
       
-      logger.info('PostgreSQL adapter connected successfully');
+      logger.info('PostgreSQL adapter connected successfully', {
+        host: config.host,
+        port: config.port,
+        database: config.database,
+        maxConnections: config.max,
+        minConnections: config.min
+      });
+
+      // Start performance monitoring
+      this.startPerformanceMonitoring();
+
       return this.pool;
     } catch (error) {
+      this.connectionMetrics.errors++;
       logger.error('PostgreSQL adapter connection failed:', error);
       throw error;
     }
+  }
+
+  /**
+   * Start performance monitoring
+   */
+  startPerformanceMonitoring() {
+    if (process.env.NODE_ENV === 'production') {
+      // Monitor pool every 30 seconds
+      setInterval(() => {
+        this.logPoolStats();
+      }, 30000);
+
+      // Log slow queries and metrics every 5 minutes
+      setInterval(() => {
+        this.logPerformanceMetrics();
+      }, 300000);
+    }
+  }
+
+  /**
+   * Log connection pool statistics
+   */
+  logPoolStats() {
+    if (this.pool) {
+      logger.info('PostgreSQL Pool Stats', {
+        totalCount: this.pool.totalCount,
+        idleCount: this.pool.idleCount,
+        waitingCount: this.pool.waitingCount,
+        activeConnections: this.connectionMetrics.activeConnections,
+        totalQueries: this.connectionMetrics.totalQueries,
+        averageQueryTime: this.connectionMetrics.averageQueryTime,
+        errors: this.connectionMetrics.errors,
+        slowQueries: this.connectionMetrics.slowQueries
+      });
+    }
+  }
+
+  /**
+   * Log performance metrics
+   */
+  logPerformanceMetrics() {
+    const metrics = {
+      ...this.connectionMetrics,
+      slowQueryThreshold: this.slowQueryThreshold,
+      preparedStatementsCount: this.preparedStatements.size
+    };
+
+    logger.info('PostgreSQL Performance Metrics', metrics);
+
+    // Reset counters (keep running averages)
+    this.connectionMetrics.totalQueries = 0;
+    this.connectionMetrics.slowQueries = 0;
+    this.connectionMetrics.errors = 0;
+  }
+
+  /**
+   * Execute query with performance tracking
+   */
+  async executeQuery(sql, params = [], options = {}) {
+    const startTime = Date.now();
+    let client;
+
+    try {
+      this.connectionMetrics.totalQueries++;
+
+      // Use prepared statement if available and enabled
+      if (options.usePrepared && this.preparedStatements.has(sql)) {
+        const preparedName = this.preparedStatements.get(sql);
+        client = await this.pool.connect();
+        const result = await client.query({ name: preparedName, text: sql, values: params });
+        client.release();
+        
+        this.trackQueryPerformance(startTime, sql, params, options);
+        return result;
+      }
+
+      // Regular query execution
+      client = await this.pool.connect();
+      const result = await client.query(sql, params);
+      client.release();
+      
+      this.trackQueryPerformance(startTime, sql, params, options);
+      return result;
+
+    } catch (error) {
+      if (client) client.release();
+      this.connectionMetrics.errors++;
+      
+      const duration = Date.now() - startTime;
+      logger.error('PostgreSQL query failed', {
+        error: error.message,
+        sql: sql.substring(0, 200),
+        params: params,
+        duration
+      });
+      
+      throw error;
+    }
+  }
+
+  /**
+   * Track query performance metrics
+   */
+  trackQueryPerformance(startTime, sql, params, options) {
+    const duration = Date.now() - startTime;
+    
+    // Track slow queries
+    if (duration > this.slowQueryThreshold) {
+      this.connectionMetrics.slowQueries++;
+      logger.warn('Slow PostgreSQL query detected', {
+        duration,
+        sql: sql.substring(0, 200),
+        params: params,
+        threshold: this.slowQueryThreshold
+      });
+    }
+
+    // Update running average
+    this.queryTimeHistory.push(duration);
+    if (this.queryTimeHistory.length > 1000) {
+      this.queryTimeHistory = this.queryTimeHistory.slice(-500);
+    }
+    
+    const sum = this.queryTimeHistory.reduce((a, b) => a + b, 0);
+    this.connectionMetrics.averageQueryTime = Math.round(sum / this.queryTimeHistory.length);
+  }
+
+  /**
+   * Prepare statement for better performance
+   */
+  async prepareStatement(name, sql) {
+    try {
+      const client = await this.pool.connect();
+      await client.query({ name, text: sql });
+      client.release();
+      
+      this.preparedStatements.set(sql, name);
+      logger.debug('PostgreSQL statement prepared', { name, sql: sql.substring(0, 100) });
+    } catch (error) {
+      logger.error('Failed to prepare PostgreSQL statement', { name, error: error.message });
+      throw error;
+    }
+  }
+
+  /**
+   * Get performance metrics
+   */
+  getPerformanceMetrics() {
+    return {
+      ...this.connectionMetrics,
+      poolStats: this.pool ? {
+        totalCount: this.pool.totalCount,
+        idleCount: this.pool.idleCount,
+        waitingCount: this.pool.waitingCount
+      } : null,
+      preparedStatementsCount: this.preparedStatements.size,
+      slowQueryThreshold: this.slowQueryThreshold
+    };
   }
 
   /**

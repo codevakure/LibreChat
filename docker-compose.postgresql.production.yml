@@ -1,0 +1,97 @@
+# docker-compose.postgresql.production.yml - PostgreSQL Production Configuration
+# Use with: docker-compose -f docker-compose.production.yml -f docker-compose.postgresql.production.yml up -d
+
+version: '3.8'
+
+services:
+  librechat:
+    environment:
+      - DATABASE_TYPE=postgresql
+      - POSTGRES_HOST=postgresql
+      - POSTGRES_PORT=5432
+      - POSTGRES_DATABASE=librechat
+      - POSTGRES_USERNAME=librechat_user
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # Enhanced PostgreSQL configuration
+      - POSTGRES_SSL=${POSTGRES_SSL:-false}
+      - POSTGRES_MAX_CONNECTIONS=20
+      - POSTGRES_MIN_CONNECTIONS=2
+      - POSTGRES_SLOW_QUERY_THRESHOLD=1000
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  postgresql:
+    profiles: [] # Remove profile to always include
+    environment:
+      - POSTGRES_DB=librechat
+      - POSTGRES_USER=librechat_user
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # Performance optimizations
+      - POSTGRES_SHARED_BUFFERS=256MB
+      - POSTGRES_EFFECTIVE_CACHE_SIZE=1GB
+      - POSTGRES_MAINTENANCE_WORK_MEM=64MB
+      - POSTGRES_WORK_MEM=4MB
+      - POSTGRES_MAX_CONNECTIONS=100
+    volumes:
+      - ./postgresql/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./postgresql/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+
+  # PostgreSQL Backup Service
+  postgresql-backup:
+    container_name: librechat-postgresql-backup
+    image: postgres:15
+    profiles:
+      - postgresql-backup
+    depends_on:
+      - postgresql
+    environment:
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=postgresql
+      - POSTGRES_USER=librechat_user
+      - POSTGRES_DB=librechat
+      - BACKUP_SCHEDULE=${BACKUP_SCHEDULE:-0 2 * * *}
+      - BACKUP_RETENTION_DAYS=${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./backups/postgresql:/backups
+      - ./scripts/postgresql-backup.sh:/backup.sh:ro
+    command: >
+      sh -c "
+        echo '${BACKUP_SCHEDULE:-0 2 * * *} /backup.sh' | crontab -
+        crond -f
+      "
+    restart: unless-stopped
+
+  # PostgreSQL Monitoring
+  postgres-exporter:
+    container_name: librechat-postgres-exporter
+    image: quay.io/prometheuscommunity/postgres-exporter:latest
+    profiles:
+      - monitoring
+    depends_on:
+      - postgresql
+    environment:
+      - DATA_SOURCE_NAME=postgresql://librechat_user:${POSTGRES_PASSWORD}@postgresql:5432/librechat?sslmode=disable
+    ports:
+      - "9187:9187"
+    restart: unless-stopped
+
+  # PgAdmin (optional, for database management)
+  pgadmin:
+    container_name: librechat-pgadmin
+    image: dpage/pgadmin4:latest
+    profiles:
+      - pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@librechat.local}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-admin}
+      - PGADMIN_CONFIG_SERVER_MODE=True
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+
+volumes:
+  pgadmin_data:
+    driver: local

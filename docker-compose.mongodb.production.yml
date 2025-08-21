@@ -1,0 +1,71 @@
+# docker-compose.mongodb.production.yml - MongoDB Production Configuration
+# Use with: docker-compose -f docker-compose.production.yml -f docker-compose.mongodb.production.yml up -d
+
+version: '3.8'
+
+services:
+  librechat:
+    environment:
+      - DATABASE_TYPE=mongodb
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  mongodb:
+    profiles: [] # Remove profile to always include
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-secure_password}
+    command: >
+      mongod 
+      --auth
+      --replSet rs0
+      --bind_ip_all
+      --keyFile /etc/mongodb/keyfile
+      --oplogSize 128
+      --wiredTigerCacheSizeGB 0.5
+    volumes:
+      - ./mongodb/keyfile:/etc/mongodb/keyfile:ro
+      - ./mongodb/init:/docker-entrypoint-initdb.d
+
+  # MongoDB Replica Set Initialization (for production)
+  mongo-init:
+    container_name: librechat-mongo-init
+    image: mongo:7
+    profiles:
+      - mongodb-cluster
+    depends_on:
+      - mongodb
+    command: >
+      mongosh --host mongodb:27017 --eval "
+        rs.initiate({
+          _id: 'rs0',
+          members: [
+            { _id: 0, host: 'mongodb:27017' }
+          ]
+        })
+      "
+    restart: "no"
+
+  # MongoDB Backup Service
+  mongodb-backup:
+    container_name: librechat-mongodb-backup
+    image: mongo:7
+    profiles:
+      - mongodb-backup
+    depends_on:
+      - mongodb
+    environment:
+      - BACKUP_SCHEDULE=${BACKUP_SCHEDULE:-0 2 * * *}
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - BACKUP_RETENTION_DAYS=${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./backups/mongodb:/backups
+      - ./scripts/mongodb-backup.sh:/backup.sh:ro
+    command: >
+      sh -c "
+        echo '${BACKUP_SCHEDULE:-0 2 * * *} /backup.sh' | crontab -
+        crond -f
+      "
+    restart: unless-stopped
