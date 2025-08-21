@@ -2,20 +2,12 @@ import React, { createContext, useContext, useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { Tools, Constants, LocalStorageKeys, AgentCapabilities } from 'librechat-data-provider';
 import type { TAgentsEndpoint } from 'librechat-data-provider';
-import {
-  useSearchApiKeyForm,
-  useGetAgentsConfig,
-  useCodeApiKeyForm,
-  useToolToggle,
-  useMCPSelect,
-} from '~/hooks';
-import { useGetStartupConfig } from '~/data-provider';
+import { useSearchApiKeyForm, useGetAgentsConfig, useCodeApiKeyForm, useToolToggle } from '~/hooks';
 import { ephemeralAgentByConvoId } from '~/store';
 
 interface BadgeRowContextType {
   conversationId?: string | null;
   agentsConfig?: TAgentsEndpoint | null;
-  mcpSelect: ReturnType<typeof useMCPSelect>;
   webSearch: ReturnType<typeof useToolToggle>;
   artifacts: ReturnType<typeof useToolToggle>;
   fileSearch: ReturnType<typeof useToolToggle>;
@@ -23,7 +15,6 @@ interface BadgeRowContextType {
   codeInterpreter: ReturnType<typeof useToolToggle>;
   codeApiKeyForm: ReturnType<typeof useCodeApiKeyForm>;
   searchApiKeyForm: ReturnType<typeof useSearchApiKeyForm>;
-  startupConfig: ReturnType<typeof useGetStartupConfig>['data'];
 }
 
 const BadgeRowContext = createContext<BadgeRowContextType | undefined>(undefined);
@@ -131,12 +122,6 @@ export default function BadgeRowProvider({
     }
   }, [key, isSubmitting, setEphemeralAgent]);
 
-  /** Startup config */
-  const { data: startupConfig } = useGetStartupConfig();
-
-  /** MCPSelect hook */
-  const mcpSelect = useMCPSelect({ conversationId });
-
   /** CodeInterpreter hooks */
   const codeApiKeyForm = useCodeApiKeyForm({});
   const { setIsDialogOpen: setCodeDialogOpen } = codeApiKeyForm;
@@ -192,13 +177,11 @@ export default function BadgeRowProvider({
   });
 
   const value: BadgeRowContextType = {
-    mcpSelect,
     webSearch,
     artifacts,
     fileSearch,
     charts,
     agentsConfig,
-    startupConfig,
     conversationId,
     codeApiKeyForm,
     codeInterpreter,

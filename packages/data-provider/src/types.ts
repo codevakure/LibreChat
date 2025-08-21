@@ -11,6 +11,7 @@ import type {
 } from './schemas';
 import type { SettingDefinition } from './generate';
 import type { TMinimalFeedback } from './feedback';
+import type { ContentTypes } from './types/runs';
 import type { Agent } from './types/assistants';
 
 export * from './schemas';
@@ -109,12 +110,20 @@ export type TPayload = Partial<TMessage> &
     messages?: TMessages;
     isTemporary: boolean;
     ephemeralAgent?: TEphemeralAgent | null;
-    editedContent?: {
-      index: number;
-      text: string;
-      type: 'text' | 'think';
-    } | null;
+    editedContent?: TEditedContent | null;
   };
+
+export type TEditedContent =
+  | {
+      index: number;
+      type: ContentTypes.THINK;
+      [ContentTypes.THINK]: string;
+    }
+  | {
+      index: number;
+      type: ContentTypes.TEXT;
+      [ContentTypes.TEXT]: string;
+    };
 
 export type TSubmission = {
   plugin?: TResPlugin;
@@ -130,11 +139,7 @@ export type TSubmission = {
   endpointOption: TEndpointOption;
   clientTimestamp?: string;
   ephemeralAgent?: TEphemeralAgent | null;
-  editedContent?: {
-    index: number;
-    text: string;
-    type: 'text' | 'think';
-  } | null;
+  editedContent?: TEditedContent | null;
 };
 
 export type EventSubmission = Omit<TSubmission, 'initialResponse'> & { initialResponse: TMessage };
