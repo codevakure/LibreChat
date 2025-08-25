@@ -1,10 +1,10 @@
 /**
- * @import { TUpdateResourcePermissionsRequest, TUpdateResourcePermissionsResponse } from 'librechat-data-provider'
+ * @import { TUpdateResourcePermissionsRequest, TUpdateResourcePermissionsResponse } from 'pleach-data-provider'
  */
 
 const mongoose = require('mongoose');
-const { logger } = require('@librechat/data-schemas');
-const { ResourceType, PrincipalType } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { ResourceType, PrincipalType } = require('pleach-data-provider');
 const {
   bulkUpdateResourcePermissions,
   ensureGroupPrincipalExists,

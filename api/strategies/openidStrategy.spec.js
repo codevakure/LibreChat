@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const jwtDecode = require('jsonwebtoken/decode');
-const { ErrorTypes } = require('librechat-data-provider');
+const { ErrorTypes } = require('pleach-data-provider');
 const { findUser, createUser, updateUser } = require('~/models');
 const { setupOpenId } = require('./openidStrategy');
 
@@ -22,12 +22,12 @@ jest.mock('~/models', () => ({
   createUser: jest.fn(),
   updateUser: jest.fn(),
 }));
-jest.mock('@librechat/api', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@pleach/api', () => ({
+  ...jest.requireActual('@pleach/api'),
   isEnabled: jest.fn(() => false),
 }));
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@pleach/data-schemas', () => ({
+  ...jest.requireActual('@pleach/api'),
   logger: {
     info: jest.fn(),
     debug: jest.fn(),

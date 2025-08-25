@@ -1,6 +1,6 @@
 import { ProxyAgent } from 'undici';
 import { Providers } from '@librechat/agents';
-import { KnownEndpoints, removeNullishValues } from 'librechat-data-provider';
+import { KnownEndpoints, removeNullishValues } from 'pleach-data-provider';
 import type { BindToolsInput } from '@langchain/core/language_models/chat_models';
 import type { AzureOpenAIInput } from '@langchain/openai';
 import type { OpenAI } from 'openai';
@@ -146,8 +146,8 @@ export function getOpenAIConfig(
     configOptions.baseURL = reverseProxyUrl;
     configOptions.defaultHeaders = Object.assign(
       {
-        'HTTP-Referer': 'https://librechat.ai',
-        'X-Title': 'LibreChat',
+        'HTTP-Referer': 'https://pleach.ai',
+        'X-Title': 'Pleach',
       },
       headers,
     );

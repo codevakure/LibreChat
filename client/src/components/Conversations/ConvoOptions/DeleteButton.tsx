@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { QueryKeys } from 'librechat-data-provider';
+import { QueryKeys } from 'pleach-data-provider';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
@@ -10,8 +10,8 @@ import {
   OGDialogHeader,
   OGDialogContent,
   useToastContext,
-} from '@librechat/client';
-import type { TMessage } from 'librechat-data-provider';
+} from '@pleach/client';
+import type { TMessage } from 'pleach-data-provider';
 import { useDeleteConversationMutation } from '~/data-provider';
 import { useLocalize, useNewConvo } from '~/hooks';
 import { NotificationSeverity } from '~/common';

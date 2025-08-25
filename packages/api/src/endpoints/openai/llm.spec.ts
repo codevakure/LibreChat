@@ -1,4 +1,4 @@
-import { ReasoningEffort, ReasoningSummary, Verbosity } from 'librechat-data-provider';
+import { ReasoningEffort, ReasoningSummary, Verbosity } from 'pleach-data-provider';
 import type { RequestInit } from 'undici';
 import { getOpenAIConfig } from './llm';
 
@@ -114,8 +114,8 @@ describe('getOpenAIConfig', () => {
 
     expect(result.configOptions?.baseURL).toBe(reverseProxyUrl);
     expect(result.configOptions?.defaultHeaders).toMatchObject({
-      'HTTP-Referer': 'https://librechat.ai',
-      'X-Title': 'LibreChat',
+      'HTTP-Referer': 'https://pleach.ai',
+      'X-Title': 'Pleach',
     });
     expect(result.llmConfig.include_reasoning).toBe(true);
     expect(result.provider).toBe('openrouter');

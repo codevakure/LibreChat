@@ -9,7 +9,7 @@ const {
   constructAzureURL,
   genAzureChatCompletion,
   createStreamEventHandlers,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const {
   Constants,
   ImageDetail,
@@ -23,7 +23,7 @@ const {
   getResponseSender,
   validateVisionModel,
   mapModelToAzureConfig,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   truncateText,
   formatMessage,
@@ -643,8 +643,8 @@ class OpenAIClient extends BaseClient {
       configOptions.basePath = 'https://openrouter.ai/api/v1';
       configOptions.baseOptions = {
         headers: {
-          'HTTP-Referer': 'https://librechat.ai',
-          'X-Title': 'LibreChat',
+          'HTTP-Referer': 'https://pleach.ai',
+          'X-Title': 'Pleach',
         },
       };
     }
@@ -1148,8 +1148,8 @@ ${convo}
 
       if (this.useOpenRouter) {
         opts.defaultHeaders = {
-          'HTTP-Referer': 'https://librechat.ai',
-          'X-Title': 'LibreChat',
+          'HTTP-Referer': 'https://pleach.ai',
+          'X-Title': 'Pleach',
         };
       }
 

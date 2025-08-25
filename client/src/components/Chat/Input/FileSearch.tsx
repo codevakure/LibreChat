@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { CheckboxButton, VectorIcon } from '@librechat/client';
-import { PermissionTypes, Permissions } from 'librechat-data-provider';
+import { CheckboxButton, VectorIcon } from '@pleach/client';
+import { PermissionTypes, Permissions } from 'pleach-data-provider';
 import { useLocalize, useHasAccess } from '~/hooks';
 import { useBadgeRowContext } from '~/Providers';
 

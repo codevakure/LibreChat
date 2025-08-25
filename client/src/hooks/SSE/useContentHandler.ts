@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { ContentTypes } from 'librechat-data-provider';
+import { ContentTypes } from 'pleach-data-provider';
 import { useQueryClient } from '@tanstack/react-query';
 
 import type {
@@ -11,7 +11,7 @@ import type {
   TContentData,
   EventSubmission,
   TMessageContentParts,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import { addFileToCache } from '~/utils';
 
 type TUseContentHandler = {

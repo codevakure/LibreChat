@@ -6,7 +6,7 @@ import {
   AuthTypeEnum,
   AuthorizationTypeEnum,
   TokenExchangeMethodEnum,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import {
   OGDialogTemplate,
   TrashIcon,
@@ -14,7 +14,7 @@ import {
   OGDialogTrigger,
   Label,
   useToastContext,
-} from '@librechat/client';
+} from '@pleach/client';
 import ActionsAuth from '~/components/SidePanel/Builder/ActionsAuth';
 import { useAgentPanelContext } from '~/Providers/AgentPanelContext';
 import { useDeleteAgentAction } from '~/data-provider';

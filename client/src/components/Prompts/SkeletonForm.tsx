@@ -1,4 +1,4 @@
-import { Skeleton } from '@librechat/client';
+import { Skeleton } from '@pleach/client';
 
 export default function SkeletonForm() {
   return (

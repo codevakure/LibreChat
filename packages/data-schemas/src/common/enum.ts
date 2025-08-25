@@ -1,4 +1,4 @@
-import { PermissionBits } from 'librechat-data-provider';
+import { PermissionBits } from 'pleach-data-provider';
 
 /**
  * Common role combinations

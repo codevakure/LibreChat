@@ -1,4 +1,4 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@pleach/data-schemas');
 const { createMCPManager } = require('~/config');
 const { mergeAppTools } = require('./Config');
 

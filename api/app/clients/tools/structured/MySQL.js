@@ -3,7 +3,7 @@ const { z } = require('zod');
 const { logger } = require('~/config');
 
 /**
- * MySQL Query Tool for LibreChat Agents
+ * MySQL Query Tool for Pleach Agents
  * Executes SQL queries against MySQL databases
  * Based on Anything LLM's SQL connector implementation
  */

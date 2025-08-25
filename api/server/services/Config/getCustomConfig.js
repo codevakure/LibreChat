@@ -1,6 +1,6 @@
-const { logger } = require('@librechat/data-schemas');
-const { isEnabled, getUserMCPAuthMap } = require('@librechat/api');
-const { CacheKeys, EModelEndpoint } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { isEnabled, getUserMCPAuthMap } = require('@pleach/api');
+const { CacheKeys, EModelEndpoint } = require('pleach-data-provider');
 const { normalizeEndpointName } = require('~/server/utils');
 const loadCustomConfig = require('./loadCustomConfig');
 const getLogStores = require('~/cache/getLogStores');
@@ -12,7 +12,7 @@ const getLogStores = require('~/cache/getLogStores');
  * */
 async function getCustomConfig() {
   const cache = getLogStores(CacheKeys.STATIC_CONFIG);
-  return (await cache.get(CacheKeys.LIBRECHAT_YAML_CONFIG)) || (await loadCustomConfig());
+  return (await cache.get(CacheKeys.PLEACH_YAML_CONFIG)) || (await loadCustomConfig());
 }
 
 /**
@@ -57,7 +57,7 @@ const getCustomEndpointConfig = async (endpoint) => {
  * @param {Object} params
  * @param {string} params.userId
  * @param {GenericTool[]} [params.tools]
- * @param {import('@librechat/data-schemas').PluginAuthMethods['findPluginAuthsByKeys']} params.findPluginAuthsByKeys
+ * @param {import('@pleach/data-schemas').PluginAuthMethods['findPluginAuthsByKeys']} params.findPluginAuthsByKeys
  * @returns {Promise<Record<string, Record<string, string>> | undefined>}
  */
 async function getMCPAuthMap({ userId, tools, findPluginAuthsByKeys }) {

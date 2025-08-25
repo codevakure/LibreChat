@@ -1,11 +1,11 @@
-const { logger } = require('@librechat/data-schemas');
-const { MCPOAuthHandler } = require('@librechat/api');
+const { logger } = require('@pleach/data-schemas');
+const { MCPOAuthHandler } = require('@pleach/api');
 const { Router } = require('express');
 const { getMCPSetupData, getServerConnectionStatus } = require('~/server/services/MCP');
 const { findToken, updateToken, createToken, deleteTokens } = require('~/models');
 const { updateMCPUserTools } = require('~/server/services/Config/mcpToolsCache');
 const { getUserPluginAuthValue } = require('~/server/services/PluginService');
-const { CacheKeys, Constants } = require('librechat-data-provider');
+const { CacheKeys, Constants } = require('pleach-data-provider');
 const { getMCPManager, getFlowStateManager } = require('~/config');
 const { requireJwtAuth } = require('~/server/middleware');
 const { getLogStores } = require('~/cache');

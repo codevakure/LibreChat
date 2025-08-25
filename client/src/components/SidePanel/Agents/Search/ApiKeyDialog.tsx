@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Button, OGDialog, OGDialogTemplate } from '@librechat/client';
+import { Button, OGDialog, OGDialogTemplate } from '@pleach/client';
 import {
   AuthType,
   SearchCategories,
   RerankerTypes,
   SearchProviders,
   ScraperTypes,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import type { SearchApiKeyFormData } from '~/hooks/Plugins/useAuthSearchTool';
 import type { UseFormRegister, UseFormHandleSubmit } from 'react-hook-form';
 import InputSection, { type DropdownOption } from './InputSection';

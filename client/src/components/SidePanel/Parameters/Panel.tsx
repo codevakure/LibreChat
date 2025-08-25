@@ -7,8 +7,8 @@ import {
   getSettingsKeys,
   SettingDefinition,
   tConvoUpdateSchema,
-} from 'librechat-data-provider';
-import type { TPreset } from 'librechat-data-provider';
+} from 'pleach-data-provider';
+import type { TPreset } from 'pleach-data-provider';
 import { SaveAsPresetDialog } from '~/components/Endpoints';
 import { useSetIndexOptions, useLocalize } from '~/hooks';
 import { useGetEndpointsQuery } from '~/data-provider';

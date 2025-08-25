@@ -1,9 +1,9 @@
 import { useMemo, memo, type FC, useCallback } from 'react';
 import throttle from 'lodash/throttle';
 import { parseISO, isToday } from 'date-fns';
-import { Spinner, useMediaQuery } from '@librechat/client';
+import { Spinner, useMediaQuery } from '@pleach/client';
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
-import { TConversation } from 'librechat-data-provider';
+import { TConversation } from 'pleach-data-provider';
 import { useLocalize, TranslationKeys } from '~/hooks';
 import { groupConversationsByDate } from '~/utils';
 import Convo from './Convo';

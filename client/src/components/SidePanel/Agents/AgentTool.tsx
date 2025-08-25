@@ -3,7 +3,7 @@ import * as Ariakit from '@ariakit/react';
 import { ChevronDown } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { useUpdateUserPluginsMutation } from 'librechat-data-provider/react-query';
+import { useUpdateUserPluginsMutation } from 'pleach-data-provider/react-query';
 import {
   Accordion,
   AccordionItem,
@@ -16,8 +16,8 @@ import {
   Checkbox,
   OGDialogTemplate,
   useToastContext,
-} from '@librechat/client';
-import type { AgentToolType } from 'librechat-data-provider';
+} from '@pleach/client';
+import type { AgentToolType } from 'pleach-data-provider';
 import type { AgentForm } from '~/common';
 import { useLocalize } from '~/hooks';
 import { cn } from '~/utils';

@@ -4,12 +4,12 @@ import {
   PermissionTypes,
   EModelEndpoint,
   EndpointURLs,
-} from 'librechat-data-provider';
-import type { IRole, IUser } from '@librechat/data-schemas';
+} from 'pleach-data-provider';
+import type { IRole, IUser } from '@pleach/data-schemas';
 import { checkAccess, generateCheckAccess, skipAgentCheck } from './access';
 
 // Mock logger
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@pleach/data-schemas', () => ({
   logger: {
     warn: jest.fn(),
     error: jest.fn(),

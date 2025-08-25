@@ -1,8 +1,8 @@
 const fs = require('fs');
-const { isEnabled } = require('@librechat/api');
+const { isEnabled } = require('@pleach/api');
 const LdapStrategy = require('passport-ldapauth');
-const { logger } = require('@librechat/data-schemas');
-const { SystemRoles, ErrorTypes } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { SystemRoles, ErrorTypes } = require('pleach-data-provider');
 const { createUser, findUser, updateUser, countUsers } = require('~/models');
 const { getBalanceConfig } = require('~/server/services/Config');
 

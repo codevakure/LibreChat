@@ -1,10 +1,10 @@
 import { memo, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useForm } from 'react-hook-form';
-import { Spinner } from '@librechat/client';
+import { Spinner } from '@pleach/client';
 import { useParams } from 'react-router-dom';
-import { Constants } from 'librechat-data-provider';
-import type { TMessage } from 'librechat-data-provider';
+import { Constants } from 'pleach-data-provider';
+import type { TMessage } from 'pleach-data-provider';
 import type { ChatFormValues } from '~/common';
 import { ChatContext, AddedChatContext, useFileMapContext, ChatFormProvider } from '~/Providers';
 import { useChatHelpers, useAddedResponse, useSSE } from '~/hooks';

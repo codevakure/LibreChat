@@ -4,9 +4,9 @@ import type {
   RerankerTypes,
   SearchProviders,
   TWebSearchConfig,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import { webSearchAuth, loadWebSearchAuth, extractWebSearchEnvVars } from './web';
-import { SafeSearchTypes, AuthType } from 'librechat-data-provider';
+import { SafeSearchTypes, AuthType } from 'pleach-data-provider';
 
 // Mock the extractVariableName function
 jest.mock('../utils', () => ({

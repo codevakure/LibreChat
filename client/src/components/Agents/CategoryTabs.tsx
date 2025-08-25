@@ -1,6 +1,6 @@
 import React from 'react';
-import type t from 'librechat-data-provider';
-import { useMediaQuery } from '@librechat/client';
+import type t from 'pleach-data-provider';
+import { useMediaQuery } from '@pleach/client';
 import { SmartLoader } from './SmartLoader';
 import { useLocalize } from '~/hooks/';
 import { cn } from '~/utils';

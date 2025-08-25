@@ -1,6 +1,6 @@
-const { isEnabled } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { ErrorTypes } = require('librechat-data-provider');
+const { isEnabled } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
+const { ErrorTypes } = require('pleach-data-provider');
 const { createSocialUser, handleExistingUser } = require('./process');
 const { findUser } = require('~/models');
 

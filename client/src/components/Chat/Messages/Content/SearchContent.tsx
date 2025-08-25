@@ -1,14 +1,14 @@
 import { Suspense, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { DelayedRender } from '@librechat/client';
-import { ContentTypes } from 'librechat-data-provider';
+import { DelayedRender } from '@pleach/client';
+import { ContentTypes } from 'pleach-data-provider';
 import type {
   Agents,
   TMessage,
   TAttachment,
   SearchResultData,
   TMessageContentParts,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import { UnfinishedMessage } from './MessageContent';
 import Sources from '~/components/Web/Sources';
 import { cn, mapAttachments } from '~/utils';

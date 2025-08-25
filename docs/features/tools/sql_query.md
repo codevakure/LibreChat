@@ -1,6 +1,6 @@
-# SQL Database Tools for LibreChat Agents
+# SQL Database Tools for Pleach Agents
 
-The SQL Database tools enable AI agents to execute SQL queries against configured databases, providing powerful data retrieval and analysis capabilities. LibreChat provides separate tools for PostgreSQL, MySQL, and Microsoft SQL Server, inspired by AnythingLLM's SQL connector and designed specifically for agent use.
+The SQL Database tools enable AI agents to execute SQL queries against configured databases, providing powerful data retrieval and analysis capabilities. Pleach provides separate tools for PostgreSQL, MySQL, and Microsoft SQL Server, inspired by AnythingLLM's SQL connector and designed specifically for agent use.
 
 ## Features
 
@@ -78,11 +78,11 @@ SQLSERVER_QUERY_TIMEOUT=30000
 
 ### Per-User Configuration
 
-Users can also configure their own database connections through the LibreChat plugin system using the same field names.
+Users can also configure their own database connections through the Pleach plugin system using the same field names.
 
 ### Docker Environment Configuration
 
-When running LibreChat in Docker, use these special hostnames:
+When running Pleach in Docker, use these special hostnames:
 
 ```bash
 # For databases running on the host machine
@@ -100,13 +100,13 @@ SQLSERVER_HOST=sqlserver-container-name
 
 ### 1. Install Database Drivers
 
-The required database drivers are included in LibreChat's dependencies:
+The required database drivers are included in Pleach's dependencies:
 
 ```bash
 # PostgreSQL driver (pg)
 # MySQL driver (mysql2) 
 # SQL Server driver (mssql)
-# These are automatically installed with LibreChat
+# These are automatically installed with Pleach
 ```
 
 ### 2. Enable the Tools
@@ -303,14 +303,14 @@ Error: Cannot find module 'pg'
 - **Connection Pooling**: Multiple agents share connection pools efficiently
 - **Query Caching**: Consider implementing query result caching for repeated operations
 
-## Integration with LibreChat
+## Integration with Pleach
 
-The SQL Query tool integrates seamlessly with LibreChat's agent system:
+The SQL Query tool integrates seamlessly with Pleach's agent system:
 
 - **Context Awareness**: The tool provides context about database connection and capabilities
 - **Error Reporting**: Detailed error messages help users understand and fix issues
 - **Result Formatting**: Query results are formatted for readability in chat interfaces
-- **Security Integration**: Leverages LibreChat's user authentication and authorization system
+- **Security Integration**: Leverages Pleach's user authentication and authorization system
 
 ## Changelog
 
@@ -318,17 +318,17 @@ The SQL Query tool integrates seamlessly with LibreChat's agent system:
 - Initial release with PostgreSQL, MySQL, and SQL Server support
 - Security-first design with query restrictions
 - Automatic query limits and connection pooling
-- Integration with LibreChat agent system
+- Integration with Pleach agent system
 
 ## Contributing
 
 To contribute improvements to the SQL Query tool:
 
-1. Follow LibreChat's contribution guidelines
+1. Follow Pleach's contribution guidelines
 2. Test changes against all supported database types
 3. Ensure security measures remain intact
 4. Update documentation for any new features
 
 ## License
 
-This tool is part of LibreChat and follows the same licensing terms.
+This tool is part of Pleach and follows the same licensing terms.

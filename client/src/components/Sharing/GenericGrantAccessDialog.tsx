@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AccessRoleIds, ResourceType } from 'librechat-data-provider';
+import { AccessRoleIds, ResourceType } from 'pleach-data-provider';
 import { Share2Icon, Users, Link, CopyCheck, UserX, UserCheck } from 'lucide-react';
 import {
   Label,
@@ -12,8 +12,8 @@ import {
   OGDialogContent,
   OGDialogTrigger,
   useToastContext,
-} from '@librechat/client';
-import type { TPrincipal } from 'librechat-data-provider';
+} from '@pleach/client';
+import type { TPrincipal } from 'pleach-data-provider';
 import {
   usePeoplePickerPermissions,
   useResourcePermissionState,

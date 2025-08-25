@@ -9,8 +9,8 @@ import {
   OGDialogHeader,
   OGDialogTitle,
   Progress,
-} from '@librechat/client';
-import type { TUser, TVerify2FARequest } from 'librechat-data-provider';
+} from '@pleach/client';
+import type { TUser, TVerify2FARequest } from 'pleach-data-provider';
 import {
   useConfirmTwoFactorMutation,
   useDisableTwoFactorMutation,

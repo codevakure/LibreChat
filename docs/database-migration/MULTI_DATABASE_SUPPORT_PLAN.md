@@ -1,12 +1,12 @@
-# LibreChat Multi-Database Support Plan
+# Pleach Multi-Database Support Plan
 
 ## Overview
 
-This document outlines the plan to support both MongoDB and PostgreSQL in LibreChat, allowing users to choose their preferred database during initial setup. Users will select either MongoDB OR PostgreSQL at installation time - there is no migration between databases or dual-database operation.
+This document outlines the plan to support both MongoDB and PostgreSQL in Pleach, allowing users to choose their preferred database during initial setup. Users will select either MongoDB OR PostgreSQL at installation time - there is no migration between databases or dual-database operation.
 
 ## Current Architecture
 
-LibreChat currently uses:
+Pleach currently uses:
 - **MongoDB** as the primary database with Mongoose ODM
 - **Schemas** defined in `packages/data-schemas/src/schema/`
 - **Models** created dynamically via `createModels()` function
@@ -17,7 +17,7 @@ LibreChat currently uses:
 
 ### **Is Multi-Database Support Truly Feasible?**
 
-After deep analysis of the LibreChat codebase, supporting both MongoDB and PostgreSQL end-to-end presents **significant technical challenges** that need honest evaluation:
+After deep analysis of the Pleach codebase, supporting both MongoDB and PostgreSQL end-to-end presents **significant technical challenges** that need honest evaluation:
 
 #### **🔴 Major Challenges**
 
@@ -100,7 +100,7 @@ After deep analysis of the LibreChat codebase, supporting both MongoDB and Postg
 
 ### **Revised Thinking: Why Support Both Makes Sense**
 
-You're absolutely correct! If we're doing the substantial work to make LibreChat work with PostgreSQL, we're essentially solving all the hard problems already. At that point, **keeping MongoDB support is actually logical** because:
+You're absolutely correct! If we're doing the substantial work to make Pleach work with PostgreSQL, we're essentially solving all the hard problems already. At that point, **keeping MongoDB support is actually logical** because:
 
 #### **The Heavy Lifting Is the Same**
 1. **Database Abstraction Layer** - Required for PostgreSQL anyway
@@ -233,13 +233,13 @@ Update environment configuration to support database selection:
 DATABASE_TYPE=mongodb              # Options: 'mongodb' or 'postgresql'
 
 # MongoDB Configuration (existing)
-MONGO_URI=mongodb://127.0.0.1:27017/LibreChat
+MONGO_URI=mongodb://127.0.0.1:27017/Pleach
 
 # PostgreSQL Configuration (new)
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
-POSTGRES_DATABASE=librechat
-POSTGRES_USERNAME=librechat_user
+POSTGRES_DATABASE=pleach
+POSTGRES_USERNAME=pleach_user
 POSTGRES_PASSWORD=your_password
 POSTGRES_SSL=false
 POSTGRES_MAX_CONNECTIONS=20
@@ -871,7 +871,7 @@ CREATE INDEX idx_memory_entries_user ON memory_entries(user);
 ```javascript
 // api/dal/migrations/mongodb/init.js
 const { connectDb } = require('~/db/connect');
-const { createModels } = require('@librechat/data-schemas');
+const { createModels } = require('@pleach/data-schemas');
 
 async function initializeMongoDB() {
   await connectDb();
@@ -950,20 +950,20 @@ class PostgresAdapter extends BaseAdapter {
 ```yaml
 services:
   api:
-    container_name: LibreChat
+    container_name: Pleach
     ports:
       - "${PORT}:${PORT}"
     depends_on:
       - database
       - rag_api
-    image: ghcr.io/danny-avila/librechat-dev:latest
+    image: ghcr.io/danny-avila/pleach-dev:latest
     environment:
       - HOST=0.0.0.0
       - DATABASE_TYPE=${DATABASE_TYPE:-mongodb}
-      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MONGO_URI=mongodb://mongodb:27017/Pleach
       - POSTGRES_HOST=postgresql
-      - POSTGRES_DATABASE=librechat
-      - POSTGRES_USERNAME=librechat_user
+      - POSTGRES_DATABASE=pleach
+      - POSTGRES_USERNAME=pleach_user
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
@@ -993,8 +993,8 @@ services:
     profiles:
       - postgresql
     environment:
-      POSTGRES_DB: librechat
-      POSTGRES_USER: librechat_user
+      POSTGRES_DB: pleach
+      POSTGRES_USER: pleach_user
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgresql_data:/var/lib/postgresql/data
@@ -1015,7 +1015,7 @@ services:
   api:
     environment:
       - DATABASE_TYPE=mongodb
-      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MONGO_URI=mongodb://mongodb:27017/Pleach
     depends_on:
       - mongodb
 
@@ -1132,13 +1132,13 @@ docs/
 
 ## Choose Your Database
 
-LibreChat supports two database options:
+Pleach supports two database options:
 
 ### Option 1: MongoDB (Default)
 ```bash
 # Set environment variable
 DATABASE_TYPE=mongodb
-MONGO_URI=mongodb://localhost:27017/LibreChat
+MONGO_URI=mongodb://localhost:27017/Pleach
 
 # Start with Docker
 docker-compose -f docker-compose.yml -f docker-compose.mongodb.yml up -d
@@ -1150,8 +1150,8 @@ docker-compose -f docker-compose.yml -f docker-compose.mongodb.yml up -d
 DATABASE_TYPE=postgresql
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
-POSTGRES_DATABASE=librechat
-POSTGRES_USERNAME=librechat_user
+POSTGRES_DATABASE=pleach
+POSTGRES_USERNAME=pleach_user
 POSTGRES_PASSWORD=your_secure_password
 
 # Start with Docker

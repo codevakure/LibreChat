@@ -1,8 +1,8 @@
 {
-  "name": "@librechat/api",
+  "name": "@pleach/api",
   "version": "1.3.3",
   "type": "commonjs",
-  "description": "MCP services for LibreChat",
+  "description": "MCP services for Pleach",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -31,14 +31,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danny-avila/LibreChat.git"
+    "url": "git+https://github.com/danny-avila/Pleach.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danny-avila/LibreChat/issues"
+    "url": "https://github.com/danny-avila/Pleach/issues"
   },
-  "homepage": "https://librechat.ai",
+  "homepage": "https://pleach.ai",
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.18.6",
@@ -59,7 +59,7 @@
     "@types/winston": "^2.4.4",
     "jest": "^29.5.0",
     "jest-junit": "^16.0.0",
-    "librechat-data-provider": "*",
+    "pleach-data-provider": "*",
     "mongoose": "^8.12.1",
     "rimraf": "^5.0.1",
     "rollup": "^4.22.4",
@@ -74,7 +74,7 @@
   "peerDependencies": {
     "@langchain/core": "^0.3.62",
     "@librechat/agents": "^2.4.76",
-    "@librechat/data-schemas": "*",
+    "@pleach/data-schemas": "*",
     "@modelcontextprotocol/sdk": "^1.17.1",
     "axios": "^1.8.2",
     "diff": "^7.0.0",
@@ -82,7 +82,7 @@
     "express": "^4.21.2",
     "js-yaml": "^4.1.0",
     "keyv": "^5.3.2",
-    "librechat-data-provider": "*",
+    "pleach-data-provider": "*",
     "node-fetch": "2.7.0",
     "tiktoken": "^1.0.15",
     "undici": "^7.10.0",

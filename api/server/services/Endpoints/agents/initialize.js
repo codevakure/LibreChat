@@ -1,12 +1,12 @@
-const { logger } = require('@librechat/data-schemas');
-const { validateAgentModel } = require('@librechat/api');
+const { logger } = require('@pleach/data-schemas');
+const { validateAgentModel } = require('@pleach/api');
 const { createContentAggregator } = require('@librechat/agents');
 const {
   Constants,
   EModelEndpoint,
   isAgentsEndpoint,
   getResponseSender,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   createToolEndCallback,
   getDefaultHandlers,

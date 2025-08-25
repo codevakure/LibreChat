@@ -1,6 +1,6 @@
 const { nanoid } = require('nanoid');
-const { checkAccess } = require('@librechat/api');
-const { Tools, PermissionTypes, Permissions } = require('librechat-data-provider');
+const { checkAccess } = require('@pleach/api');
+const { Tools, PermissionTypes, Permissions } = require('pleach-data-provider');
 const { getCustomConfig } = require('~/server/services/Config/getCustomConfig');
 const { getRoleByName } = require('~/models/Role');
 const { logger } = require('~/config');

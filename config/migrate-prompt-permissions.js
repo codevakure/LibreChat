@@ -1,7 +1,7 @@
 const path = require('path');
-const { logger } = require('@librechat/data-schemas');
-const { AccessRoleIds, ResourceType, PrincipalType } = require('librechat-data-provider');
-const { GLOBAL_PROJECT_NAME } = require('librechat-data-provider').Constants;
+const { logger } = require('@pleach/data-schemas');
+const { AccessRoleIds, ResourceType, PrincipalType } = require('pleach-data-provider');
+const { GLOBAL_PROJECT_NAME } = require('pleach-data-provider').Constants;
 
 require('module-alias')({ base: path.resolve(__dirname, '..', 'api') });
 const connect = require('./connect');

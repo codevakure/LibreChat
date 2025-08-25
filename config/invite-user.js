@@ -1,6 +1,6 @@
 const path = require('path');
 const mongoose = require('mongoose');
-const { User } = require('@librechat/data-schemas').createModels(mongoose);
+const { User } = require('@pleach/data-schemas').createModels(mongoose);
 require('module-alias')({ base: path.resolve(__dirname, '..', 'api') });
 const { sendEmail, checkEmailConfig } = require('~/server/utils');
 const { askQuestion, silentExit } = require('./helpers');
@@ -50,7 +50,7 @@ const connect = require('./connect');
   const token = await createInvite(email);
   const inviteLink = `${process.env.DOMAIN_CLIENT}/register?token=${token}`;
 
-  const appName = process.env.APP_TITLE || 'LibreChat';
+  const appName = process.env.APP_TITLE || 'Pleach';
 
   if (!checkEmailConfig()) {
     console.green('Send this link to the user:', inviteLink);

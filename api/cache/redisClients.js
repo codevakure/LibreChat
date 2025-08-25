@@ -1,5 +1,5 @@
 const IoRedis = require('ioredis');
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@pleach/data-schemas');
 const { createClient, createCluster } = require('@keyv/redis');
 const { cacheConfig } = require('./cacheConfig');
 

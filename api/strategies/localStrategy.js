@@ -1,5 +1,5 @@
-const { logger } = require('@librechat/data-schemas');
-const { errorsToString } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { errorsToString } = require('pleach-data-provider');
 const { Strategy: PassportLocalStrategy } = require('passport-local');
 const { isEnabled, checkEmailConfig } = require('~/server/utils');
 const { findUser, comparePassword, updateUser } = require('~/models');

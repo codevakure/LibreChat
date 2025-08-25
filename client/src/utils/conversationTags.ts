@@ -2,7 +2,7 @@ import {
   TConversationTagRequest,
   TConversationTagResponse,
   TConversationTagsResponse,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 
 export const updateConversationTag = (
   queryCache: TConversationTagsResponse,

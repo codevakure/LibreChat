@@ -1,12 +1,12 @@
-const { logger } = require('@librechat/data-schemas');
-const { CacheKeys, Constants } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { CacheKeys, Constants } = require('pleach-data-provider');
 const {
   getToolkitKey,
   checkPluginAuth,
   filterUniquePlugins,
   convertMCPToolToPlugin,
   convertMCPToolsToPlugins,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const {
   getCachedTools,
   setCachedTools,
@@ -29,7 +29,7 @@ const getAvailablePluginsController = async (req, res) => {
 
     /** @type {{ filteredTools: string[], includedTools: string[] }} */
     const { filteredTools = [], includedTools = [] } = req.app.locals;
-    /** @type {import('@librechat/api').LCManifestTool[]} */
+    /** @type {import('@pleach/api').LCManifestTool[]} */
     const pluginManifest = availableTools;
 
     const uniquePlugins = filterUniquePlugins(pluginManifest);
@@ -103,7 +103,7 @@ const getAvailableTools = async (req, res) => {
       prelimCachedTools = toolDefinitions;
     }
 
-    /** @type {import('@librechat/api').LCManifestTool[]} */
+    /** @type {import('@pleach/api').LCManifestTool[]} */
     let pluginManifest = availableTools;
     if (customConfig?.mcpServers != null) {
       try {

@@ -13,7 +13,7 @@ function ChatModelSelectorContent() {
   const localize = useLocalize();
 
   const {
-    // LibreChat
+    // Pleach
     agentsMap,
     modelSpecs,
     mappedEndpoints,

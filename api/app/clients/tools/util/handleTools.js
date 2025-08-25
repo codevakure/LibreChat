@@ -1,9 +1,9 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@pleach/data-schemas');
 const { SerpAPI } = require('@langchain/community/tools/serpapi');
 const { Calculator } = require('@langchain/community/tools/calculator');
-const { mcpToolPattern, loadWebSearchAuth } = require('@librechat/api');
+const { mcpToolPattern, loadWebSearchAuth } = require('@pleach/api');
 const { EnvVar, createCodeExecutionTool, createSearchTool } = require('@librechat/agents');
-const { Tools, EToolResources, replaceSpecialVars } = require('librechat-data-provider');
+const { Tools, EToolResources, replaceSpecialVars } = require('pleach-data-provider');
 const {
   availableTools,
   manifestToolMap,

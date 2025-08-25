@@ -1,6 +1,6 @@
 import React from 'react';
-import { Label } from '@librechat/client';
-import type t from 'librechat-data-provider';
+import { Label } from '@pleach/client';
+import type t from 'pleach-data-provider';
 import { cn, renderAgentAvatar, getContactDisplayName } from '~/utils';
 import { useLocalize } from '~/hooks';
 

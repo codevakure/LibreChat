@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, memo } from 'react';
-import { useUserKeyQuery } from 'librechat-data-provider/react-query';
-import { ResizableHandleAlt, ResizablePanel, useMediaQuery } from '@librechat/client';
-import type { TEndpointsConfig, TInterfaceConfig } from 'librechat-data-provider';
+import { useUserKeyQuery } from 'pleach-data-provider/react-query';
+import { ResizableHandleAlt, ResizablePanel, useMediaQuery } from '@pleach/client';
+import type { TEndpointsConfig, TInterfaceConfig } from 'pleach-data-provider';
 import type { ImperativePanelHandle } from 'react-resizable-panels';
 import useSideNavLinks from '~/hooks/Nav/useSideNavLinks';
 import { useLocalStorage, useLocalize } from '~/hooks';

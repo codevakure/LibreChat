@@ -1,7 +1,7 @@
 apiVersion: v2
-name: librechat
-description: A Helm chart for LibreChat
-icon: https://www.librechat.ai/librechat_alt.svg
+name: pleach
+description: A Helm chart for Pleach
+icon: https://www.pleach.ai/pleach_alt.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -22,10 +22,10 @@ version: 1.8.10
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 
-# renovate: image=ghcr.io/danny-avila/librechat
+# renovate: image=ghcr.io/danny-avila/pleach
 appVersion: "v0.8.0-rc2"
 
-home: https://www.librechat.ai
+home: https://www.pleach.ai
 
 dependencies:
   - name: mongodb
@@ -36,7 +36,7 @@ dependencies:
     version: "0.11.0"
     condition: meilisearch.enabled
     repository: "https://meilisearch.github.io/meilisearch-kubernetes"
-  - name: librechat-rag-api
+  - name: pleach-rag-api
     version: "0.5.2"
-    condition: librechat-rag-api.enabled
-    repository: file://../librechat-rag-api
+    condition: pleach-rag-api.enabled
+    repository: file://../pleach-rag-api

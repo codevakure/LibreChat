@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { useQueryClient } from '@tanstack/react-query';
-import { Button, useToastContext } from '@librechat/client';
-import { Constants, QueryKeys } from 'librechat-data-provider';
-import { useUpdateUserPluginsMutation } from 'librechat-data-provider/react-query';
-import type { TUpdateUserPlugins } from 'librechat-data-provider';
+import { Button, useToastContext } from '@pleach/client';
+import { Constants, QueryKeys } from 'pleach-data-provider';
+import { useUpdateUserPluginsMutation } from 'pleach-data-provider/react-query';
+import type { TUpdateUserPlugins } from 'pleach-data-provider';
 import ServerInitializationSection from '~/components/MCP/ServerInitializationSection';
 import { useMCPConnectionStatusQuery } from '~/data-provider/Tools/queries';
 import CustomUserVarsSection from '~/components/MCP/CustomUserVarsSection';

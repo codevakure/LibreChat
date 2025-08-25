@@ -1,4 +1,4 @@
-name: Publish `librechat-data-provider` to NPM
+name: Publish `pleach-data-provider` to NPM
 
 on:
   push:

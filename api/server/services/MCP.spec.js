@@ -1,23 +1,23 @@
-const { logger } = require('@librechat/data-schemas');
-const { MCPOAuthHandler } = require('@librechat/api');
-const { CacheKeys } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { MCPOAuthHandler } = require('@pleach/api');
+const { CacheKeys } = require('pleach-data-provider');
 const { getMCPSetupData, checkOAuthFlowStatus, getServerConnectionStatus } = require('./MCP');
 
 // Mock all dependencies
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@pleach/data-schemas', () => ({
   logger: {
     debug: jest.fn(),
     error: jest.fn(),
   },
 }));
 
-jest.mock('@librechat/api', () => ({
+jest.mock('@pleach/api', () => ({
   MCPOAuthHandler: {
     generateFlowId: jest.fn(),
   },
 }));
 
-jest.mock('librechat-data-provider', () => ({
+jest.mock('pleach-data-provider', () => ({
   CacheKeys: {
     FLOWS: 'flows',
   },

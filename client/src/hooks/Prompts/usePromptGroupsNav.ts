@@ -2,7 +2,7 @@ import { useMemo, useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { usePromptGroupsInfiniteQuery } from '~/data-provider';
 import { useQueryClient } from '@tanstack/react-query';
-import { QueryKeys } from 'librechat-data-provider';
+import { QueryKeys } from 'pleach-data-provider';
 import debounce from 'lodash/debounce';
 import store from '~/store';
 

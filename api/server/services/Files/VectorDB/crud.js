@@ -1,9 +1,9 @@
 const fs = require('fs');
 const axios = require('axios');
 const FormData = require('form-data');
-const { logAxiosError } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { FileSources } = require('librechat-data-provider');
+const { logAxiosError } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
+const { FileSources } = require('pleach-data-provider');
 const { generateShortLivedToken } = require('~/server/services/AuthService');
 
 /**

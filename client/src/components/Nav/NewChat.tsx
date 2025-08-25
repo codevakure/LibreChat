@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { QueryKeys, Constants } from 'librechat-data-provider';
-import { TooltipAnchor, NewChatIcon, MobileSidebar, Sidebar, Button } from '@librechat/client';
-import type { TMessage } from 'librechat-data-provider';
+import { QueryKeys, Constants } from 'pleach-data-provider';
+import { TooltipAnchor, NewChatIcon, MobileSidebar, Sidebar, Button } from '@pleach/client';
+import type { TMessage } from 'pleach-data-provider';
 import { useLocalize, useNewConvo } from '~/hooks';
 import store from '~/store';
 

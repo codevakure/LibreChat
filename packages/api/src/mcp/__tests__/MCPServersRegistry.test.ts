@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { readFileSync } from 'fs';
 import { load as yamlLoad } from 'js-yaml';
-import { logger } from '@librechat/data-schemas';
+import { logger } from '@pleach/data-schemas';
 import type { OAuthDetectionResult } from '~/mcp/oauth/detectOAuth';
 import type * as t from '~/mcp/types';
 import { ConnectionsRepository } from '~/mcp/ConnectionsRepository';
@@ -13,7 +13,7 @@ import { MCPConnection } from '~/mcp/connection';
 jest.mock('../oauth/detectOAuth');
 jest.mock('../ConnectionsRepository');
 jest.mock('../connection');
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@pleach/data-schemas', () => ({
   logger: {
     info: jest.fn(),
     warn: jest.fn(),

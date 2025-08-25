@@ -8,9 +8,9 @@ const {
   anthropicSettings,
   getResponseSender,
   validateVisionModel,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const { SplitStreamHandler: _Handler } = require('@librechat/agents');
-const { Tokenizer, createFetch, createStreamEventHandlers } = require('@librechat/api');
+const { Tokenizer, createFetch, createStreamEventHandlers } = require('@pleach/api');
 const {
   truncateText,
   formatMessage,
@@ -252,7 +252,7 @@ class AnthropicClient extends BaseClient {
   }
 
   /**
-   * Get Token Count for LibreChat Message
+   * Get Token Count for Pleach Message
    * @param {TMessage} responseMessage
    * @returns {number}
    */

@@ -8,7 +8,7 @@ const {
   defaultAgentCapabilities,
   deprecatedAzureVariables,
   conflictingAzureVariables,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 
 const AppService = require('./AppService');
 
@@ -81,9 +81,9 @@ jest.mock('./start/turnstile', () => ({
 
 const azureGroups = [
   {
-    group: 'librechat-westus',
+    group: 'pleach-westus',
     apiKey: '${WESTUS_API_KEY}',
-    instanceName: 'librechat-westus',
+    instanceName: 'pleach-westus',
     version: '2023-12-01-preview',
     models: {
       'gpt-4-vision-preview': {
@@ -105,9 +105,9 @@ const azureGroups = [
     },
   },
   {
-    group: 'librechat-eastus',
+    group: 'pleach-eastus',
     apiKey: '${EASTUS_API_KEY}',
-    instanceName: 'librechat-eastus',
+    instanceName: 'pleach-eastus',
     deploymentName: 'gpt-4-turbo',
     version: '2024-02-15-preview',
     models: {

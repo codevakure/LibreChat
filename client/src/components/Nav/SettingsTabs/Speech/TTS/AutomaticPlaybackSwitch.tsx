@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { Switch } from '@librechat/client';
+import { Switch } from '@pleach/client';
 import { useLocalize } from '~/hooks';
 import store from '~/store';
 

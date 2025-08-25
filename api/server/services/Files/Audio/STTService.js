@@ -2,8 +2,8 @@ const axios = require('axios');
 const fs = require('fs').promises;
 const FormData = require('form-data');
 const { Readable } = require('stream');
-const { genAzureEndpoint } = require('@librechat/api');
-const { extractEnvVariable, STTProviders } = require('librechat-data-provider');
+const { genAzureEndpoint } = require('@pleach/api');
+const { extractEnvVariable, STTProviders } = require('pleach-data-provider');
 const { getCustomConfig } = require('~/server/services/Config');
 const { logger } = require('~/config');
 
@@ -121,7 +121,7 @@ class STTService {
 
     if (!sttSchema) {
       throw new Error(
-        'No STT schema is set. Did you configure STT in the custom config (librechat.yaml)?',
+        'No STT schema is set. Did you configure STT in the custom config (pleach.yaml)?',
       );
     }
 

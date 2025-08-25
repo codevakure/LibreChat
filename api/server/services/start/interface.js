@@ -4,9 +4,9 @@ const {
   roleDefaults,
   PermissionTypes,
   removeNullishValues,
-} = require('librechat-data-provider');
-const { logger } = require('@librechat/data-schemas');
-const { isMemoryEnabled } = require('@librechat/api');
+} = require('pleach-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { isMemoryEnabled } = require('@pleach/api');
 const { updateAccessPermissions, getRoleByName } = require('~/models/Role');
 
 /**
@@ -103,7 +103,7 @@ async function loadDefaultInterface(config, configDefaults) {
   };
 
   // Permission precedence order:
-  // 1. Explicit user configuration (from librechat.yaml)
+  // 1. Explicit user configuration (from pleach.yaml)
   // 2. Role-specific defaults (from roleDefaults)
   // 3. Interface schema defaults (from interfaceSchema.default())
   for (const roleName of [SystemRoles.USER, SystemRoles.ADMIN]) {

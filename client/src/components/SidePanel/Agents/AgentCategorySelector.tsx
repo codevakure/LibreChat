@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ControlCombobox } from '@librechat/client';
+import { ControlCombobox } from '@pleach/client';
 import {
   useWatch,
   FieldPath,

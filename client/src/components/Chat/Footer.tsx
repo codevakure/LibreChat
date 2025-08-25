@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import TagManager from 'react-gtm-module';
-import { Constants } from 'librechat-data-provider';
+import { Constants } from 'pleach-data-provider';
 import { useGetStartupConfig } from '~/data-provider';
 import { useLocalize } from '~/hooks';
 
@@ -37,7 +37,7 @@ export default function Footer({ className }: { className?: string }) {
   const mainContentParts = (
     typeof config?.customFooter === 'string' && config.customFooter.trim() !== ''
       ? config.customFooter
-      : null // Don't show default LibreChat footer
+      : null // Don't show default Pleach footer
   )?.split('|') || [];
 
   useEffect(() => {

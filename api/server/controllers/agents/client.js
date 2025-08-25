@@ -1,5 +1,5 @@
 require('events').EventEmitter.defaultMaxListeners = 100;
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@pleach/data-schemas');
 const { DynamicStructuredTool } = require('@langchain/core/tools');
 const { getBufferString, HumanMessage } = require('@langchain/core/messages');
 const {
@@ -10,7 +10,7 @@ const {
   memoryInstructions,
   formatContentStrings,
   createMemoryProcessor,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const {
   Callback,
   Providers,
@@ -32,7 +32,7 @@ const {
   AgentCapabilities,
   bedrockInputSchema,
   removeNullishValues,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   findPluginAuthsByKeys,
   getFormattedMemories,
@@ -512,7 +512,7 @@ class AgentClient extends BaseClient {
       agent.model_parameters,
     );
 
-    /** @type {import('@librechat/api').MemoryConfig} */
+    /** @type {import('@pleach/api').MemoryConfig} */
     const config = {
       validKeys: memoryConfig.validKeys,
       instructions: agent.instructions,

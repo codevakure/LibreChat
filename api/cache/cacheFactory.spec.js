@@ -1,4 +1,4 @@
-const { Time } = require('librechat-data-provider');
+const { Time } = require('pleach-data-provider');
 
 // Mock dependencies first
 const mockKeyvRedis = {
@@ -57,7 +57,7 @@ jest.mock('rate-limit-redis', () => ({
   RedisStore: mockRedisStore,
 }));
 
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@pleach/data-schemas', () => ({
   logger: {
     error: jest.fn(),
     warn: jest.fn(),
@@ -168,7 +168,7 @@ describe('cacheFactory', () => {
 
       expect(() => standardCache(namespace, ttl)).toThrow('Redis connection failed');
 
-      const { logger } = require('@librechat/data-schemas');
+      const { logger } = require('@pleach/data-schemas');
       expect(logger.error).toHaveBeenCalledWith(
         `Failed to create Redis cache for namespace ${namespace}:`,
         testError,
@@ -310,7 +310,7 @@ describe('cacheFactory', () => {
       const redisError = new Error('Socket closed unexpectedly');
 
       // The error handler should log but not swallow the error
-      const { logger } = require('@librechat/data-schemas');
+      const { logger } = require('@pleach/data-schemas');
       errorHandler(redisError);
 
       expect(logger.error).toHaveBeenCalledWith(

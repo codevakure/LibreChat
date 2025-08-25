@@ -1,8 +1,8 @@
 import { Plus } from 'lucide-react';
 import React, { useMemo, useCallback, useRef } from 'react';
-import { Button, useToastContext } from '@librechat/client';
+import { Button, useToastContext } from '@pleach/client';
 import { useWatch, useForm, FormProvider } from 'react-hook-form';
-import { useGetModelsQuery } from 'librechat-data-provider/react-query';
+import { useGetModelsQuery } from 'pleach-data-provider/react-query';
 import {
   Tools,
   Constants,
@@ -10,7 +10,7 @@ import {
   EModelEndpoint,
   PermissionBits,
   isAssistantsEndpoint,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import type { AgentForm, StringOption } from '~/common';
 import {
   useCreateAgentMutation,

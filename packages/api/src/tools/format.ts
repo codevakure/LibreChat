@@ -1,5 +1,5 @@
-import { AuthType, Constants, EToolResources } from 'librechat-data-provider';
-import type { TCustomConfig, TPlugin, FunctionTool } from 'librechat-data-provider';
+import { AuthType, Constants, EToolResources } from 'pleach-data-provider';
+import type { TCustomConfig, TPlugin, FunctionTool } from 'pleach-data-provider';
 
 /**
  * Filters out duplicate plugins from the list of plugins.

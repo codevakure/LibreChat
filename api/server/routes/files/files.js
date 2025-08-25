@@ -11,7 +11,7 @@ const {
   PermissionBits,
   isAgentsEndpoint,
   checkOpenAIStorage,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   filterFile,
   processFileUpload,

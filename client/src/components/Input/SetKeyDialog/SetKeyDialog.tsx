@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { OGDialogTemplate, OGDialog, Dropdown, useToastContext } from '@librechat/client';
-import { EModelEndpoint, alternateName, isAssistantsEndpoint } from 'librechat-data-provider';
+import { OGDialogTemplate, OGDialog, Dropdown, useToastContext } from '@pleach/client';
+import { EModelEndpoint, alternateName, isAssistantsEndpoint } from 'pleach-data-provider';
 import type { TDialogProps } from '~/common';
 import { useGetEndpointsQuery } from '~/data-provider';
 import { RevokeKeysButton } from '~/components/Nav';

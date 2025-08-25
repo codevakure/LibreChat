@@ -1,8 +1,8 @@
 const { z } = require('zod');
 const fs = require('fs').promises;
 const { nanoid } = require('nanoid');
-const { logger } = require('@librechat/data-schemas');
-const { agentCreateSchema, agentUpdateSchema } = require('@librechat/api');
+const { logger } = require('@pleach/data-schemas');
+const { agentCreateSchema, agentUpdateSchema } = require('@pleach/api');
 const {
   Tools,
   SystemRoles,
@@ -14,7 +14,7 @@ const {
   PermissionBits,
   actionDelimiter,
   removeNullishValues,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   getListAgentsByAccess,
   countPromotedAgents,

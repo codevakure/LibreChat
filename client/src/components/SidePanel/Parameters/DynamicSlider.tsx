@@ -1,7 +1,7 @@
 import { useMemo, useCallback } from 'react';
-import { OptionTypes } from 'librechat-data-provider';
-import type { DynamicSettingProps } from 'librechat-data-provider';
-import { Label, Slider, HoverCard, Input, InputNumber, HoverCardTrigger } from '@librechat/client';
+import { OptionTypes } from 'pleach-data-provider';
+import type { DynamicSettingProps } from 'pleach-data-provider';
+import { Label, Slider, HoverCard, Input, InputNumber, HoverCardTrigger } from '@pleach/client';
 import { useLocalize, useDebouncedInput, useParameterEffects, TranslationKeys } from '~/hooks';
 import { cn, defaultTextProps, optionText } from '~/utils';
 import { ESide, defaultDebouncedDelay } from '~/common';

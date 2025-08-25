@@ -5,7 +5,7 @@ import {
   SandpackProviderProps,
 } from '@codesandbox/sandpack-react/unstyled';
 import type { SandpackPreviewRef } from '@codesandbox/sandpack-react/unstyled';
-import type { TStartupConfig } from 'librechat-data-provider';
+import type { TStartupConfig } from 'pleach-data-provider';
 import type { ArtifactFiles } from '~/common';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';

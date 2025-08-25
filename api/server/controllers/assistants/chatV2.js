@@ -1,7 +1,7 @@
 const { v4 } = require('uuid');
 const { sleep } = require('@librechat/agents');
-const { sendEvent } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { sendEvent } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
 const {
   Time,
   Constants,
@@ -12,7 +12,7 @@ const {
   EModelEndpoint,
   retrievalMimeTypes,
   AssistantStreamEvents,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   initThread,
   recordUsage,
@@ -72,7 +72,7 @@ const chatV2 = async (req, res) => {
   let parentMessageId = _parentId;
   /** @type {TMessage[]} */
   let previousMessages = [];
-  /** @type {import('librechat-data-provider').TConversation | null} */
+  /** @type {import('pleach-data-provider').TConversation | null} */
   let conversation = null;
   /** @type {string[]} */
   let file_ids = [];

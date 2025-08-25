@@ -1,7 +1,7 @@
 {
-  "name": "@librechat/client",
+  "name": "@pleach/client",
   "version": "0.2.6",
-  "description": "React components for LibreChat",
+  "description": "React components for Pleach",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",

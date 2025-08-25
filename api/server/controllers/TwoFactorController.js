@@ -1,5 +1,5 @@
-const { encryptV3 } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { encryptV3 } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
 const {
   verifyTOTP,
   getTOTPSecret,
@@ -9,7 +9,7 @@ const {
 } = require('~/server/services/twoFactorService');
 const { getUserById, updateUser } = require('~/models');
 
-const safeAppTitle = (process.env.APP_TITLE || 'LibreChat').replace(/\s+/g, '');
+const safeAppTitle = (process.env.APP_TITLE || 'Pleach').replace(/\s+/g, '');
 
 /**
  * Enable 2FA for the user by generating a new TOTP secret and backup codes.

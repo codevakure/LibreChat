@@ -1,5 +1,5 @@
 import { CopyIcon } from 'lucide-react';
-import { useToastContext, Button } from '@librechat/client';
+import { useToastContext, Button } from '@pleach/client';
 import { useDuplicateAgentMutation } from '~/data-provider';
 import { useLocalize } from '~/hooks';
 

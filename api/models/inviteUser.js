@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const { getRandomValues } = require('@librechat/api');
-const { logger, hashToken } = require('@librechat/data-schemas');
+const { getRandomValues } = require('@pleach/api');
+const { logger, hashToken } = require('@pleach/data-schemas');
 const { createToken, findToken } = require('~/models');
 
 /**

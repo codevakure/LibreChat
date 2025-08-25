@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { Dropdown, applyFontSize } from '@librechat/client';
+import { Dropdown, applyFontSize } from '@pleach/client';
 import { useLocalize } from '~/hooks';
 import store from '~/store';
 

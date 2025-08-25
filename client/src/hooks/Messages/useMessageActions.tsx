@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { useCallback, useMemo, useState } from 'react';
-import { useUpdateFeedbackMutation } from 'librechat-data-provider/react-query';
+import { useUpdateFeedbackMutation } from 'pleach-data-provider/react-query';
 import {
   isAssistantsEndpoint,
   isAgentsEndpoint,
@@ -9,7 +9,7 @@ import {
   TFeedback,
   toMinimalFeedback,
   SearchResultData,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import type { TMessageProps } from '~/common';
 import {
   useChatContext,

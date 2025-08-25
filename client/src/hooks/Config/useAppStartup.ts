@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import TagManager from 'react-gtm-module';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { LocalStorageKeys } from 'librechat-data-provider';
-import { useAvailablePluginsQuery } from 'librechat-data-provider/react-query';
-import type { TStartupConfig, TPlugin, TUser } from 'librechat-data-provider';
+import { LocalStorageKeys } from 'pleach-data-provider';
+import { useAvailablePluginsQuery } from 'pleach-data-provider/react-query';
+import type { TStartupConfig, TPlugin, TUser } from 'pleach-data-provider';
 import { mapPlugins, selectPlugins, processPlugins } from '~/utils';
 import useSpeechSettingsInit from './useSpeechSettingsInit';
 import store from '~/store';

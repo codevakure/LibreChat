@@ -30,9 +30,9 @@ jobs:
       
       - name: Build Subchart Deps
         run: |
-          cd helm/librechat
+          cd helm/pleach
           helm dependency build  
-          cd ../librechat-rag-api
+          cd ../pleach-rag-api
           helm dependency build      
 
       - name: Get Chart Version
@@ -50,26 +50,26 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Run Helm OCI Charts Releaser
-      # This is for the librechat chart
-      - name: Release Helm OCI Charts for librechat
+      # This is for the pleach chart
+      - name: Release Helm OCI Charts for pleach
         uses: appany/helm-oci-chart-releaser@v0.4.2
         with:
-          name: librechat
-          repository: ${{ github.actor }}/librechat-chart
+          name: pleach
+          repository: ${{ github.actor }}/pleach-chart
           tag: ${{ steps.chart-version.outputs.CHART_VERSION }}
-          path: helm/librechat
+          path: helm/pleach
           registry: ghcr.io
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
       
-      # this is for the librechat-rag-api chart
-      - name: Release Helm OCI Charts for librechat-rag-api
+      # this is for the pleach-rag-api chart
+      - name: Release Helm OCI Charts for pleach-rag-api
         uses: appany/helm-oci-chart-releaser@v0.4.2
         with:
-          name: librechat-rag-api
-          repository: ${{ github.actor }}/librechat-chart
+          name: pleach-rag-api
+          repository: ${{ github.actor }}/pleach-chart
           tag: ${{ steps.chart-version.outputs.CHART_VERSION }}
-          path: helm/librechat-rag-api
+          path: helm/pleach-rag-api
           registry: ghcr.io
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}

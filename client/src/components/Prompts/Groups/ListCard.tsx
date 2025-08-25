@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@librechat/client';
+import { Label } from '@pleach/client';
 import CategoryIcon from '~/components/Prompts/Groups/CategoryIcon';
 
 export default function ListCard({

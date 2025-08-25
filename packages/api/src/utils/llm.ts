@@ -1,10 +1,10 @@
-import { librechat } from 'librechat-data-provider';
-import type { DynamicSettingProps } from 'librechat-data-provider';
+import { pleach } from 'pleach-data-provider';
+import type { DynamicSettingProps } from 'pleach-data-provider';
 
-type LibreChatKeys = keyof typeof librechat;
+type PleachKeys = keyof typeof pleach;
 
-type LibreChatParams = {
-  modelOptions: Omit<NonNullable<DynamicSettingProps['conversation']>, LibreChatKeys>;
+type PleachParams = {
+  modelOptions: Omit<NonNullable<DynamicSettingProps['conversation']>, PleachKeys>;
   resendFiles: boolean;
   promptPrefix?: string | null;
   maxContextTokens?: number;
@@ -12,16 +12,16 @@ type LibreChatParams = {
 };
 
 /**
- * Separates LibreChat-specific parameters from model options
+ * Separates Pleach-specific parameters from model options
  * @param options - The combined options object
  */
-export function extractLibreChatParams(
+export function extractPleachParams(
   options?: DynamicSettingProps['conversation'],
-): LibreChatParams {
+): PleachParams {
   if (!options) {
     return {
-      modelOptions: {} as Omit<NonNullable<DynamicSettingProps['conversation']>, LibreChatKeys>,
-      resendFiles: librechat.resendFiles.default as boolean,
+      modelOptions: {} as Omit<NonNullable<DynamicSettingProps['conversation']>, PleachKeys>,
+      resendFiles: pleach.resendFiles.default as boolean,
     };
   }
 
@@ -29,7 +29,7 @@ export function extractLibreChatParams(
 
   const resendFiles =
     (delete modelOptions.resendFiles, options.resendFiles) ??
-    (librechat.resendFiles.default as boolean);
+    (pleach.resendFiles.default as boolean);
   const promptPrefix = (delete modelOptions.promptPrefix, options.promptPrefix);
   const maxContextTokens = (delete modelOptions.maxContextTokens, options.maxContextTokens);
   const modelLabel = (delete modelOptions.modelLabel, options.modelLabel);
@@ -37,7 +37,7 @@ export function extractLibreChatParams(
   return {
     modelOptions: modelOptions as Omit<
       NonNullable<DynamicSettingProps['conversation']>,
-      LibreChatKeys
+      PleachKeys
     >,
     maxContextTokens,
     promptPrefix,

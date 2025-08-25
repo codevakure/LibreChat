@@ -4,8 +4,8 @@ const axios = require('axios');
 const FormData = require('form-data');
 const nodemailer = require('nodemailer');
 const handlebars = require('handlebars');
-const { logAxiosError } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { logAxiosError } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
 const { isEnabled } = require('~/server/utils/handleText');
 
 /**

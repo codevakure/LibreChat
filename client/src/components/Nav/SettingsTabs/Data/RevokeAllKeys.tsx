@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@librechat/client';
+import { Label } from '@pleach/client';
 import { RevokeKeysButton } from './RevokeKeysButton';
 import { useLocalize } from '~/hooks';
 

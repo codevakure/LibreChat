@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# LibreChat to Pleach Conversion Script for Windows
+# Pleach to Pleach Conversion Script for Windows
 # Author: GitHub Copilot
 # Date: August 18, 2025
-# This script recursively converts all instances of LibreChat variations to Pleach
+# This script recursively converts all instances of Pleach variations to Pleach
 
 # Color codes for Windows bash
 RED='\033[0;31m'
@@ -21,9 +21,9 @@ declare -i files_modified=0
 declare -i files_renamed=0
 declare -i dirs_renamed=0
 declare -i content_replacements=0
-declare -i librechat_count=0
-declare -i libre_chat_count=0
-declare -i librechat_lower_count=0
+declare -i pleach_count=0
+declare -i pleach_count=0
+declare -i pleach_lower_count=0
 declare -i libre_camel_count=0
 
 # Arrays to track changes
@@ -88,17 +88,17 @@ show_progress() {
 # Function to count instances before replacement
 count_instances_in_file() {
     local file="$1"
-    local librechat_instances=$(grep -o "LibreChat" "$file" 2>/dev/null | wc -l)
-    local libre_chat_instances=$(grep -o "Libre Chat" "$file" 2>/dev/null | wc -l)
-    local librechat_lower_instances=$(grep -o "librechat" "$file" 2>/dev/null | wc -l)
-    local libre_camel_instances=$(grep -o "libreChat" "$file" 2>/dev/null | wc -l)
+    local pleach_instances=$(grep -o "Pleach" "$file" 2>/dev/null | wc -l)
+    local pleach_instances=$(grep -o "Pleach" "$file" 2>/dev/null | wc -l)
+    local pleach_lower_instances=$(grep -o "pleach" "$file" 2>/dev/null | wc -l)
+    local libre_camel_instances=$(grep -o "pleach" "$file" 2>/dev/null | wc -l)
     
-    librechat_count=$((librechat_count + librechat_instances))
-    libre_chat_count=$((libre_chat_count + libre_chat_instances))
-    librechat_lower_count=$((librechat_lower_count + librechat_lower_instances))
+    pleach_count=$((pleach_count + pleach_instances))
+    pleach_count=$((pleach_count + pleach_instances))
+    pleach_lower_count=$((pleach_lower_count + pleach_lower_instances))
     libre_camel_count=$((libre_camel_count + libre_camel_instances))
     
-    echo $((librechat_instances + libre_chat_instances + librechat_lower_instances + libre_camel_instances))
+    echo $((pleach_instances + pleach_instances + pleach_lower_instances + libre_camel_instances))
 }
 
 # Function to get all files for processing (only include text files we want to process)
@@ -184,15 +184,15 @@ scan_workspace() {
     local total_files=${#all_files[@]}
     
     print_status "Found $total_files files to scan"
-    print_status "Scanning for instances of LibreChat variations..."
+    print_status "Scanning for instances of Pleach variations..."
     echo ""
     
     # Use more efficient batch processing
     files_processed=$total_files
     
     # Count all instances efficiently using grep
-    print_action "Counting 'LibreChat' instances..."
-    librechat_count=$(grep -r "LibreChat" . \
+    print_action "Counting 'Pleach' instances..."
+    pleach_count=$(grep -r "Pleach" . \
         --exclude-dir=node_modules \
         --exclude-dir=.git \
         --exclude-dir=data-node \
@@ -213,8 +213,8 @@ scan_workspace() {
         --exclude="*.wt" \
         --binary-files=without-match 2>/dev/null | wc -l)
     
-    print_action "Counting 'Libre Chat' instances..."
-    libre_chat_count=$(grep -r "Libre Chat" . \
+    print_action "Counting 'Pleach' instances..."
+    pleach_count=$(grep -r "Pleach" . \
         --exclude-dir=node_modules \
         --exclude-dir=.git \
         --exclude-dir=data-node \
@@ -235,8 +235,8 @@ scan_workspace() {
         --exclude="*.wt" \
         --binary-files=without-match 2>/dev/null | wc -l)
     
-    print_action "Counting 'librechat' instances..."
-    librechat_lower_count=$(grep -r "librechat" . \
+    print_action "Counting 'pleach' instances..."
+    pleach_lower_count=$(grep -r "pleach" . \
         --exclude-dir=node_modules \
         --exclude-dir=.git \
         --exclude-dir=data-node \
@@ -257,8 +257,8 @@ scan_workspace() {
         --exclude="*.wt" \
         --binary-files=without-match 2>/dev/null | wc -l)
     
-    print_action "Counting 'libreChat' instances..."
-    libre_camel_count=$(grep -r "libreChat" . \
+    print_action "Counting 'pleach' instances..."
+    libre_camel_count=$(grep -r "pleach" . \
         --exclude-dir=node_modules \
         --exclude-dir=.git \
         --exclude-dir=data-node \
@@ -279,19 +279,19 @@ scan_workspace() {
         --exclude="*.wt" \
         --binary-files=without-match 2>/dev/null | wc -l)
     
-    content_replacements=$((librechat_count + libre_chat_count + librechat_lower_count + libre_camel_count))
+    content_replacements=$((pleach_count + pleach_count + pleach_lower_count + libre_camel_count))
     
     echo ""
-    print_count "LibreChat instances: $librechat_count"
-    print_count "Libre Chat instances: $libre_chat_count"
-    print_count "librechat instances: $librechat_lower_count"
-    print_count "libreChat instances: $libre_camel_count"
+    print_count "Pleach instances: $pleach_count"
+    print_count "Pleach instances: $pleach_count"
+    print_count "pleach instances: $pleach_lower_count"
+    print_count "pleach instances: $libre_camel_count"
     print_count "Total content instances: $content_replacements"
     
     # Count files and directories that need renaming
     print_action "Counting files and directories to rename..."
-    local files_to_rename=$(find . -type f -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "librechat" | wc -l)
-    local dirs_to_rename=$(find . -type d -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "librechat" | wc -l)
+    local files_to_rename=$(find . -type f -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "pleach" | wc -l)
+    local dirs_to_rename=$(find . -type d -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "pleach" | wc -l)
     
     print_count "Files to rename: $files_to_rename"
     print_count "Directories to rename: $dirs_to_rename"
@@ -318,12 +318,12 @@ replace_content_in_files() {
         
         if [ -f "$file" ] && [ -r "$file" ]; then
             # Check if file contains any of our target strings
-            if grep -l "LibreChat\|librechat\|libreChat\|Libre Chat" "$file" 2>/dev/null >/dev/null; then
+            if grep -l "Pleach\|pleach\|pleach\|Pleach" "$file" 2>/dev/null >/dev/null; then
                 # Create temporary file for replacements
                 local temp_file=$(mktemp)
                 
                 # Perform replacements in specific order (most specific first to avoid conflicts)
-                sed 's/Libre Chat/Pleach/g; s/LibreChat/Pleach/g; s/libreChat/pleach/g; s/librechat/pleach/g' "$file" > "$temp_file"
+                sed 's/Pleach/Pleach/g; s/Pleach/Pleach/g; s/pleach/pleach/g; s/pleach/pleach/g' "$file" > "$temp_file"
                 
                 # Check if changes were made
                 if ! cmp -s "$file" "$temp_file"; then
@@ -349,7 +349,7 @@ rename_files() {
     
     # Get all files that need renaming
     local files_to_rename
-    mapfile -t files_to_rename < <(find . -type f -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "librechat")
+    mapfile -t files_to_rename < <(find . -type f -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "pleach")
     
     local total_files=${#files_to_rename[@]}
     local current=0
@@ -371,7 +371,7 @@ rename_files() {
         local filename=$(basename "$file")
         
         # Create new filename with replacements (case insensitive approach)
-        local new_filename=$(echo "$filename" | sed 's/Libre[[:space:]]Chat/Pleach/gi; s/LibreChat/Pleach/g; s/libreChat/pleach/g; s/librechat/pleach/gi')
+        local new_filename=$(echo "$filename" | sed 's/Libre[[:space:]]Chat/Pleach/gi; s/Pleach/Pleach/g; s/pleach/pleach/g; s/pleach/pleach/gi')
         
         if [ "$filename" != "$new_filename" ]; then
             local new_path="$dir/$new_filename"
@@ -399,7 +399,7 @@ rename_directories() {
     
     # Get all directories that need renaming (deepest first)
     local dirs_to_rename
-    mapfile -t dirs_to_rename < <(find . -type d -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "librechat" | sort -r)
+    mapfile -t dirs_to_rename < <(find . -type d -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./data-node/*" | grep -i "pleach" | sort -r)
     
     local total_dirs=${#dirs_to_rename[@]}
     local current=0
@@ -421,7 +421,7 @@ rename_directories() {
         local dir_name=$(basename "$dir")
         
         # Create new directory name with replacements
-        local new_dir_name=$(echo "$dir_name" | sed 's/Libre[[:space:]]Chat/Pleach/gi; s/LibreChat/Pleach/g; s/libreChat/pleach/g; s/librechat/pleach/gi')
+        local new_dir_name=$(echo "$dir_name" | sed 's/Libre[[:space:]]Chat/Pleach/gi; s/Pleach/Pleach/g; s/pleach/pleach/g; s/pleach/pleach/gi')
         
         if [ "$dir_name" != "$new_dir_name" ]; then
             local new_path="$parent_dir/$new_dir_name"
@@ -448,10 +448,10 @@ show_detailed_summary() {
     print_header "DETAILED CONVERSION SUMMARY"
     
     echo -e "${WHITE}Content Replacements:${NC}"
-    print_count "LibreChat → Pleach: $librechat_count instances"
-    print_count "Libre Chat → Pleach: $libre_chat_count instances"
-    print_count "librechat → pleach: $librechat_lower_count instances"
-    print_count "libreChat → pleach: $libre_camel_count instances"
+    print_count "Pleach → Pleach: $pleach_count instances"
+    print_count "Pleach → Pleach: $pleach_count instances"
+    print_count "pleach → pleach: $pleach_lower_count instances"
+    print_count "pleach → pleach: $libre_camel_count instances"
     print_count "Total content instances replaced: $content_replacements"
     
     echo ""
@@ -550,7 +550,7 @@ show_menu() {
                 echo -n "Enter commit message (or press Enter for default): "
                 read commit_message
                 if [ -z "$commit_message" ]; then
-                    commit_message="Convert LibreChat to Pleach - automated conversion"
+                    commit_message="Convert Pleach to Pleach - automated conversion"
                 fi
                 git commit -m "$commit_message"
                 print_success "Changes committed!"
@@ -582,12 +582,12 @@ main() {
     # Clear screen for better presentation
     clear
     
-    print_header "LIBRECHAT TO PLEACH CONVERSION SCRIPT"
+    print_header "PLEACH TO PLEACH CONVERSION SCRIPT"
     echo -e "${WHITE}This script will recursively convert:${NC}"
-    echo -e "${CYAN}• LibreChat → Pleach${NC}"
-    echo -e "${CYAN}• librechat → pleach${NC}"
-    echo -e "${CYAN}• libreChat → pleach${NC}"
-    echo -e "${CYAN}• Libre Chat → Pleach${NC}"
+    echo -e "${CYAN}• Pleach → Pleach${NC}"
+    echo -e "${CYAN}• pleach → pleach${NC}"
+    echo -e "${CYAN}• pleach → pleach${NC}"
+    echo -e "${CYAN}• Pleach → Pleach${NC}"
     echo ""
     echo -e "${WHITE}In:${NC}"
     echo -e "${CYAN}• File contents${NC}"

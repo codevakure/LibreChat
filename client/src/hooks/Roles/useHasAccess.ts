@@ -1,6 +1,6 @@
 import { useMemo, useCallback, useContext } from 'react';
-import type { TUser, Permissions } from 'librechat-data-provider';
-import { PermissionTypes } from 'librechat-data-provider';
+import type { TUser, Permissions } from 'pleach-data-provider';
+import { PermissionTypes } from 'pleach-data-provider';
 import { AuthContext } from '~/hooks/AuthContext';
 
 const useHasAccess = ({

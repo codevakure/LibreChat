@@ -1,6 +1,6 @@
-const { logger } = require('@librechat/data-schemas');
-const { countTokens, isEnabled, sendEvent } = require('@librechat/api');
-const { isAssistantsEndpoint, ErrorTypes, Constants } = require('librechat-data-provider');
+const { logger } = require('@pleach/data-schemas');
+const { countTokens, isEnabled, sendEvent } = require('@pleach/api');
+const { isAssistantsEndpoint, ErrorTypes, Constants } = require('pleach-data-provider');
 const { truncateText, smartTruncateText } = require('~/app/clients/prompts');
 const clearPendingReq = require('~/cache/clearPendingReq');
 const { sendError } = require('~/server/middleware/error');

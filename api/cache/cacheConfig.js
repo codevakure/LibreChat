@@ -1,6 +1,6 @@
 const fs = require('fs');
-const { math, isEnabled } = require('@librechat/api');
-const { CacheKeys } = require('librechat-data-provider');
+const { math, isEnabled } = require('@pleach/api');
+const { CacheKeys } = require('pleach-data-provider');
 
 // To ensure that different deployments do not interfere with each other's cache, we use a prefix for the Redis keys.
 // This prefix is usually the deployment ID, which is often passed to the container or pod as an env var.

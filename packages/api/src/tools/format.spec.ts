@@ -1,5 +1,5 @@
-import { AuthType, Constants, EToolResources } from 'librechat-data-provider';
-import type { TPlugin, FunctionTool, TCustomConfig } from 'librechat-data-provider';
+import { AuthType, Constants, EToolResources } from 'pleach-data-provider';
+import type { TPlugin, FunctionTool, TCustomConfig } from 'pleach-data-provider';
 import {
   convertMCPToolsToPlugins,
   filterUniquePlugins,

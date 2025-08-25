@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { BarChart } from 'lucide-react';
-import { CheckboxButton } from '@librechat/client';
-import { Permissions, PermissionTypes } from 'librechat-data-provider';
+import { CheckboxButton } from '@pleach/client';
+import { Permissions, PermissionTypes } from 'pleach-data-provider';
 import { useLocalize, useHasAccess } from '~/hooks';
 import { useBadgeRowContext } from '~/Providers';
 

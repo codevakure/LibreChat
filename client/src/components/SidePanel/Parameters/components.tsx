@@ -1,5 +1,5 @@
-import { ComponentTypes } from 'librechat-data-provider';
-import type { DynamicSettingProps } from 'librechat-data-provider';
+import { ComponentTypes } from 'pleach-data-provider';
+import type { DynamicSettingProps } from 'pleach-data-provider';
 import {
   DynamicCombobox,
   DynamicDropdown,

@@ -5,8 +5,8 @@ import {
   LocalStorageKeys,
   isAgentsEndpoint,
   isAssistantsEndpoint,
-} from 'librechat-data-provider';
-import type * as t from 'librechat-data-provider';
+} from 'pleach-data-provider';
+import type * as t from 'pleach-data-provider';
 import type { LocalizeFunction, IconsRecord } from '~/common';
 
 export const getEntityName = ({

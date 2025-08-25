@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AgentGrid from '../AgentGrid';
-import type t from 'librechat-data-provider';
+import type t from 'pleach-data-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Mock the marketplace agent query hook

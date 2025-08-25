@@ -4,7 +4,7 @@ const {
   isAgentsEndpoint,
   orderEndpointsConfig,
   defaultAgentCapabilities,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const loadDefaultEndpointsConfig = require('./loadDefaultEConfig');
 const loadConfigEndpoints = require('./loadConfigEndpoints');
 const getLogStores = require('~/cache/getLogStores');
@@ -82,7 +82,7 @@ async function getEndpointsConfig(req) {
 
 /**
  * @param {ServerRequest} req
- * @param {import('librechat-data-provider').AgentCapabilities} capability
+ * @param {import('pleach-data-provider').AgentCapabilities} capability
  * @returns {Promise<boolean>}
  */
 const checkCapability = async (req, capability) => {

@@ -1,9 +1,9 @@
-const { Constants } = require('librechat-data-provider');
+const { Constants } = require('pleach-data-provider');
 const { getCustomConfig, getCachedTools } = require('~/server/services/Config');
 const { getLogStores } = require('~/cache');
 
 // Mock the dependencies
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@pleach/data-schemas', () => ({
   logger: {
     debug: jest.fn(),
     error: jest.fn(),

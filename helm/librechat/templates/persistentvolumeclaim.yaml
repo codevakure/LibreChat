@@ -1,16 +1,16 @@
-{{- if .Values.librechat.imageVolume.enabled }}
+{{- if .Values.pleach.imageVolume.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "librechat.fullname" $ }}-images
+  name: {{ include "pleach.fullname" $ }}-images
 spec:
   accessModes:
-    - {{ .Values.librechat.imageVolume.accessModes }}
-{{- if .Values.librechat.imageVolume.storageClassName }}
-  storageClassName: {{ .Values.librechat.imageVolume.storageClassName }}
+    - {{ .Values.pleach.imageVolume.accessModes }}
+{{- if .Values.pleach.imageVolume.storageClassName }}
+  storageClassName: {{ .Values.pleach.imageVolume.storageClassName }}
 {{- end }}          
   volumeMode: Filesystem
   resources:
     requests:
-      storage: {{ .Values.librechat.imageVolume.size }}
+      storage: {{ .Values.pleach.imageVolume.size }}
 {{- end }}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { Button } from '@librechat/client';
+import { Button } from '@pleach/client';
 import { useLocalize } from '~/hooks';
 import store from '~/store';
 

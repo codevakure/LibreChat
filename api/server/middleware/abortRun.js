@@ -1,6 +1,6 @@
-const { sendEvent } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { CacheKeys, RunStatus, isUUID } = require('librechat-data-provider');
+const { sendEvent } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
+const { CacheKeys, RunStatus, isUUID } = require('pleach-data-provider');
 const { initializeClient } = require('~/server/services/Endpoints/assistants');
 const { checkMessageGaps, recordUsage } = require('~/server/services/Threads');
 const { deleteMessages } = require('~/models/Message');

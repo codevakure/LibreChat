@@ -1,6 +1,6 @@
 const express = require('express');
-const { generateCheckAccess } = require('@librechat/api');
-const { PermissionTypes, Permissions, PermissionBits } = require('librechat-data-provider');
+const { generateCheckAccess } = require('@pleach/api');
+const { PermissionTypes, Permissions, PermissionBits } = require('pleach-data-provider');
 const { requireJwtAuth, canAccessAgentResource } = require('~/server/middleware');
 const v1 = require('~/server/controllers/agents/v1');
 const { getRoleByName } = require('~/models/Role');

@@ -3,13 +3,13 @@ const {
   loadMemoryConfig,
   agentsConfigSetup,
   loadWebSearchConfig,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const {
   FileSources,
   loadOCRConfig,
   EModelEndpoint,
   getConfigDefaults,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   checkWebSearchConfig,
   checkAzureVariables,

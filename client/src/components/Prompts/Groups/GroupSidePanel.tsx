@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useMediaQuery } from '@librechat/client';
+import { useMediaQuery } from '@pleach/client';
 import PanelNavigation from '~/components/Prompts/Groups/PanelNavigation';
 import ManagePrompts from '~/components/Prompts/ManagePrompts';
 import { usePromptGroupsContext } from '~/Providers';

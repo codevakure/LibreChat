@@ -1,10 +1,10 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@pleach/data-schemas');
 const {
   logAgentMigrationWarning,
   logPromptMigrationWarning,
   checkAgentPermissionsMigration,
   checkPromptPermissionsMigration,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const { getProjectByName } = require('~/models/Project');
 const { Agent, PromptGroup } = require('~/db/models');
 const { findRoleByIdentifier } = require('~/models');

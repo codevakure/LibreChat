@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileText } from 'lucide-react';
 import type { Artifact } from '~/common';
-import { CheckMark } from '@librechat/client';
+import { CheckMark } from '@pleach/client';
 
 const DownloadPDF = ({
   artifact,

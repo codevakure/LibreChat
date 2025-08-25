@@ -1,6 +1,6 @@
 const express = require('express');
-const { isEnabled } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { isEnabled } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
 const {
   getSharedMessages,
   createSharedLink,

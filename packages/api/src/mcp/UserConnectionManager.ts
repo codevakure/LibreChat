@@ -1,7 +1,7 @@
 import { ErrorCode, McpError } from '@modelcontextprotocol/sdk/types.js';
-import { logger } from '@librechat/data-schemas';
-import type { TokenMethods } from '@librechat/data-schemas';
-import type { TUser } from 'librechat-data-provider';
+import { logger } from '@pleach/data-schemas';
+import type { TokenMethods } from '@pleach/data-schemas';
+import type { TUser } from 'pleach-data-provider';
 import type { FlowStateManager } from '~/flow/manager';
 import type { MCPOAuthTokens } from '~/mcp/oauth';
 import { MCPConnectionFactory } from '~/mcp/MCPConnectionFactory';
@@ -15,7 +15,7 @@ import type * as t from './types';
  * Only meant to be extended by MCPManager.
  * Much of the logic was move here from the old MCPManager to make it more manageable.
  * User connections will soon be ephemeral and not cached anymore:
- * https://github.com/danny-avila/LibreChat/discussions/8790
+ * https://github.com/danny-avila/Pleach/discussions/8790
  */
 export abstract class UserConnectionManager {
   protected readonly serversRegistry: MCPServersRegistry;

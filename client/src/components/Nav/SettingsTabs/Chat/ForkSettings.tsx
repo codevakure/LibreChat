@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
-import { ForkOptions } from 'librechat-data-provider';
-import { Dropdown, Switch, InfoHoverCard, ESide } from '@librechat/client';
+import { ForkOptions } from 'pleach-data-provider';
+import { Dropdown, Switch, InfoHoverCard, ESide } from '@pleach/client';
 import { useLocalize } from '~/hooks';
 import store from '~/store';
 

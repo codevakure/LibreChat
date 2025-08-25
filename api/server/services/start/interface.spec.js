@@ -3,7 +3,7 @@ const {
   Permissions,
   PermissionTypes,
   roleDefaults,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const { updateAccessPermissions, getRoleByName } = require('~/models/Role');
 const { loadDefaultInterface } = require('./interface');
 
@@ -12,8 +12,8 @@ jest.mock('~/models/Role', () => ({
   getRoleByName: jest.fn(),
 }));
 
-jest.mock('@librechat/api', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@pleach/api', () => ({
+  ...jest.requireActual('@pleach/api'),
   isMemoryEnabled: jest.fn((config) => config?.enable === true),
 }));
 

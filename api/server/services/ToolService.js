@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const { sleep } = require('@librechat/agents');
-const { getToolkitKey } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { getToolkitKey } = require('@pleach/api');
+const { logger } = require('@pleach/data-schemas');
 const { zodToJsonSchema } = require('zod-to-json-schema');
 const { Calculator } = require('@langchain/community/tools/calculator');
 const { tool: toolFn, Tool, DynamicStructuredTool } = require('@langchain/core/tools');
@@ -19,7 +19,7 @@ const {
   AgentCapabilities,
   defaultAgentCapabilities,
   validateAndParseOpenAPISpec,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const {
   createActionTool,
   decryptMetadata,

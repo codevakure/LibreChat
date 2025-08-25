@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Copy, CopyCheck } from 'lucide-react';
-import { useGetSharedLinkQuery } from 'librechat-data-provider/react-query';
-import { OGDialogTemplate, Button, Spinner, OGDialog } from '@librechat/client';
+import { useGetSharedLinkQuery } from 'pleach-data-provider/react-query';
+import { OGDialogTemplate, Button, Spinner, OGDialog } from '@pleach/client';
 import { useLocalize, useCopyToClipboard } from '~/hooks';
 import SharedLinkButton from './SharedLinkButton';
 import { cn } from '~/utils';

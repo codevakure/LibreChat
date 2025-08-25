@@ -4,13 +4,13 @@ import type {
   TCustomConfig,
   SearchProviders,
   TWebSearchConfig,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 import {
   SearchCategories,
   SafeSearchTypes,
   extractVariableName,
   AuthType,
-} from 'librechat-data-provider';
+} from 'pleach-data-provider';
 
 export function loadWebSearchConfig(
   config: TCustomConfig['webSearch'],

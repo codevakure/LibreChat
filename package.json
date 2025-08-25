@@ -1,5 +1,5 @@
 {
-  "name": "LibreChat",
+  "name": "Pleach",
   "version": "v0.8.0-rc2",
   "description": "",
   "workspaces": [
@@ -84,14 +84,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danny-avila/LibreChat.git"
+    "url": "git+https://github.com/danny-avila/Pleach.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danny-avila/LibreChat/issues"
+    "url": "https://github.com/danny-avila/Pleach/issues"
   },
-  "homepage": "https://librechat.ai/",
+  "homepage": "https://pleach.ai/",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@eslint/compat": "^1.2.6",

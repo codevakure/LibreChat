@@ -1,13 +1,13 @@
 import { useCallback, useState, useMemo, useRef, useEffect } from 'react';
-import { useToastContext } from '@librechat/client';
+import { useToastContext } from '@pleach/client';
 import { useQueryClient } from '@tanstack/react-query';
-import { Constants, QueryKeys } from 'librechat-data-provider';
+import { Constants, QueryKeys } from 'pleach-data-provider';
 import {
   useCancelMCPOAuthMutation,
   useUpdateUserPluginsMutation,
   useReinitializeMCPServerMutation,
-} from 'librechat-data-provider/react-query';
-import type { TUpdateUserPlugins, TPlugin } from 'librechat-data-provider';
+} from 'pleach-data-provider/react-query';
+import type { TUpdateUserPlugins, TPlugin } from 'pleach-data-provider';
 import type { ConfigFieldDetail } from '~/components/MCP/MCPConfigDialog';
 import { useMCPConnectionStatusQuery } from '~/data-provider/Tools/queries';
 import { useGetStartupConfig } from '~/data-provider';

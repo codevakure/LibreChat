@@ -1,9 +1,9 @@
 const { Providers } = require('@librechat/agents');
 const {
   primeResources,
-  extractLibreChatParams,
+  extractPleachParams,
   optionalChainWithEmptyCheck,
-} = require('@librechat/api');
+} = require('@pleach/api');
 const {
   ErrorTypes,
   EModelEndpoint,
@@ -11,7 +11,7 @@ const {
   isAgentsEndpoint,
   replaceSpecialVars,
   providerEndpointMap,
-} = require('librechat-data-provider');
+} = require('pleach-data-provider');
 const generateArtifactsPrompt = require('~/app/clients/prompts/artifacts');
 const generateChartPrompt = require('~/app/clients/prompts/charts');
 const { getProviderConfig } = require('~/server/services/Endpoints');
@@ -63,7 +63,7 @@ const initializeAgent = async ({
     ),
   );
 
-  const { resendFiles, maxContextTokens, modelOptions } = extractLibreChatParams(_modelOptions);
+  const { resendFiles, maxContextTokens, modelOptions } = extractPleachParams(_modelOptions);
 
   if (isInitialAgent && conversationId != null && resendFiles) {
     const fileIds = (await getConvoFiles(conversationId)) ?? [];
