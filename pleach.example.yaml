@@ -175,7 +175,7 @@ actions:
 #       - -y
 #       - "@modelcontextprotocol/server-filesystem"
 #       - /home/user/Pleach/
-#     iconPath: /home/user/Pleach/client/public/assets/logo.svg
+#     iconPath: /home/user/Pleach/client/public/assets/pleach-icon.png
 #   mcp-obsidian:
 #     command: npx
 #     args:
