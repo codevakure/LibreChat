@@ -20,7 +20,7 @@ services:
 
   mongodb:
     container_name: chat-mongodb-dev
-    image: mongo:7
+    image: mongo:8
     restart: unless-stopped
     command: mongod --noauth
     ports:
