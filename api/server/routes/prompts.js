@@ -1,5 +1,5 @@
 const express = require('express');
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const {
   generateCheckAccess,
   markPublicPromptGroups,
@@ -7,7 +7,7 @@ const {
   formatPromptGroupsResponse,
   createEmptyPromptGroupsResponse,
   filterAccessibleIdsBySharedLogic,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   Permissions,
   SystemRoles,
@@ -16,7 +16,7 @@ const {
   PrincipalType,
   PermissionBits,
   PermissionTypes,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   getListPromptGroupsByAccess,
   makePromptProduction,

@@ -1,5 +1,5 @@
-import { SystemRoles, Permissions, PermissionTypes, roleDefaults } from 'librechat-data-provider';
-import type { TConfigDefaults, TCustomConfig } from 'librechat-data-provider';
+import { SystemRoles, Permissions, PermissionTypes, roleDefaults } from 'wrangler-data-provider';
+import type { TConfigDefaults, TCustomConfig } from 'wrangler-data-provider';
 import type { AppConfig } from '~/types/config';
 import { updateInterfacePermissions } from './permissions';
 import { loadDefaultInterface } from './interface';

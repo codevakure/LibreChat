@@ -1,11 +1,11 @@
-﻿# ID-based RAG FastAPI
+# ID-based RAG FastAPI
 
 ## Overview
 This project integrates Langchain with FastAPI in an Asynchronous, Scalable manner, providing a framework for document indexing and retrieval, using PostgreSQL/pgvector.
 
-Files are organized into embeddings by `file_id`. The primary use case is for integration with [LibreChat](https://texascapitalbank.com/), but this simple API can be used for any ID-based use case.
+Files are organized into embeddings by `file_id`. The primary use case is for integration with [Wrangler](https://texascapitalbank.com/), but this simple API can be used for any ID-based use case.
 
-The main reason to use the ID approach is to work with embeddings on a file-level. This makes for targeted queries when combined with file metadata stored in a database, such as is done by LibreChat.
+The main reason to use the ID approach is to work with embeddings on a file-level. This makes for targeted queries when combined with file metadata stored in a database, such as is done by Wrangler.
 
 The API will evolve over time to employ different querying/re-ranking methods, embedding models, and vector stores.
 
@@ -39,10 +39,10 @@ uvicorn main:app
 The following environment variables are required to run the application:
 
 - `RAG_OPENAI_API_KEY`: The API key for OpenAI API Embeddings (if using default settings).
-    - Note: `OPENAI_API_KEY` will work but `RAG_OPENAI_API_KEY` will override it in order to not conflict with LibreChat setting.
+    - Note: `OPENAI_API_KEY` will work but `RAG_OPENAI_API_KEY` will override it in order to not conflict with Wrangler setting.
 - `RAG_OPENAI_BASEURL`: (Optional) The base URL for your OpenAI API Embeddings
 - `RAG_OPENAI_PROXY`: (Optional) Proxy for OpenAI API Embeddings
-    - Note: When using with LibreChat, you can also set `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the `docker-compose.override.yml` file (see [Proxy Configuration](#proxy-configuration) section below)
+    - Note: When using with Wrangler, you can also set `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the `docker-compose.override.yml` file (see [Proxy Configuration](#proxy-configuration) section below)
 - `VECTOR_DB_TYPE`: (Optional) select vector database type, default to `pgvector`.
 - `POSTGRES_USE_UNIX_SOCKET`: (Optional) Set to "True" when connecting to the PostgreSQL database server with Unix Socket.
 - `POSTGRES_DB`: (Optional) The name of the PostgreSQL database, used when `VECTOR_DB_TYPE=pgvector`.
@@ -76,10 +76,10 @@ The following environment variables are required to run the application:
     - bedrock: "amazon.titan-embed-text-v1"
 - `RAG_AZURE_OPENAI_API_VERSION`: (Optional) Default is `2023-05-15`. The version of the Azure OpenAI API.
 - `RAG_AZURE_OPENAI_API_KEY`: (Optional) The API key for Azure OpenAI service.
-    - Note: `AZURE_OPENAI_API_KEY` will work but `RAG_AZURE_OPENAI_API_KEY` will override it in order to not conflict with LibreChat setting.
+    - Note: `AZURE_OPENAI_API_KEY` will work but `RAG_AZURE_OPENAI_API_KEY` will override it in order to not conflict with Wrangler setting.
 - `RAG_AZURE_OPENAI_ENDPOINT`: (Optional) The endpoint URL for Azure OpenAI service, including the resource.
     - Example: `https://YOUR_RESOURCE_NAME.openai.azure.com`.
-    - Note: `AZURE_OPENAI_ENDPOINT` will work but `RAG_AZURE_OPENAI_ENDPOINT` will override it in order to not conflict with LibreChat setting.
+    - Note: `AZURE_OPENAI_ENDPOINT` will work but `RAG_AZURE_OPENAI_ENDPOINT` will override it in order to not conflict with Wrangler setting.
 - `HF_TOKEN`: (Optional) if needed for `huggingface` option.
 - `OLLAMA_BASE_URL`: (Optional) defaults to `http://ollama:11434`.
 - `ATLAS_SEARCH_INDEX`: (Optional) the name of the vector search index if using Atlas MongoDB, defaults to `vector_index`
@@ -104,7 +104,7 @@ COLLECTION_NAME=<vector collection>
 ATLAS_SEARCH_INDEX=<vector search index>
 ```
 
-The `ATLAS_MONGO_DB_URI` could be the same or different from what is used by LibreChat. Even if it is the same, the `$COLLECTION_NAME` collection needs to be a completely new one, separate from all collections used by LibreChat. In addition,  create a vector search index for collection above (remember to assign `$ATLAS_SEARCH_INDEX`) with the following json:
+The `ATLAS_MONGO_DB_URI` could be the same or different from what is used by Wrangler. Even if it is the same, the `$COLLECTION_NAME` collection needs to be a completely new one, separate from all collections used by Wrangler. In addition,  create a vector search index for collection above (remember to assign `$ATLAS_SEARCH_INDEX`) with the following json:
 
 ```json
 {
@@ -128,7 +128,7 @@ Follow one of the [four documented methods](https://www.mongodb.com/docs/atlas/a
 
 ### Proxy Configuration
 
-When using the RAG API with LibreChat and you need to configure proxy settings, you can set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the [`docker-compose.override.yml`](https://wrangler.tcb-internal.com/docs/configuration/docker_override) file (from the LibreChat repository):
+When using the RAG API with Wrangler and you need to configure proxy settings, you can set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the [`docker-compose.override.yml`](https://wrangler.tcb-internal.net/docs/configuration/docker_override) file (from the Wrangler repository):
 
 ```yaml
 rag_api:

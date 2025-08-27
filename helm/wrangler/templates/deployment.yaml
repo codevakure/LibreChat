@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "librechat.fullname" $ }}
+  name: {{ include "wrangler.fullname" $ }}
   labels:
-    {{- include "librechat.labels" . | nindent 4 }}
+    {{- include "wrangler.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   {{- if .Values.updateStrategy }}
@@ -11,17 +11,17 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "librechat.selectorLabels" . | nindent 6 }}
+      {{- include "wrangler.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
-        {{ if .Values.librechat.configYamlContent }}checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}{{ end }}
+        {{ if .Values.wrangler.configYamlContent }}checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}{{ end }}
         checksum/configEnv: {{ include (print $.Template.BasePath "/configmap-env.yaml") . | sha256sum }}
         {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "librechat.labels" . | nindent 8 }}
+        {{- include "wrangler.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -33,7 +33,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ include "librechat.fullname" $ }}
+        - name: {{ include "wrangler.fullname" $ }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -51,13 +51,13 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-          {{- if or .Values.librechat.configYamlContent .Values.librechat.existingConfigYaml }}
+          {{- if or .Values.wrangler.configYamlContent .Values.wrangler.existingConfigYaml }}
           - name: config-yaml
-            mountPath: "/app/librechat.yaml"
-            subPath: "librechat.yaml"
+            mountPath: "/app/wrangler.yaml"
+            subPath: "wrangler.yaml"
             readOnly: true
           {{- end }}
-          {{- if .Values.librechat.imageVolume.enabled }}
+          {{- if .Values.wrangler.imageVolume.enabled }}
           - name: image-volume
             mountPath: "/app/client/public/images"
           {{- end }}
@@ -66,26 +66,26 @@ spec:
           {{- end }}
           envFrom:
           - configMapRef:
-              name: {{ include "librechat.fullname" $ }}-configenv
-          {{- if .Values.global.librechat.existingSecretName }}
+              name: {{ include "wrangler.fullname" $ }}-configenv
+          {{- if .Values.global.wrangler.existingSecretName }}
           - secretRef:
-              name: {{ .Values.global.librechat.existingSecretName }}
+              name: {{ .Values.global.wrangler.existingSecretName }}
               optional: true
           {{- end }}
       volumes:
-      {{- if or .Values.librechat.configYamlContent .Values.librechat.existingConfigYaml }}
+      {{- if or .Values.wrangler.configYamlContent .Values.wrangler.existingConfigYaml }}
       - name: config-yaml
         configMap:
-        {{- if .Values.librechat.existingConfigYaml }}
-          name: {{ .Values.librechat.existingConfigYaml }}
-        {{- else if .Values.librechat.configYamlContent }}
-          name: {{ include "librechat.fullname" $ }}-config
+        {{- if .Values.wrangler.existingConfigYaml }}
+          name: {{ .Values.wrangler.existingConfigYaml }}
+        {{- else if .Values.wrangler.configYamlContent }}
+          name: {{ include "wrangler.fullname" $ }}-config
         {{- end }}
       {{- end }}
-      {{- if .Values.librechat.imageVolume.enabled }}
+      {{- if .Values.wrangler.imageVolume.enabled }}
       - name: image-volume
         persistentVolumeClaim:
-          claimName: {{ include "librechat.fullname" $ }}-images
+          claimName: {{ include "wrangler.fullname" $ }}-images
       {{- end }}
       {{- if .Values.volumes }}
       {{- toYaml .Values.volumes | nindent 6 }}

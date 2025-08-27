@@ -1,5 +1,5 @@
 {
-  "name": "@librechat/agents",
+  "name": "@wrangler/agents",
   "version": "2.4.76",
   "main": "./dist/cjs/main.cjs",
   "module": "./dist/esm/main.mjs",

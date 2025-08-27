@@ -1,5 +1,5 @@
-import { Run, Providers } from '@librechat/agents';
-import { providerEndpointMap, KnownEndpoints } from 'librechat-data-provider';
+import { Run, Providers } from '@wrangler/agents';
+import { providerEndpointMap, KnownEndpoints } from 'wrangler-data-provider';
 import type {
   OpenAIClientOptions,
   StandardGraphConfig,
@@ -7,8 +7,8 @@ import type {
   GenericTool,
   GraphEvents,
   IState,
-} from '@librechat/agents';
-import type { Agent } from 'librechat-data-provider';
+} from '@wrangler/agents';
+import type { Agent } from 'wrangler-data-provider';
 import type * as t from '~/types';
 
 const customProviders = new Set([

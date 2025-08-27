@@ -505,8 +505,8 @@ export class AzureChatOpenAI extends OriginalAzureChatOpenAI {
         ...params.defaultHeaders,
         'User-Agent':
           defaultHeaders['User-Agent'] != null
-            ? `${defaultHeaders['User-Agent']}: librechat-azure-openai-v2`
-            : 'librechat-azure-openai-v2',
+            ? `${defaultHeaders['User-Agent']}: wrangler-azure-openai-v2`
+            : 'wrangler-azure-openai-v2',
       };
 
       this.client = new CustomAzureOpenAIClient({

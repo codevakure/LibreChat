@@ -8,7 +8,7 @@ const {
   memoryPermissionsSchema,
   marketplacePermissionsSchema,
   peoplePickerPermissionsSchema,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { checkAdmin, requireJwtAuth } = require('~/server/middleware');
 const { updateRoleByName, getRoleByName } = require('~/models/Role');
 

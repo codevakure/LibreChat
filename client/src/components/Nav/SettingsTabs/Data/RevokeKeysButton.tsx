@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   useRevokeAllUserKeysMutation,
   useRevokeUserKeyMutation,
-} from 'librechat-data-provider/react-query';
+} from 'wrangler-data-provider/react-query';
 import {
   OGDialogTemplate,
   Button,
@@ -10,7 +10,7 @@ import {
   OGDialog,
   OGDialogTrigger,
   Spinner,
-} from '@librechat/client';
+} from '@wrangler/client';
 import { useLocalize } from '~/hooks';
 
 export const RevokeKeysButton = ({

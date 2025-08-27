@@ -1,5 +1,5 @@
-const { logger } = require('@librechat/data-schemas');
-const { PermissionBits, hasPermissions, ResourceType } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { PermissionBits, hasPermissions, ResourceType } = require('wrangler-data-provider');
 const { getEffectivePermissions } = require('~/server/services/PermissionService');
 const { getAgent } = require('~/models/Agent');
 const { getFiles } = require('~/models/File');

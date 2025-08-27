@@ -108,7 +108,7 @@ Usage:
           const fetchOptions: RequestInit = {
             method: 'GET',
             headers: {
-              'User-Agent': 'LibreChat/1.0',
+              'User-Agent': 'Wrangler/1.0',
               'X-API-Key': apiKey,
             },
           };
@@ -155,7 +155,7 @@ Usage:
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'User-Agent': 'LibreChat/1.0',
+            'User-Agent': 'Wrangler/1.0',
             'X-API-Key': apiKey,
           },
           body: JSON.stringify(postData),

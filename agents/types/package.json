@@ -1,12 +1,12 @@
 {
-  "name": "@librechat/agents-types",
+  "name": "@wrangler/agents-types",
   "version": "2.4.76",
-  "description": "Type definitions for @librechat/agents",
+  "description": "Type definitions for @wrangler/agents",
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc"
   },
   "peerDependencies": {
-    "@librechat/agents": "^1.5.3"
+    "@wrangler/agents": "^1.5.3"
   }
 }

@@ -1,4 +1,4 @@
-const { removeNullishValues, anthropicSettings } = require('librechat-data-provider');
+const { removeNullishValues, anthropicSettings } = require('wrangler-data-provider');
 const generateArtifactsPrompt = require('~/app/clients/prompts/artifacts');
 const generateChartPrompt = require('~/app/clients/prompts/charts');
 

@@ -1,5 +1,5 @@
-const { logger } = require('@librechat/data-schemas');
-const { CacheKeys, Constants } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { CacheKeys, Constants } = require('wrangler-data-provider');
 const { getCachedTools, setCachedTools } = require('./getCachedTools');
 const { getLogStores } = require('~/cache');
 
@@ -48,7 +48,7 @@ async function updateMCPUserTools({ userId, serverName, tools }) {
 
 /**
  * Merges app-level tools with global tools
- * @param {import('@librechat/api').LCAvailableTools} appTools
+ * @param {import('@wrangler/api').LCAvailableTools} appTools
  * @returns {Promise<void>}
  */
 async function mergeAppTools(appTools) {
@@ -74,7 +74,7 @@ async function mergeAppTools(appTools) {
  * @param {object} params
  * @param {string} params.userId
  * @param {Record<string, FunctionTool>} params.cachedUserTools
- * @param {import('@librechat/api').LCAvailableTools} params.userTools
+ * @param {import('@wrangler/api').LCAvailableTools} params.userTools
  * @returns {Promise<void>}
  */
 async function mergeUserTools({ userId, cachedUserTools, userTools }) {

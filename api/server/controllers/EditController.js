@@ -1,6 +1,6 @@
-const { sendEvent } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { getResponseSender } = require('librechat-data-provider');
+const { sendEvent } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
+const { getResponseSender } = require('wrangler-data-provider');
 const {
   handleAbortError,
   createAbortController,

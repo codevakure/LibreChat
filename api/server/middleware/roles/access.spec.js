@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const { checkAccess, generateCheckAccess } = require('@librechat/api');
-const { PermissionTypes, Permissions } = require('librechat-data-provider');
+const { checkAccess, generateCheckAccess } = require('@wrangler/api');
+const { PermissionTypes, Permissions } = require('wrangler-data-provider');
 const { getRoleByName } = require('~/models/Role');
 const { Role } = require('~/db/models');
 
-// Mock the logger from @librechat/data-schemas
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/data-schemas'),
+// Mock the logger from @wrangler/data-schemas
+jest.mock('@wrangler/data-schemas', () => ({
+  ...jest.requireActual('@wrangler/data-schemas'),
   logger: {
     warn: jest.fn(),
     error: jest.fn(),

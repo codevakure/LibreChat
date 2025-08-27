@@ -1,8 +1,8 @@
-const { Constants } = require('librechat-data-provider');
+const { Constants } = require('wrangler-data-provider');
 const { getCachedTools, getAppConfig } = require('~/server/services/Config');
 const { getLogStores } = require('~/cache');
 
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@wrangler/data-schemas', () => ({
   logger: {
     debug: jest.fn(),
     error: jest.fn(),

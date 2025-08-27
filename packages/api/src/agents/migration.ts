@@ -1,6 +1,6 @@
-import { logger } from '@librechat/data-schemas';
-import { AccessRoleIds, ResourceType, PrincipalType, Constants } from 'librechat-data-provider';
-import type { AccessRoleMethods, IAgent } from '@librechat/data-schemas';
+import { logger } from '@wrangler/data-schemas';
+import { AccessRoleIds, ResourceType, PrincipalType, Constants } from 'wrangler-data-provider';
+import type { AccessRoleMethods, IAgent } from '@wrangler/data-schemas';
 import type { Model, Mongoose, mongo } from 'mongoose';
 
 const { GLOBAL_PROJECT_NAME } = Constants;

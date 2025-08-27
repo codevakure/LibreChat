@@ -1,5 +1,5 @@
-import type { Providers, ClientOptions } from '@librechat/agents';
-import type { AgentModelParameters } from 'librechat-data-provider';
+import type { Providers, ClientOptions } from '@wrangler/agents';
+import type { AgentModelParameters } from 'wrangler-data-provider';
 import type { OpenAIConfiguration } from './openai';
 
 export type RunLLMConfig = {

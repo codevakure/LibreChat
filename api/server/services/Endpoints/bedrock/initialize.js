@@ -1,9 +1,9 @@
-const { createContentAggregator } = require('@librechat/agents');
+const { createContentAggregator } = require('@wrangler/agents');
 const {
   EModelEndpoint,
   providerEndpointMap,
   getResponseSender,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { getDefaultHandlers } = require('~/server/controllers/agents/callbacks');
 const getOptions = require('~/server/services/Endpoints/bedrock/options');
 const AgentClient = require('~/server/controllers/agents/client');

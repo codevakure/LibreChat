@@ -1,14 +1,14 @@
 import { primeResources } from './resources';
-import { logger } from '@librechat/data-schemas';
-import { EModelEndpoint, EToolResources, AgentCapabilities } from 'librechat-data-provider';
-import type { TAgentsEndpoint, TFile } from 'librechat-data-provider';
+import { logger } from '@wrangler/data-schemas';
+import { EModelEndpoint, EToolResources, AgentCapabilities } from 'wrangler-data-provider';
+import type { TAgentsEndpoint, TFile } from 'wrangler-data-provider';
 import type { Request as ServerRequest } from 'express';
-import type { IUser } from '@librechat/data-schemas';
+import type { IUser } from '@wrangler/data-schemas';
 import type { TGetFiles } from './resources';
 import type { AppConfig } from '~/types';
 
 // Mock logger
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@wrangler/data-schemas', () => ({
   logger: {
     error: jest.fn(),
   },

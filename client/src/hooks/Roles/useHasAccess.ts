@@ -1,6 +1,6 @@
 import { useMemo, useCallback, useContext } from 'react';
-import type { TUser, Permissions } from 'librechat-data-provider';
-import { PermissionTypes } from 'librechat-data-provider';
+import type { TUser, Permissions } from 'wrangler-data-provider';
+import { PermissionTypes } from 'wrangler-data-provider';
 import { AuthContext } from '~/hooks/AuthContext';
 
 const useHasAccess = ({

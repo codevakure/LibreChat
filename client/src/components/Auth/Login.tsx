@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ErrorTypes } from 'librechat-data-provider';
-import { OpenIDIcon, useToastContext } from '@librechat/client';
+import { ErrorTypes } from 'wrangler-data-provider';
+import { OpenIDIcon, useToastContext } from '@wrangler/client';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
 import type { TLoginLayoutContext } from '~/common';
 import { ErrorMessage } from '~/components/Auth/ErrorMessage';

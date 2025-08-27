@@ -1,4 +1,4 @@
-import { PermissionBits } from 'librechat-data-provider';
+import { PermissionBits } from 'wrangler-data-provider';
 
 /**
  * Common role combinations

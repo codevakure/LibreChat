@@ -1,7 +1,7 @@
 const path = require('path');
-const { logger } = require('@librechat/data-schemas');
-const { AccessRoleIds, ResourceType, PrincipalType } = require('librechat-data-provider');
-const { GLOBAL_PROJECT_NAME } = require('librechat-data-provider').Constants;
+const { logger } = require('@wrangler/data-schemas');
+const { AccessRoleIds, ResourceType, PrincipalType } = require('wrangler-data-provider');
+const { GLOBAL_PROJECT_NAME } = require('wrangler-data-provider').Constants;
 
 require('module-alias')({ base: path.resolve(__dirname, '..', 'api') });
 const connect = require('./connect');

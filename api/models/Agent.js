@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const crypto = require('node:crypto');
-const { logger } = require('@librechat/data-schemas');
-const { ResourceType, SystemRoles, Tools, actionDelimiter } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { ResourceType, SystemRoles, Tools, actionDelimiter } = require('wrangler-data-provider');
 const { GLOBAL_PROJECT_NAME, EPHEMERAL_AGENT_ID, mcp_all, mcp_delimiter } =
-  require('librechat-data-provider').Constants;
+  require('wrangler-data-provider').Constants;
 const {
   removeAgentFromAllProjects,
   removeAgentIdsFromProject,
@@ -56,7 +56,7 @@ const getAgent = async (searchParameter) => await Agent.findOne(searchParameter)
  * @param {ServerRequest} params.req
  * @param {string} params.agent_id
  * @param {string} params.endpoint
- * @param {import('@librechat/agents').ClientOptions} [params.model_parameters]
+ * @param {import('@wrangler/agents').ClientOptions} [params.model_parameters]
  * @returns {Promise<Agent|null>} The agent document as a plain object, or null if not found.
  */
 const loadEphemeralAgent = async ({ req, agent_id, endpoint, model_parameters: _m }) => {
@@ -128,7 +128,7 @@ const loadEphemeralAgent = async ({ req, agent_id, endpoint, model_parameters: _
  * @param {ServerRequest} params.req
  * @param {string} params.agent_id
  * @param {string} params.endpoint
- * @param {import('@librechat/agents').ClientOptions} [params.model_parameters]
+ * @param {import('@wrangler/agents').ClientOptions} [params.model_parameters]
  * @returns {Promise<Agent|null>} The agent document as a plain object, or null if not found.
  */
 const loadAgent = async ({ req, agent_id, endpoint, model_parameters }) => {

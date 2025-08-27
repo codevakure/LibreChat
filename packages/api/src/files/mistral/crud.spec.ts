@@ -31,7 +31,7 @@ jest.mock('axios', () => {
   };
 });
 
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@wrangler/data-schemas', () => ({
   logger: {
     error: jest.fn(),
   },
@@ -52,7 +52,7 @@ import type {
   OCRResult,
   AppConfig,
 } from '~/types';
-import { logger as mockLogger } from '@librechat/data-schemas';
+import { logger as mockLogger } from '@wrangler/data-schemas';
 import {
   uploadDocumentToMistral,
   uploadAzureMistralOCR,

@@ -8,10 +8,10 @@ const {
   defaultAgentCapabilities,
   deprecatedAzureVariables,
   conflictingAzureVariables,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/data-schemas'),
+jest.mock('@wrangler/data-schemas', () => ({
+  ...jest.requireActual('@wrangler/data-schemas'),
   logger: {
     info: jest.fn(),
     warn: jest.fn(),
@@ -65,9 +65,9 @@ jest.mock('./start/turnstile', () => ({
 
 const azureGroups = [
   {
-    group: 'librechat-westus',
+    group: 'wrangler-westus',
     apiKey: '${WESTUS_API_KEY}',
-    instanceName: 'librechat-westus',
+    instanceName: 'wrangler-westus',
     version: '2023-12-01-preview',
     models: {
       'gpt-4-vision-preview': {
@@ -89,9 +89,9 @@ const azureGroups = [
     },
   },
   {
-    group: 'librechat-eastus',
+    group: 'wrangler-eastus',
     apiKey: '${EASTUS_API_KEY}',
-    instanceName: 'librechat-eastus',
+    instanceName: 'wrangler-eastus',
     deploymentName: 'gpt-4-turbo',
     version: '2024-02-15-preview',
     models: {
@@ -184,7 +184,7 @@ describe('AppService', () => {
 
     await AppService();
 
-    const { logger } = require('@librechat/data-schemas');
+    const { logger } = require('@wrangler/data-schemas');
     expect(logger.info).toHaveBeenCalledWith(expect.stringContaining('Outdated Config version'));
   });
 
@@ -900,7 +900,7 @@ describe('AppService updating app config and issuing warnings', () => {
 
     await AppService();
 
-    const { logger } = require('@librechat/data-schemas');
+    const { logger } = require('@wrangler/data-schemas');
     expect(logger.warn).toHaveBeenCalledWith(
       expect.stringContaining(
         "The 'assistants' endpoint has both 'supportedIds' and 'excludedIds' defined.",
@@ -921,7 +921,7 @@ describe('AppService updating app config and issuing warnings', () => {
 
     await AppService();
 
-    const { logger } = require('@librechat/data-schemas');
+    const { logger } = require('@wrangler/data-schemas');
     expect(logger.warn).toHaveBeenCalledWith(
       expect.stringContaining(
         "The 'assistants' endpoint has both 'privateAssistants' and 'supportedIds' or 'excludedIds' defined.",
@@ -946,7 +946,7 @@ describe('AppService updating app config and issuing warnings', () => {
 
     await AppService();
 
-    const { logger } = require('@librechat/data-schemas');
+    const { logger } = require('@wrangler/data-schemas');
     deprecatedAzureVariables.forEach(({ key, description }) => {
       expect(logger.warn).toHaveBeenCalledWith(
         `The \`${key}\` environment variable (related to ${description}) should not be used in combination with the \`azureOpenAI\` endpoint configuration, as you will experience conflicts and errors.`,
@@ -971,7 +971,7 @@ describe('AppService updating app config and issuing warnings', () => {
 
     await AppService();
 
-    const { logger } = require('@librechat/data-schemas');
+    const { logger } = require('@wrangler/data-schemas');
     conflictingAzureVariables.forEach(({ key }) => {
       expect(logger.warn).toHaveBeenCalledWith(
         `The \`${key}\` environment variable should not be used in combination with the \`azureOpenAI\` endpoint configuration, as you may experience with the defined placeholders for mapping to the current model grouping using the same name.`,

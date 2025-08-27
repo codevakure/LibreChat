@@ -1,10 +1,10 @@
 const { z } = require('zod');
 const axios = require('axios');
 const { Ollama } = require('ollama');
-const { sleep } = require('@librechat/agents');
-const { logAxiosError } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { Constants } = require('librechat-data-provider');
+const { sleep } = require('@wrangler/agents');
+const { logAxiosError } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
+const { Constants } = require('wrangler-data-provider');
 const { deriveBaseURL } = require('~/utils');
 
 const ollamaPayloadSchema = z.object({

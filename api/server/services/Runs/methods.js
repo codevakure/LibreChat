@@ -1,6 +1,6 @@
 const axios = require('axios');
-const { logAxiosError } = require('@librechat/api');
-const { EModelEndpoint } = require('librechat-data-provider');
+const { logAxiosError } = require('@wrangler/api');
+const { EModelEndpoint } = require('wrangler-data-provider');
 
 /**
  * @typedef {Object} RetrieveOptions

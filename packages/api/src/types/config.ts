@@ -8,7 +8,7 @@ import type {
   TAgentsEndpoint,
   TCustomEndpoints,
   TAssistantEndpoint,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import type { FunctionTool } from './tools';
 
 /**

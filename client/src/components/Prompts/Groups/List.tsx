@@ -1,8 +1,8 @@
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Skeleton } from '@librechat/client';
-import { PermissionTypes, Permissions } from 'librechat-data-provider';
-import type { TPromptGroup, TStartupConfig } from 'librechat-data-provider';
+import { Button, Skeleton } from '@wrangler/client';
+import { PermissionTypes, Permissions } from 'wrangler-data-provider';
+import type { TPromptGroup, TStartupConfig } from 'wrangler-data-provider';
 import DashGroupItem from '~/components/Prompts/Groups/DashGroupItem';
 import ChatGroupItem from '~/components/Prompts/Groups/ChatGroupItem';
 import { useGetStartupConfig } from '~/data-provider';

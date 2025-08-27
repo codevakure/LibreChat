@@ -1,5 +1,5 @@
-const { isUserProvided, normalizeEndpointName } = require('@librechat/api');
-const { EModelEndpoint, extractEnvVariable } = require('librechat-data-provider');
+const { isUserProvided, normalizeEndpointName } = require('@wrangler/api');
+const { EModelEndpoint, extractEnvVariable } = require('wrangler-data-provider');
 const { fetchModels } = require('~/server/services/ModelService');
 const { getAppConfig } = require('./app');
 

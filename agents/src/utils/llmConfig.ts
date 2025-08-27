@@ -38,7 +38,7 @@ export const llmConfigs: Record<string, t.LLMConfig | undefined> = {
       baseURL: process.env.OPENROUTER_BASE_URL,
       defaultHeaders: {
         'HTTP-Referer': 'https://texascapitalbank.com/',
-        'X-Title': 'LibreChat',
+        'X-Title': 'Wrangler',
       },
     },
     include_reasoning: true,

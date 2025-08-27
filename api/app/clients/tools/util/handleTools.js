@@ -1,9 +1,9 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const { SerpAPI } = require('@langchain/community/tools/serpapi');
 const { Calculator } = require('@langchain/community/tools/calculator');
-const { mcpToolPattern, loadWebSearchAuth } = require('@librechat/api');
-const { EnvVar, createCodeExecutionTool, createSearchTool } = require('@librechat/agents');
-const { Tools, Constants, EToolResources, replaceSpecialVars } = require('librechat-data-provider');
+const { mcpToolPattern, loadWebSearchAuth } = require('@wrangler/api');
+const { EnvVar, createCodeExecutionTool, createSearchTool } = require('@wrangler/agents');
+const { Tools, Constants, EToolResources, replaceSpecialVars } = require('wrangler-data-provider');
 const {
   availableTools,
   manifestToolMap,

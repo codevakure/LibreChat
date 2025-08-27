@@ -1,8 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TextareaAutosize, TooltipAnchor } from '@librechat/client';
-import { useUpdateMessageMutation } from 'librechat-data-provider/react-query';
+import { TextareaAutosize, TooltipAnchor } from '@wrangler/client';
+import { useUpdateMessageMutation } from 'wrangler-data-provider/react-query';
 import type { TEditProps } from '~/common';
 import { useChatContext, useAddedChatContext } from '~/Providers';
 import { cn, removeFocusRings } from '~/utils';

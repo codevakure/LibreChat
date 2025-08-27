@@ -1,4 +1,4 @@
-jest.mock('@librechat/data-schemas', () => ({
+jest.mock('@wrangler/data-schemas', () => ({
   logger: {
     info: jest.fn(),
     warn: jest.fn(),
@@ -6,8 +6,8 @@ jest.mock('@librechat/data-schemas', () => ({
   },
 }));
 
-jest.mock('@librechat/api', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@wrangler/api', () => ({
+  ...jest.requireActual('@wrangler/api'),
   loadDefaultInterface: jest.fn(),
 }));
 jest.mock('./start/tools', () => ({
@@ -24,7 +24,7 @@ jest.mock('./start/checks', () => ({
 jest.mock('./Config/loadCustomConfig', () => jest.fn());
 
 const AppService = require('./AppService');
-const { loadDefaultInterface } = require('@librechat/api');
+const { loadDefaultInterface } = require('@wrangler/api');
 
 describe('AppService interface configuration', () => {
   let mockLoadCustomConfig;

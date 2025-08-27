@@ -1,7 +1,7 @@
 const express = require('express');
 const { nanoid } = require('nanoid');
-const { logger } = require('@librechat/data-schemas');
-const { generateCheckAccess } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { generateCheckAccess } = require('@wrangler/api');
 const {
   Permissions,
   ResourceType,
@@ -9,7 +9,7 @@ const {
   actionDelimiter,
   PermissionBits,
   removeNullishValues,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { encryptMetadata, domainParser } = require('~/server/services/ActionService');
 const { findAccessibleResources } = require('~/server/services/PermissionService');
 const { getAgent, updateAgent, getListAgentsByAccess } = require('~/models/Agent');

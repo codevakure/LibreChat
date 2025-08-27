@@ -1,9 +1,9 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const {
   Capabilities,
   assistantEndpointSchema,
   defaultAssistantsVersion,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 
 /**
  * Sets up the minimum, default Assistants configuration if Azure OpenAI Assistants option is enabled.
@@ -17,7 +17,7 @@ function azureAssistantsDefaults() {
 }
 
 /**
- * Sets up the Assistants configuration from the config (`librechat.yaml`) file.
+ * Sets up the Assistants configuration from the config (`wrangler.yaml`) file.
  * @param {TCustomConfig} config - The loaded custom configuration.
  * @param {EModelEndpoint.assistants|EModelEndpoint.azureAssistants} assistantsEndpoint - The Assistants endpoint name.
  * - The previously loaded assistants configuration from Azure OpenAI Assistants option.

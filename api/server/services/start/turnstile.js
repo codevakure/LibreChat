@@ -1,5 +1,5 @@
-const { logger } = require('@librechat/data-schemas');
-const { removeNullishValues } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { removeNullishValues } = require('wrangler-data-provider');
 
 /**
  * Loads and maps the Cloudflare Turnstile configuration.

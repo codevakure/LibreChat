@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useRef, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useToastContext } from '@librechat/client';
-import { PermissionTypes, Permissions, dataService } from 'librechat-data-provider';
+import { useToastContext } from '@wrangler/client';
+import { PermissionTypes, Permissions, dataService } from 'wrangler-data-provider';
 import CodeBlock from '~/components/Messages/Content/CodeBlock';
 import InlineChart from './InlineChart';
 import useHasAccess from '~/hooks/Roles/useHasAccess';

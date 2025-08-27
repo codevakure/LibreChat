@@ -15,7 +15,7 @@ import type {
   VisibilityState,
   ColumnFiltersState,
 } from '@tanstack/react-table';
-import { FileContext } from 'librechat-data-provider';
+import { FileContext } from 'wrangler-data-provider';
 import {
   Button,
   Input,
@@ -32,8 +32,8 @@ import {
   TrashIcon,
   Spinner,
   useMediaQuery,
-} from '@librechat/client';
-import type { TFile } from 'librechat-data-provider';
+} from '@wrangler/client';
+import type { TFile } from 'wrangler-data-provider';
 import type { AugmentedColumnDef } from '~/common';
 import { useDeleteFilesFromTable } from '~/hooks/Files';
 import { useLocalize } from '~/hooks';

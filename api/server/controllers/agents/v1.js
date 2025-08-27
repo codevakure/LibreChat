@@ -1,8 +1,8 @@
 const { z } = require('zod');
 const fs = require('fs').promises;
 const { nanoid } = require('nanoid');
-const { logger } = require('@librechat/data-schemas');
-const { agentCreateSchema, agentUpdateSchema } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { agentCreateSchema, agentUpdateSchema } = require('@wrangler/api');
 const {
   Tools,
   SystemRoles,
@@ -14,7 +14,7 @@ const {
   PermissionBits,
   actionDelimiter,
   removeNullishValues,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   getListAgentsByAccess,
   countPromotedAgents,

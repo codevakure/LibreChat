@@ -1,12 +1,12 @@
 const express = require('express');
-const { logger } = require('@librechat/data-schemas');
-const { isEnabled, getBalanceConfig } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { isEnabled, getBalanceConfig } = require('@wrangler/api');
 const {
   Constants,
   CacheKeys,
   removeNullishValues,
   defaultSocialLogins,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { getLdapConfig } = require('~/server/services/Config/ldap');
 const { getAppConfig } = require('~/server/services/Config/app');
 const { getProjectByName } = require('~/models/Project');
@@ -66,7 +66,7 @@ router.get('/', async function (req, res) {
 
     /** @type {TStartupConfig} */
     const payload = {
-      appTitle: process.env.APP_TITLE || 'LibreChat',
+      appTitle: process.env.APP_TITLE || 'Wrangler',
       socialLogins: appConfig?.registration?.socialLogins ?? defaultSocialLogins,
       discordLoginEnabled: !!process.env.DISCORD_CLIENT_ID && !!process.env.DISCORD_CLIENT_SECRET,
       facebookLoginEnabled:

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { MultiSelect, MCPIcon } from '@librechat/client';
+import { MultiSelect, MCPIcon } from '@wrangler/client';
 import MCPServerStatusIcon from '~/components/MCP/MCPServerStatusIcon';
 import { useMCPServerManager } from '~/hooks/MCP/useMCPServerManager';
 import MCPConfigDialog from '~/components/MCP/MCPConfigDialog';

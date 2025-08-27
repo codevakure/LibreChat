@@ -1,9 +1,9 @@
-const { Providers } = require('@librechat/agents');
+const { Providers } = require('@wrangler/agents');
 const {
   primeResources,
-  extractLibreChatParams,
+  extractWranglerParams,
   optionalChainWithEmptyCheck,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   ErrorTypes,
   EModelEndpoint,
@@ -11,7 +11,7 @@ const {
   isAgentsEndpoint,
   replaceSpecialVars,
   providerEndpointMap,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const generateArtifactsPrompt = require('~/app/clients/prompts/artifacts');
 const generateChartPrompt = require('~/app/clients/prompts/charts');
 const { getProviderConfig } = require('~/server/services/Endpoints');
@@ -70,7 +70,7 @@ const initializeAgent = async ({
     ),
   );
 
-  const { resendFiles, maxContextTokens, modelOptions } = extractLibreChatParams(_modelOptions);
+  const { resendFiles, maxContextTokens, modelOptions } = extractWranglerParams(_modelOptions);
 
   if (isInitialAgent && conversationId != null && resendFiles) {
     const fileIds = (await getConvoFiles(conversationId)) ?? [];
@@ -158,7 +158,7 @@ const initializeAgent = async ({
     agent.provider = options.provider;
   }
 
-  /** @type {import('@librechat/agents').GenericTool[]} */
+  /** @type {import('@wrangler/agents').GenericTool[]} */
   let tools = options.tools?.length ? options.tools : structuredTools;
   if (
     (agent.provider === Providers.GOOGLE || agent.provider === Providers.VERTEXAI) &&
@@ -176,7 +176,7 @@ const initializeAgent = async ({
     tools = structuredTools.concat(options.tools);
   }
 
-  /** @type {import('@librechat/agents').ClientOptions} */
+  /** @type {import('@wrangler/agents').ClientOptions} */
   agent.model_parameters = { ...options.llmConfig };
   if (options.configOptions) {
     agent.model_parameters.configuration = options.configOptions;

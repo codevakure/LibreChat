@@ -1,11 +1,11 @@
 const { ObjectId } = require('mongodb');
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const {
   Constants,
   SystemRoles,
   ResourceType,
   SystemCategories,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   removeGroupFromAllProjects,
   removeGroupIdsFromProject,

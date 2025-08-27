@@ -1,8 +1,8 @@
 // client/src/hooks/Audio/useTTSExternal.ts
 import { useRef, useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { parseTextParts } from 'librechat-data-provider';
-import type { TMessageContentParts } from 'librechat-data-provider';
+import { parseTextParts } from 'wrangler-data-provider';
+import type { TMessageContentParts } from 'wrangler-data-provider';
 import useTextToSpeechExternal from '~/hooks/Input/useTextToSpeechExternal';
 import usePauseGlobalAudio from '~/hooks/Audio/usePauseGlobalAudio';
 import useAudioRef from '~/hooks/Audio/useAudioRef';

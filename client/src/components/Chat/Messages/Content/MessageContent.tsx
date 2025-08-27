@@ -1,7 +1,7 @@
 import { memo, Suspense, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { DelayedRender } from '@librechat/client';
-import type { TMessage } from 'librechat-data-provider';
+import { DelayedRender } from '@wrangler/client';
+import type { TMessage } from 'wrangler-data-provider';
 import type { TMessageContentProps, TDisplayProps } from '~/common';
 import Error from '~/components/Messages/Content/Error';
 import Thinking from '~/components/Artifacts/Thinking';

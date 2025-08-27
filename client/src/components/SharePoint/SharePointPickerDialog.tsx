@@ -5,7 +5,7 @@ import {
   OGDialogPortal,
   OGDialogOverlay,
   OGDialogContent,
-} from '@librechat/client';
+} from '@wrangler/client';
 import type { SharePointBatchProgress } from '~/data-provider/Files/sharepoint';
 import { useSharePointPicker, useLocalize } from '~/hooks';
 

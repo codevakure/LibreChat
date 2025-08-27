@@ -1,6 +1,6 @@
 const axios = require('axios');
-const { logger } = require('@librechat/data-schemas');
-const { EModelEndpoint, defaultModels } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { EModelEndpoint, defaultModels } = require('wrangler-data-provider');
 
 const {
   fetchModels,
@@ -28,8 +28,8 @@ jest.mock('~/cache/getLogStores', () =>
     set: jest.fn().mockResolvedValue(true),
   })),
 );
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/data-schemas'),
+jest.mock('@wrangler/data-schemas', () => ({
+  ...jest.requireActual('@wrangler/data-schemas'),
   logger: {
     error: jest.fn(),
   },
@@ -188,8 +188,8 @@ describe('getOpenAIModels with mocked config', () => {
         userProvidedOpenAI: true,
       },
     }));
-    jest.mock('librechat-data-provider', () => {
-      const original = jest.requireActual('librechat-data-provider');
+    jest.mock('wrangler-data-provider', () => {
+      const original = jest.requireActual('wrangler-data-provider');
       return {
         ...original,
         defaultModels: {

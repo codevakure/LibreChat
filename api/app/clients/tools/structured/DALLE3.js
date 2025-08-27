@@ -5,9 +5,9 @@ const fetch = require('node-fetch');
 const { v4: uuidv4 } = require('uuid');
 const { ProxyAgent } = require('undici');
 const { Tool } = require('@langchain/core/tools');
-const { logger } = require('@librechat/data-schemas');
-const { getImageBasename } = require('@librechat/api');
-const { FileContext, ContentTypes } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { getImageBasename } = require('@wrangler/api');
+const { FileContext, ContentTypes } = require('wrangler-data-provider');
 const extractBaseURL = require('~/utils/extractBaseURL');
 
 const displayMessage =

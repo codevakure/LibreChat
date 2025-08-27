@@ -1,5 +1,5 @@
 require('events').EventEmitter.defaultMaxListeners = 100;
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const { DynamicStructuredTool } = require('@langchain/core/tools');
 const { getBufferString, HumanMessage } = require('@langchain/core/messages');
 const {
@@ -11,7 +11,7 @@ const {
   memoryInstructions,
   formatContentStrings,
   createMemoryProcessor,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   Callback,
   Providers,
@@ -21,7 +21,7 @@ const {
   formatAgentMessages,
   getTokenCountForMessage,
   createMetadataAggregator,
-} = require('@librechat/agents');
+} = require('@wrangler/agents');
 const {
   Constants,
   Permissions,
@@ -33,7 +33,7 @@ const {
   AgentCapabilities,
   bedrockInputSchema,
   removeNullishValues,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { addCacheControl, createContextHandlers } = require('~/app/clients/prompts');
 const { initializeAgent } = require('~/server/services/Endpoints/agents/agent');
 const { spendTokens, spendStructuredTokens } = require('~/models/spendTokens');
@@ -508,7 +508,7 @@ class AgentClient extends BaseClient {
       agent.model_parameters,
     );
 
-    /** @type {import('@librechat/api').MemoryConfig} */
+    /** @type {import('@wrangler/api').MemoryConfig} */
     const config = {
       validKeys: memoryConfig.validKeys,
       instructions: agent.instructions,
@@ -1084,7 +1084,7 @@ class AgentClient extends BaseClient {
     const appConfig = req.config;
     let endpoint = agent.endpoint;
 
-    /** @type {import('@librechat/agents').ClientOptions} */
+    /** @type {import('@wrangler/agents').ClientOptions} */
     let clientOptions = {
       model: agent.model || agent.model_parameters.model,
     };
@@ -1151,7 +1151,7 @@ class AgentClient extends BaseClient {
       provider = Providers.AZURE;
     }
 
-    /** @type {import('@librechat/agents').ClientOptions} */
+    /** @type {import('@wrangler/agents').ClientOptions} */
     clientOptions = { ...options.llmConfig };
     if (options.configOptions) {
       clientOptions.configuration = options.configOptions;

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Label } from '@librechat/client';
-import type t from 'librechat-data-provider';
+import { Label } from '@wrangler/client';
+import type t from 'wrangler-data-provider';
 import { useLocalize, TranslationKeys, useAgentCategories } from '~/hooks';
 import { cn, renderAgentAvatar, getContactDisplayName } from '~/utils';
 

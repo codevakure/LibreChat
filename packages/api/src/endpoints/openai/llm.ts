@@ -1,6 +1,6 @@
 import { ProxyAgent } from 'undici';
-import { Providers } from '@librechat/agents';
-import { KnownEndpoints, removeNullishValues } from 'librechat-data-provider';
+import { Providers } from '@wrangler/agents';
+import { KnownEndpoints, removeNullishValues } from 'wrangler-data-provider';
 import type { BindToolsInput } from '@langchain/core/language_models/chat_models';
 import type { AzureOpenAIInput } from '@langchain/openai';
 import type { OpenAI } from 'openai';
@@ -147,7 +147,7 @@ export function getOpenAIConfig(
     configOptions.defaultHeaders = Object.assign(
       {
         'HTTP-Referer': 'https://texascapitalbank.com/',
-        'X-Title': 'LibreChat',
+        'X-Title': 'Wrangler',
       },
       headers,
     );

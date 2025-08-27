@@ -1,12 +1,12 @@
-import { SheetPaths, TextPaths, FilePaths, CodePaths } from '@librechat/client';
+import { SheetPaths, TextPaths, FilePaths, CodePaths } from '@wrangler/client';
 import {
   megabyte,
   QueryKeys,
   excelMimeTypes,
   codeTypeMapping,
   fileConfig as defaultFileConfig,
-} from 'librechat-data-provider';
-import type { TFile, EndpointFileConfig } from 'librechat-data-provider';
+} from 'wrangler-data-provider';
+import type { TFile, EndpointFileConfig } from 'wrangler-data-provider';
 import type { QueryClient } from '@tanstack/react-query';
 import type { ExtendedFile } from '~/common';
 

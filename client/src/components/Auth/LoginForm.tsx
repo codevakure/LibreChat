@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Turnstile } from '@marsidev/react-turnstile';
-import { ThemeContext, Spinner, Button } from '@librechat/client';
-import type { TLoginUser, TStartupConfig } from 'librechat-data-provider';
+import { ThemeContext, Spinner, Button } from '@wrangler/client';
+import type { TLoginUser, TStartupConfig } from 'wrangler-data-provider';
 import type { TAuthContext } from '~/common';
 import { useResendVerificationEmail, useGetStartupConfig } from '~/data-provider';
 import { useLocalize } from '~/hooks';

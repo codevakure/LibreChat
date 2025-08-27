@@ -1,5 +1,5 @@
-import { ComponentTypes } from 'librechat-data-provider';
-import type { DynamicSettingProps } from 'librechat-data-provider';
+import { ComponentTypes } from 'wrangler-data-provider';
+import type { DynamicSettingProps } from 'wrangler-data-provider';
 import {
   DynamicCombobox,
   DynamicDropdown,

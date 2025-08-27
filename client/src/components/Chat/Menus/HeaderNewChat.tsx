@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { QueryKeys, Constants } from 'librechat-data-provider';
-import { TooltipAnchor, Button, NewChatIcon } from '@librechat/client';
-import type { TMessage } from 'librechat-data-provider';
+import { QueryKeys, Constants } from 'wrangler-data-provider';
+import { TooltipAnchor, Button, NewChatIcon } from '@wrangler/client';
+import type { TMessage } from 'wrangler-data-provider';
 import { useChatContext } from '~/Providers';
 import { useLocalize } from '~/hooks';
 

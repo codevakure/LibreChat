@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const jwtDecode = require('jsonwebtoken/decode');
-const { ErrorTypes } = require('librechat-data-provider');
+const { ErrorTypes } = require('wrangler-data-provider');
 const { findUser, createUser, updateUser } = require('~/models');
 const { setupOpenId } = require('./openidStrategy');
 
@@ -15,8 +15,8 @@ jest.mock('~/server/services/Files/strategies', () => ({
 jest.mock('~/server/services/Config', () => ({
   getAppConfig: jest.fn().mockResolvedValue({}),
 }));
-jest.mock('@librechat/api', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@wrangler/api', () => ({
+  ...jest.requireActual('@wrangler/api'),
   isEnabled: jest.fn(() => false),
   getBalanceConfig: jest.fn(() => ({
     enabled: false,
@@ -27,8 +27,8 @@ jest.mock('~/models', () => ({
   createUser: jest.fn(),
   updateUser: jest.fn(),
 }));
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/api'),
+jest.mock('@wrangler/data-schemas', () => ({
+  ...jest.requireActual('@wrangler/api'),
   logger: {
     info: jest.fn(),
     debug: jest.fn(),

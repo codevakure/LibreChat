@@ -5,7 +5,7 @@ import {
   AuthTypeEnum,
   AuthorizationTypeEnum,
   TokenExchangeMethodEnum,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import {
   OGDialog,
   OGDialogTrigger,
@@ -13,7 +13,7 @@ import {
   OGDialogTemplate,
   TrashIcon,
   useToastContext,
-} from '@librechat/client';
+} from '@wrangler/client';
 import { useAgentPanelContext } from '~/Providers/AgentPanelContext';
 import { defaultMCPFormValues } from '~/common/mcp';
 import type { MCPForm } from '~/common';

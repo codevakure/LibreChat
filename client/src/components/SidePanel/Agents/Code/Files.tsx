@@ -1,14 +1,14 @@
 import { useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { AttachmentIcon } from '@librechat/client';
+import { AttachmentIcon } from '@wrangler/client';
 import {
   EToolResources,
   EModelEndpoint,
   mergeFileConfig,
   AgentCapabilities,
   fileConfig as defaultFileConfig,
-} from 'librechat-data-provider';
-import type { EndpointFileConfig } from 'librechat-data-provider';
+} from 'wrangler-data-provider';
+import type { EndpointFileConfig } from 'wrangler-data-provider';
 import type { ExtendedFile, AgentForm } from '~/common';
 import { useFileHandling, useLocalize, useLazyEffect } from '~/hooks';
 import FileRow from '~/components/Chat/Input/Files/FileRow';

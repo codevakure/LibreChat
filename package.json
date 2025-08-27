@@ -1,5 +1,5 @@
 {
-  "name": "LibreChat",
+  "name": "Wrangler",
   "version": "v0.8.0-rc3",
   "description": "",
   "workspaces": [
@@ -80,7 +80,7 @@
     "flush-cache": "node config/flush-cache.js",
     "build:all": "npm run build:data-provider && npm run build:data-schemas && npm run build:api && npm run build:client-package && npm run build:agents",
     "build:dev": "npm run build:agents && cd client && npm run dev",
-    "rag:build": "cd rag_api && docker build -f Dockerfile.local -t librechat-rag-api-local .",
+    "rag:build": "cd rag_api && docker build -f Dockerfile.local -t wrangler-rag-api-local .",
     "rag:dev": "cd rag_api && python main.py",
     "docker:build": "docker compose build",
     "docker:up": "docker compose up -d",

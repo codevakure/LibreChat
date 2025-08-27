@@ -6,10 +6,10 @@ import {
   StdioOptionsSchema,
   WebSocketOptionsSchema,
   StreamableHTTPOptionsSchema,
-} from 'librechat-data-provider';
-import type { TPlugin, TUser } from 'librechat-data-provider';
+} from 'wrangler-data-provider';
+import type { TPlugin, TUser } from 'wrangler-data-provider';
 import type * as t from '@modelcontextprotocol/sdk/types.js';
-import type { TokenMethods } from '@librechat/data-schemas';
+import type { TokenMethods } from '@wrangler/data-schemas';
 import type { FlowStateManager } from '~/flow/manager';
 import type { JsonSchemaType } from '~/types/zod';
 import type { RequestBody } from '~/types/http';

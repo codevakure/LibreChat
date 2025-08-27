@@ -7,14 +7,14 @@ cd ${DIR}/../..
 TAG=$1
 
 if [[ -z "${TAG}" ]]; then
-  TAG=${LIBRE_CHAT_DOCKER_TAG}
+  TAG=${WRANGLER_DOCKER_TAG}
 fi
 
 if [[ -z "${TAG}" ]]; then
   TAG=latest
 fi
 
-LOCAL_DOCKER_IMG=librechat:${TAG}
+LOCAL_DOCKER_IMG=wrangler:${TAG}
 
 set -e
 

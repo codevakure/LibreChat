@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { GearIcon } from '@librechat/client';
-import type { Action } from 'librechat-data-provider';
+import { GearIcon } from '@wrangler/client';
+import type { Action } from 'wrangler-data-provider';
 import { cn } from '~/utils';
 
 export default function Action({ action, onClick }: { action: Action; onClick: () => void }) {

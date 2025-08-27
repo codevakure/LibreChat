@@ -8,7 +8,7 @@ import { ResourceListChangedNotificationSchema } from '@modelcontextprotocol/sdk
 import { WebSocketClientTransport } from '@modelcontextprotocol/sdk/client/websocket.js';
 import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { logger } from '@librechat/data-schemas';
+import { logger } from '@wrangler/data-schemas';
 import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js';
 import type { JSONRPCMessage } from '@modelcontextprotocol/sdk/types.js';
 import type { MCPOAuthTokens } from './oauth/types';
@@ -118,7 +118,7 @@ export class MCPConnection extends EventEmitter {
     }
     this.client = new Client(
       {
-        name: '@librechat/api-client',
+        name: '@wrangler/api-client',
         version: '1.2.3',
       },
       {

@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
-const { sendEvent } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { Tools, StepTypes, FileContext } = require('librechat-data-provider');
+const { sendEvent } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
+const { Tools, StepTypes, FileContext } = require('wrangler-data-provider');
 const {
   EnvVar,
   Providers,
@@ -10,7 +10,7 @@ const {
   ToolEndHandler,
   handleToolCalls,
   ChatModelStreamHandler,
-} = require('@librechat/agents');
+} = require('@wrangler/agents');
 const { processFileCitations } = require('~/server/services/Files/Citations');
 const { processCodeOutput } = require('~/server/services/Files/Code/process');
 const { loadAuthValues } = require('~/server/services/Tools/credentials');

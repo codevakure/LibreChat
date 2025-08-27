@@ -1,5 +1,5 @@
-import { EModelEndpoint, extractEnvVariable } from 'librechat-data-provider';
-import type { TCustomEndpoints, TEndpoint, TConfig } from 'librechat-data-provider';
+import { EModelEndpoint, extractEnvVariable } from 'wrangler-data-provider';
+import type { TCustomEndpoints, TEndpoint, TConfig } from 'wrangler-data-provider';
 import type { TCustomEndpointsConfig } from '~/types/endpoints';
 import { isUserProvided, normalizeEndpointName } from '~/utils';
 

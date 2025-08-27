@@ -8,9 +8,9 @@ const {
   anthropicSettings,
   getResponseSender,
   validateVisionModel,
-} = require('librechat-data-provider');
-const { SplitStreamHandler: _Handler } = require('@librechat/agents');
-const { Tokenizer, createFetch, createStreamEventHandlers } = require('@librechat/api');
+} = require('wrangler-data-provider');
+const { SplitStreamHandler: _Handler } = require('@wrangler/agents');
+const { Tokenizer, createFetch, createStreamEventHandlers } = require('@wrangler/api');
 const {
   truncateText,
   formatMessage,
@@ -252,7 +252,7 @@ class AnthropicClient extends BaseClient {
   }
 
   /**
-   * Get Token Count for LibreChat Message
+   * Get Token Count for Wrangler Message
    * @param {TMessage} responseMessage
    * @returns {number}
    */

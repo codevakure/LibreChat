@@ -4,13 +4,13 @@ const {
   agentsConfigSetup,
   loadWebSearchConfig,
   loadDefaultInterface,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   FileSources,
   loadOCRConfig,
   EModelEndpoint,
   getConfigDefaults,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   checkWebSearchConfig,
   checkVariables,

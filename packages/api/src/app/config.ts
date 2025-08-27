@@ -1,5 +1,5 @@
-import { EModelEndpoint, removeNullishValues } from 'librechat-data-provider';
-import type { TCustomConfig, TEndpoint } from 'librechat-data-provider';
+import { EModelEndpoint, removeNullishValues } from 'wrangler-data-provider';
+import type { TCustomConfig, TEndpoint } from 'wrangler-data-provider';
 import type { AppConfig } from '~/types';
 import { isEnabled, normalizeEndpointName } from '~/utils';
 

@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const { EModelEndpoint, Constants, openAISettings, CacheKeys } = require('librechat-data-provider');
+const { EModelEndpoint, Constants, openAISettings, CacheKeys } = require('wrangler-data-provider');
 const { createImportBatchBuilder } = require('./importBatchBuilder');
 const { cloneMessagesWithTimestamps } = require('./fork');
 const getLogStores = require('~/cache/getLogStores');
@@ -25,10 +25,10 @@ function getImporter(jsonData) {
     return importChatBotUiConvo;
   }
 
-  // For LibreChat
+  // For Wrangler
   if (jsonData.conversationId && (jsonData.messagesTree || jsonData.messages)) {
-    logger.info('Importing LibreChat conversation');
-    return importLibreChatConvo;
+    logger.info('Importing Wrangler conversation');
+    return importWranglerConvo;
   }
 
   throw new Error('Unsupported import type');
@@ -72,14 +72,14 @@ async function importChatBotUiConvo(
 }
 
 /**
- * Imports a LibreChat conversation from JSON.
+ * Imports a Wrangler conversation from JSON.
  *
  * @param {Object} jsonData - The JSON data representing the conversation.
  * @param {string} requestUserId - The ID of the user making the import request.
  * @param {Function} [builderFactory=createImportBatchBuilder] - The factory function to create an import batch builder.
  * @returns {Promise<void>} - A promise that resolves when the import is complete.
  */
-async function importLibreChatConvo(
+async function importWranglerConvo(
   jsonData,
   requestUserId,
   builderFactory = createImportBatchBuilder,
@@ -151,7 +151,7 @@ async function importLibreChatConvo(
         }
       }
     } else {
-      throw new Error('Invalid LibreChat file format');
+      throw new Error('Invalid Wrangler file format');
     }
 
     if (firstMessageDate === 'Invalid Date') {
@@ -162,7 +162,7 @@ async function importLibreChatConvo(
     await importBatchBuilder.saveBatch();
     logger.debug(`user: ${requestUserId} | Conversation "${jsonData.title}" imported`);
   } catch (error) {
-    logger.error(`user: ${requestUserId} | Error creating conversation from LibreChat file`, error);
+    logger.error(`user: ${requestUserId} | Error creating conversation from Wrangler file`, error);
   }
 }
 

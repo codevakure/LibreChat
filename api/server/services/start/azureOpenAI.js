@@ -1,12 +1,12 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const {
   EModelEndpoint,
   validateAzureGroups,
   mapModelToAzureConfig,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 
 /**
- * Sets up the Azure OpenAI configuration from the config (`librechat.yaml`) file.
+ * Sets up the Azure OpenAI configuration from the config (`wrangler.yaml`) file.
  * @param {TCustomConfig} config - The loaded custom configuration.
  * @returns {TAzureConfig} The Azure OpenAI configuration.
  */

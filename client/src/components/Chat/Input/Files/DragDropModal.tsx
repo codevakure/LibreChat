@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { OGDialog, OGDialogTemplate } from '@librechat/client';
+import { OGDialog, OGDialogTemplate } from '@wrangler/client';
 import { ImageUpIcon, FileSearch, TerminalSquareIcon, FileType2Icon } from 'lucide-react';
-import { EToolResources, defaultAgentCapabilities } from 'librechat-data-provider';
+import { EToolResources, defaultAgentCapabilities } from 'wrangler-data-provider';
 import { useLocalize, useGetAgentsConfig, useAgentCapabilities } from '~/hooks';
 
 interface DragDropModalProps {

@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { InfoHoverCard, ESide } from '@librechat/client';
-import { PermissionTypes, Permissions } from 'librechat-data-provider';
+import { InfoHoverCard, ESide } from '@wrangler/client';
+import { PermissionTypes, Permissions } from 'wrangler-data-provider';
 import SlashCommandSwitch from './SlashCommandSwitch';
 import { useLocalize, useHasAccess } from '~/hooks';
 import PlusCommandSwitch from './PlusCommandSwitch';

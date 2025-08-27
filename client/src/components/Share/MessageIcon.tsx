@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { UserIcon } from '@librechat/client';
-import type { TMessage, Assistant, Agent } from 'librechat-data-provider';
+import { UserIcon } from '@wrangler/client';
+import type { TMessage, Assistant, Agent } from 'wrangler-data-provider';
 import type { TMessageProps } from '~/common';
 import MessageEndpointIcon from '../Endpoints/MessageEndpointIcon';
 import ConvoIconURL from '~/components/Endpoints/ConvoIconURL';

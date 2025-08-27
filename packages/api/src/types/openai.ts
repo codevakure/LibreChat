@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { openAISchema, EModelEndpoint } from 'librechat-data-provider';
-import type { TEndpointOption, TAzureConfig, TEndpoint } from 'librechat-data-provider';
+import { openAISchema, EModelEndpoint } from 'wrangler-data-provider';
+import type { TEndpointOption, TAzureConfig, TEndpoint } from 'wrangler-data-provider';
 import type { BindToolsInput } from '@langchain/core/language_models/chat_models';
-import type { OpenAIClientOptions, Providers } from '@librechat/agents';
+import type { OpenAIClientOptions, Providers } from '@wrangler/agents';
 import type { AzureOptions } from './azure';
 import type { AppConfig } from './config';
 

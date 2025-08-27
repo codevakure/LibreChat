@@ -1,8 +1,8 @@
 import {
   hasPermissions,
   useGetEffectivePermissionsQuery,
-} from 'librechat-data-provider/react-query';
-import type { ResourceType } from 'librechat-data-provider';
+} from 'wrangler-data-provider/react-query';
+import type { ResourceType } from 'wrangler-data-provider';
 
 /**
  * fetches resource permissions once and returns a function to check any permission

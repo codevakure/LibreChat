@@ -1,4 +1,4 @@
-import { ContentTypes } from 'librechat-data-provider';
+import { ContentTypes } from 'wrangler-data-provider';
 import { HumanMessage, AIMessage, SystemMessage } from '@langchain/core/messages';
 import { formatContentStrings } from './content';
 

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { BarChart } from 'lucide-react';
-import { CheckboxButton } from '@librechat/client';
-import { Permissions, PermissionTypes } from 'librechat-data-provider';
+import { CheckboxButton } from '@wrangler/client';
+import { Permissions, PermissionTypes } from 'wrangler-data-provider';
 import { useLocalize, useHasAccess } from '~/hooks';
 import { useBadgeRowContext } from '~/Providers';
 

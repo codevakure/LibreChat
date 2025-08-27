@@ -1,0 +1,10 @@
+{{- if .Values.wrangler.configYamlContent }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "wrangler.fullname" $ }}-config
+data:
+  wrangler.yaml: |
+{{ .Values.wrangler.configYamlContent | toYaml | indent 4 }}
+
+{{- end }}

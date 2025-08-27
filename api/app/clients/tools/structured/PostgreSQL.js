@@ -3,7 +3,7 @@ const { z } = require('zod');
 const { logger } = require('~/config');
 
 /**
- * PostgreSQL Query Tool for LibreChat Agents
+ * PostgreSQL Query Tool for Wrangler Agents
  * Executes SQL queries against PostgreSQL databases
  * Based on Anything LLM's SQL connector implementation
  */

@@ -1,9 +1,9 @@
 const fs = require('fs');
 const axios = require('axios');
 const FormData = require('form-data');
-const { logAxiosError } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { FileSources } = require('librechat-data-provider');
+const { logAxiosError } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
+const { FileSources } = require('wrangler-data-provider');
 const { generateShortLivedToken } = require('~/server/services/AuthService');
 
 /**

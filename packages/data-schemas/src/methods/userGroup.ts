@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
-import { PrincipalType } from 'librechat-data-provider';
-import type { TUser, TPrincipalSearchResult } from 'librechat-data-provider';
+import { PrincipalType } from 'wrangler-data-provider';
+import type { TUser, TPrincipalSearchResult } from 'wrangler-data-provider';
 import type { Model, ClientSession } from 'mongoose';
 import type { IGroup, IRole, IUser } from '~/types';
 

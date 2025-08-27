@@ -1,5 +1,5 @@
-import { AuthType, Constants, EToolResources } from 'librechat-data-provider';
-import type { TPlugin } from 'librechat-data-provider';
+import { AuthType, Constants, EToolResources } from 'wrangler-data-provider';
+import type { TPlugin } from 'wrangler-data-provider';
 import type { MCPManager } from '~/mcp/MCPManager';
 import { LCAvailableTools, LCFunctionTool } from '~/mcp/types';
 

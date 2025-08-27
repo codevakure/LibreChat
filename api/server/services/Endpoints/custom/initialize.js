@@ -1,18 +1,18 @@
-const { Providers } = require('@librechat/agents');
+const { Providers } = require('@wrangler/agents');
 const {
   resolveHeaders,
   isUserProvided,
   getOpenAIConfig,
   getCustomEndpointConfig,
   createHandleLLMNewToken,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   CacheKeys,
   ErrorTypes,
   envVarRegex,
   FetchTokenConfig,
   extractEnvVariable,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { getUserKeyValues, checkUserKeyExpiry } = require('~/server/services/UserService');
 const { fetchModels } = require('~/server/services/ModelService');
 const OpenAIClient = require('~/app/clients/OpenAIClient');

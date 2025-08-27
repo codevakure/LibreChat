@@ -6,8 +6,8 @@ import {
   OGDialogTitle,
   OGDialogHeader,
   OGDialogContent,
-} from '@librechat/client';
-import type { MCPServerStatus } from 'librechat-data-provider';
+} from '@wrangler/client';
+import type { MCPServerStatus } from 'wrangler-data-provider';
 import ServerInitializationSection from './ServerInitializationSection';
 import CustomUserVarsSection from './CustomUserVarsSection';
 import { useLocalize } from '~/hooks';

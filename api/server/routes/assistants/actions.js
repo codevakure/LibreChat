@@ -1,7 +1,7 @@
 const express = require('express');
 const { nanoid } = require('nanoid');
-const { logger } = require('@librechat/data-schemas');
-const { actionDelimiter, EModelEndpoint, removeNullishValues } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { actionDelimiter, EModelEndpoint, removeNullishValues } = require('wrangler-data-provider');
 const { encryptMetadata, domainParser } = require('~/server/services/ActionService');
 const { getOpenAIClient } = require('~/server/controllers/assistants/helpers');
 const { updateAction, getActions, deleteAction } = require('~/models/Action');

@@ -1,4 +1,4 @@
-const { PrincipalType, PermissionTypes, Permissions } = require('librechat-data-provider');
+const { PrincipalType, PermissionTypes, Permissions } = require('wrangler-data-provider');
 const { checkPeoplePickerAccess } = require('./checkPeoplePickerAccess');
 const { getRoleByName } = require('~/models/Role');
 const { logger } = require('~/config');

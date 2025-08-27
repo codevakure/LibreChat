@@ -6,13 +6,13 @@ import {
   memoryPermissionsSchema,
   marketplacePermissionsSchema,
   peoplePickerPermissionsSchema,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import type {
   UseQueryOptions,
   UseMutationResult,
   QueryObserverResult,
 } from '@tanstack/react-query';
-import type * as t from 'librechat-data-provider';
+import type * as t from 'wrangler-data-provider';
 
 export const useGetRole = (
   roleName: string,

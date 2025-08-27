@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
-const { logger } = require('@librechat/data-schemas');
-const { EModelEndpoint } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { EModelEndpoint } = require('wrangler-data-provider');
 const { generateShortLivedToken } = require('~/server/services/AuthService');
 const { getBufferMetadata } = require('~/server/utils');
 const paths = require('~/config/paths');

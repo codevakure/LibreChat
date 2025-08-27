@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
-import { logger } from '@librechat/data-schemas';
+import { logger } from '@wrangler/data-schemas';
 
 export interface GoogleServiceKey {
   type?: string;

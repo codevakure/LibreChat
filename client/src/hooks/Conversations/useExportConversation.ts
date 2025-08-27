@@ -9,13 +9,13 @@ import {
   ToolCallTypes,
   imageGenTools,
   isImageVisionTool,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import type {
   TMessageContentParts,
   TConversation,
   TMessage,
   TPreset,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import useBuildMessageTree from '~/hooks/Messages/useBuildMessageTree';
 import { useScreenshot } from '~/hooks/ScreenshotContext';
 import { cleanupPreset, buildTree } from '~/utils';

@@ -1,6 +1,6 @@
-const { isEnabled } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
-const { ErrorTypes } = require('librechat-data-provider');
+const { isEnabled } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
+const { ErrorTypes } = require('wrangler-data-provider');
 const { createSocialUser, handleExistingUser } = require('./process');
 const { findUser } = require('~/models');
 

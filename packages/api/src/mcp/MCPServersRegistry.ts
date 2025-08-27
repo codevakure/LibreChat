@@ -1,7 +1,7 @@
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 import mapValues from 'lodash/mapValues';
-import { logger } from '@librechat/data-schemas';
+import { logger } from '@wrangler/data-schemas';
 import type { MCPConnection } from '~/mcp/connection';
 import type { JsonSchemaType } from '~/types';
 import type * as t from '~/mcp/types';
@@ -117,7 +117,7 @@ export class MCPServersRegistry {
     this.toolFunctions = allToolFunctions;
   }
 
-  /** Converts server tools to LibreChat-compatible tool functions format */
+  /** Converts server tools to Wrangler-compatible tool functions format */
   public async getToolFunctions(
     serverName: string,
     conn: MCPConnection,

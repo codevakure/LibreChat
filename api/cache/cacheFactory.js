@@ -1,8 +1,8 @@
 const KeyvRedis = require('@keyv/redis').default;
 const { Keyv } = require('keyv');
 const { RedisStore } = require('rate-limit-redis');
-const { Time } = require('librechat-data-provider');
-const { logger } = require('@librechat/data-schemas');
+const { Time } = require('wrangler-data-provider');
+const { logger } = require('@wrangler/data-schemas');
 const { RedisStore: ConnectRedis } = require('connect-redis');
 const MemoryStore = require('memorystore')(require('express-session'));
 const { keyvRedisClient, ioredisClient, GLOBAL_PREFIX_SEPARATOR } = require('./redisClients');

@@ -1,0 +1,4 @@
+
+{{ if hasKey .Values.env }}
+  {{ fail "The Value env has been renamed and moved to wrangler.configEnv. Refer to https://wrangler.tcb-internal.net/docs/local/helm_chart#migrate for more information" }}
+{{ end }}

@@ -1,6 +1,6 @@
-import { OptionTypes } from 'librechat-data-provider';
-import { Label, Input, HoverCard, HoverCardTrigger } from '@librechat/client';
-import type { DynamicSettingProps } from 'librechat-data-provider';
+import { OptionTypes } from 'wrangler-data-provider';
+import { Label, Input, HoverCard, HoverCardTrigger } from '@wrangler/client';
+import type { DynamicSettingProps } from 'wrangler-data-provider';
 import { useLocalize, useDebouncedInput, useParameterEffects, TranslationKeys } from '~/hooks';
 import { useChatContext } from '~/Providers';
 import OptionHover from './OptionHover';

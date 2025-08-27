@@ -1,5 +1,5 @@
-import { Spinner, FileIcon } from '@librechat/client';
-import type { TFile } from 'librechat-data-provider';
+import { Spinner, FileIcon } from '@wrangler/client';
+import type { TFile } from 'wrangler-data-provider';
 import type { ExtendedFile } from '~/common';
 import SourceIcon from './SourceIcon';
 import { cn } from '~/utils';

@@ -1,6 +1,6 @@
 const express = require('express');
-const { isEnabled } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { isEnabled } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
 const {
   getSharedMessages,
   createSharedLink,

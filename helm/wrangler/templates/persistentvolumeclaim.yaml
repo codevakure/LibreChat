@@ -1,0 +1,16 @@
+{{- if .Values.wrangler.imageVolume.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "wrangler.fullname" $ }}-images
+spec:
+  accessModes:
+    - {{ .Values.wrangler.imageVolume.accessModes }}
+{{- if .Values.wrangler.imageVolume.storageClassName }}
+  storageClassName: {{ .Values.wrangler.imageVolume.storageClassName }}
+{{- end }}          
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.wrangler.imageVolume.size }}
+{{- end }}

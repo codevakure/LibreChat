@@ -1,5 +1,5 @@
 # For more information, see the Configuration Guide:
-# https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml
+# https://wrangler.tcb-internal.net/docs/configuration/wrangler_yaml
 
 # Configuration version (required)
 version: 1.2.1
@@ -27,7 +27,7 @@ cache: true
 
 # Custom interface configuration
 interface:
-  customWelcome: 'Welcome to LibreChat! Enjoy your experience.'
+  customWelcome: 'Welcome to Wrangler! Enjoy your experience.'
   # Enable/disable file search as a chatarea selection (default: true)
   # Note: This setting does not disable the Agents File Search Capability.
   # To disable the Agents Capability, see the Agents Endpoint configuration instead.
@@ -39,20 +39,20 @@ interface:
 
   # Terms of service
   termsOfService:
-    externalUrl: 'https://texascapitalbank.com//tos'
+    externalUrl: 'https://wranger.tcb-internal.com/tos'
     openNewTab: true
     modalAcceptance: true
-    modalTitle: 'Terms of Service for LibreChat'
+    modalTitle: 'Terms of Service for Wrangler'
     modalContent: |
-      # Terms and Conditions for LibreChat
+      # Terms and Conditions for Wrangler
 
       *Effective Date: February 18, 2024*
 
-      Welcome to LibreChat, the informational website for the open-source AI chat platform, available at https://texascapitalbank.com/. These Terms of Service ("Terms") govern your use of our website and the services we offer. By accessing or using the Website, you agree to be bound by these Terms and our Privacy Policy, accessible at https://texascapitalbank.com///privacy.
+      Welcome to Wrangler, the informational website for the open-source AI chat platform, available at https://texascapitalbank.com/. These Terms of Service ("Terms") govern your use of our website and the services we offer. By accessing or using the Website, you agree to be bound by these Terms and our Privacy Policy, accessible at https://wranger.tcb-internal.com//privacy.
 
       ## 1. Ownership
 
-      Upon purchasing a package from LibreChat, you are granted the right to download and use the code for accessing an admin panel for LibreChat. While you own the downloaded code, you are expressly prohibited from reselling, redistributing, or otherwise transferring the code to third parties without explicit permission from LibreChat.
+      Upon purchasing a package from Wrangler, you are granted the right to download and use the code for accessing an admin panel for Wrangler. While you own the downloaded code, you are expressly prohibited from reselling, redistributing, or otherwise transferring the code to third parties without explicit permission from Wrangler.
 
       ## 2. User Data
 
@@ -76,7 +76,7 @@ interface:
 
       ## 7. Contact Information
 
-      If you have any questions about these Terms, please contact us at contact@librechat.ai.
+      If you have any questions about these Terms, please contact us at contact@wrangler.ai.
 
       By using the Website, you acknowledge that you have read these Terms of Service and agree to be bound by them.
 
@@ -152,7 +152,7 @@ registration:
 actions:
   allowedDomains:
     - 'swapi.dev'
-    - 'librechat.ai'
+    - 'wrangler.ai'
     - 'google.com'
 
 # Example MCP Servers Object Structure
@@ -174,8 +174,8 @@ actions:
 #     args:
 #       - -y
 #       - "@modelcontextprotocol/server-filesystem"
-#       - /home/user/LibreChat/
-#     iconPath: /home/user/LibreChat/client/public/assets/logo.svg
+#       - /home/user/Wrangler/
+#     iconPath: /home/user/Wrangler/client/public/assets/logo.svg
 #   mcp-obsidian:
 #     command: npx
 #     args:
@@ -285,7 +285,7 @@ endpoints:
       apiKey: '${OPENROUTER_KEY}'
       baseURL: 'https://openrouter.ai/api/v1'
       headers:
-          x-librechat-body-parentmessageid: '{{LIBRECHAT_BODY_PARENTMESSAGEID}}'
+          x-wrangler-body-parentmessageid: '{{WRANGLER_BODY_PARENTMESSAGEID}}'
       models:
         default: ['meta-llama/llama-3-70b-instruct']
         fetch: true
@@ -340,7 +340,7 @@ endpoints:
 #     maxHeight: 1900  # Maximum height for resized images (default: 1900)
 #     quality: 0.92  # JPEG quality for compression (0.0-1.0, default: 0.92)
 # # See the Custom Configuration Guide for more information on Assistants Config:
-# # https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/object_structure/assistants_endpoint
+# # https://wrangler.tcb-internal.net/docs/configuration/wrangler_yaml/object_structure/assistants_endpoint
 
 # Memory configuration for user memories
 # memory:

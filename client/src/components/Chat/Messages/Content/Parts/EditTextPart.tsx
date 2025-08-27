@@ -1,10 +1,10 @@
 import { useRef, useEffect, useCallback, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { TextareaAutosize } from '@librechat/client';
-import { ContentTypes } from 'librechat-data-provider';
+import { TextareaAutosize } from '@wrangler/client';
+import { ContentTypes } from 'wrangler-data-provider';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useUpdateMessageContentMutation } from 'librechat-data-provider/react-query';
-import type { Agents } from 'librechat-data-provider';
+import { useUpdateMessageContentMutation } from 'wrangler-data-provider/react-query';
+import type { Agents } from 'wrangler-data-provider';
 import type { TEditProps } from '~/common';
 import Container from '~/components/Chat/Messages/Content/Container';
 import { useChatContext, useAddedChatContext } from '~/Providers';

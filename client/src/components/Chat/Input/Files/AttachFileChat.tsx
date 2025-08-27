@@ -6,8 +6,8 @@ import {
   isAgentsEndpoint,
   isAssistantsEndpoint,
   fileConfig as defaultFileConfig,
-} from 'librechat-data-provider';
-import type { EndpointFileConfig } from 'librechat-data-provider';
+} from 'wrangler-data-provider';
+import type { EndpointFileConfig } from 'wrangler-data-provider';
 import { useGetFileConfig } from '~/data-provider';
 import AttachFileMenu from './AttachFileMenu';
 import { useChatContext } from '~/Providers';

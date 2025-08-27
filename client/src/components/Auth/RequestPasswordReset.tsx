@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useState, ReactNode } from 'react';
-import { Spinner, Button } from '@librechat/client';
+import { Spinner, Button } from '@wrangler/client';
 import { useOutletContext } from 'react-router-dom';
-import { useRequestPasswordResetMutation } from 'librechat-data-provider/react-query';
-import type { TRequestPasswordReset, TRequestPasswordResetResponse } from 'librechat-data-provider';
+import { useRequestPasswordResetMutation } from 'wrangler-data-provider/react-query';
+import type { TRequestPasswordReset, TRequestPasswordResetResponse } from 'wrangler-data-provider';
 import type { TLoginLayoutContext } from '~/common';
 import type { FC } from 'react';
 import { useLocalize } from '~/hooks';

@@ -2,7 +2,7 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import { matchSorter } from 'match-sorter';
-import { SystemRoles, PermissionTypes, Permissions } from 'librechat-data-provider';
+import { SystemRoles, PermissionTypes, Permissions } from 'wrangler-data-provider';
 import {
   Table,
   Input,
@@ -22,8 +22,8 @@ import {
   useToastContext,
   OGDialogTrigger,
   OGDialogTemplate,
-} from '@librechat/client';
-import type { TUserMemory } from 'librechat-data-provider';
+} from '@wrangler/client';
+import type { TUserMemory } from 'wrangler-data-provider';
 import {
   useUpdateMemoryPreferencesMutation,
   useDeleteMemoryMutation,

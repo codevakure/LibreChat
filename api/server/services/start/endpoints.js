@@ -1,5 +1,5 @@
-const { agentsConfigSetup } = require('@librechat/api');
-const { EModelEndpoint } = require('librechat-data-provider');
+const { agentsConfigSetup } = require('@wrangler/api');
+const { EModelEndpoint } = require('wrangler-data-provider');
 const { azureAssistantsDefaults, assistantsConfigSetup } = require('./assistants');
 const { azureConfigSetup } = require('./azureOpenAI');
 const { checkAzureVariables } = require('./checks');

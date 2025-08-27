@@ -1,5 +1,5 @@
-const { SplitStreamHandler } = require('@librechat/agents');
-const { anthropicSettings } = require('librechat-data-provider');
+const { SplitStreamHandler } = require('@wrangler/agents');
+const { anthropicSettings } = require('wrangler-data-provider');
 const AnthropicClient = require('~/app/clients/AnthropicClient');
 
 const HUMAN_PROMPT = '\n\nHuman:';

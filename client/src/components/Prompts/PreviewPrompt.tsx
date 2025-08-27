@@ -1,5 +1,5 @@
-import { OGDialogContent, OGDialog } from '@librechat/client';
-import type { TPromptGroup } from 'librechat-data-provider';
+import { OGDialogContent, OGDialog } from '@wrangler/client';
+import type { TPromptGroup } from 'wrangler-data-provider';
 import PromptDetails from './PromptDetails';
 
 const PreviewPrompt = ({

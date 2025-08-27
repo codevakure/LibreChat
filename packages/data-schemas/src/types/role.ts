@@ -1,4 +1,4 @@
-import { PermissionTypes, Permissions } from 'librechat-data-provider';
+import { PermissionTypes, Permissions } from 'wrangler-data-provider';
 import type { Document } from 'mongoose';
 import { CursorPaginationParams } from '~/common';
 

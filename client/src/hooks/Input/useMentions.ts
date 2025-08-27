@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGetModelsQuery } from 'librechat-data-provider/react-query';
+import { useGetModelsQuery } from 'wrangler-data-provider/react-query';
 import {
   Permissions,
   alternateName,
@@ -9,8 +9,8 @@ import {
   getConfigDefaults,
   isAssistantsEndpoint,
   PermissionBits,
-} from 'librechat-data-provider';
-import type { TAssistantsMap, TEndpointsConfig } from 'librechat-data-provider';
+} from 'wrangler-data-provider';
+import type { TAssistantsMap, TEndpointsConfig } from 'wrangler-data-provider';
 import type { MentionOption } from '~/common';
 import {
   useGetPresetsQuery,

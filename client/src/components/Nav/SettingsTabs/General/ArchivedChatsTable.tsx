@@ -14,8 +14,8 @@ import {
   DataTable,
   useToastContext,
   useMediaQuery,
-} from '@librechat/client';
-import type { ConversationListParams, TConversation } from 'librechat-data-provider';
+} from '@wrangler/client';
+import type { ConversationListParams, TConversation } from 'wrangler-data-provider';
 import {
   useArchiveConvoMutation,
   useConversationsInfiniteQuery,

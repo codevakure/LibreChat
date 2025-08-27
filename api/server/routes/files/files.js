@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 const express = require('express');
-const { EnvVar } = require('@librechat/agents');
+const { EnvVar } = require('@wrangler/agents');
 const {
   Time,
   isUUID,
@@ -11,7 +11,7 @@ const {
   PermissionBits,
   isAgentsEndpoint,
   checkOpenAIStorage,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   filterFile,
   processFileUpload,

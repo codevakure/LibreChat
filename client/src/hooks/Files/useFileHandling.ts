@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { v4 } from 'uuid';
-import { useToastContext } from '@librechat/client';
+import { useToastContext } from '@wrangler/client';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   QueryKeys,
@@ -10,9 +10,9 @@ import {
   isAssistantsEndpoint,
   defaultAssistantsVersion,
   fileConfig as defaultFileConfig,
-} from 'librechat-data-provider';
+} from 'wrangler-data-provider';
 import debounce from 'lodash/debounce';
-import type { EndpointFileConfig, TEndpointsConfig, TError } from 'librechat-data-provider';
+import type { EndpointFileConfig, TEndpointsConfig, TError } from 'wrangler-data-provider';
 import type { ExtendedFile, FileSetter } from '~/common';
 import { useGetFileConfig, useUploadFileMutation } from '~/data-provider';
 import useLocalize, { TranslationKeys } from '~/hooks/useLocalize';

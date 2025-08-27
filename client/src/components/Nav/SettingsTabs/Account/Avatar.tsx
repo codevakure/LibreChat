@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 import AvatarEditor from 'react-avatar-editor';
 import { FileImage, RotateCw, Upload } from 'lucide-react';
-import { fileConfig as defaultFileConfig, mergeFileConfig } from 'librechat-data-provider';
+import { fileConfig as defaultFileConfig, mergeFileConfig } from 'wrangler-data-provider';
 import {
   Slider,
   Button,
@@ -13,8 +13,8 @@ import {
   OGDialogTitle,
   OGDialogTrigger,
   useToastContext,
-} from '@librechat/client';
-import type { TUser } from 'librechat-data-provider';
+} from '@wrangler/client';
+import type { TUser } from 'wrangler-data-provider';
 import { useUploadAvatarMutation, useGetFileConfig } from '~/data-provider';
 import { cn, formatBytes } from '~/utils';
 import { useLocalize } from '~/hooks';

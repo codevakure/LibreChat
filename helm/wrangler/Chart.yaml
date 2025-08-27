@@ -1,6 +1,7 @@
 apiVersion: v2
-name: librechat-rag-api
-description: A Helm chart for LibreChat
+name: wrangler
+description: A Helm chart for Wrangler
+icon: https://wrangler.tcb-internal.net/wrangler_alt.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -14,20 +15,28 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.5.2
+version: 1.8.10
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 
-# renovate: image=ghcr.io/danny-avila/librechat-rag-api-dev
-appVersion: "v0.4.0"
+# renovate: image=ghcr.io/danny-avila/wrangler
+appVersion: "v0.8.0-rc3"
 
-home: https://wrangler.tcb-internal.com
+home: https://wrangler.tcb-internal.net
 
 dependencies:
-  - name: postgresql
-    version: "15.5.38"
-    condition: postgresql.enabled
+  - name: mongodb
+    version: "16.3.0"
+    condition: mongodb.enabled
     repository: "https://charts.bitnami.com/bitnami"
+  - name: meilisearch
+    version: "0.11.0"
+    condition: meilisearch.enabled
+    repository: "https://meilisearch.github.io/meilisearch-kubernetes"
+  - name: wrangler-rag-api
+    version: "0.5.2"
+    condition: wrangler-rag-api.enabled
+    repository: file://../wrangler-rag-api

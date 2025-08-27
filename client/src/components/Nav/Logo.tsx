@@ -1,5 +1,5 @@
 import React from 'react';
-import { TooltipAnchor, Button, Sidebar } from '@librechat/client';
+import { TooltipAnchor, Button, Sidebar } from '@wrangler/client';
 import { useLocalize } from '~/hooks';
 import { cn } from '~/utils';
 

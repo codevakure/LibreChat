@@ -1,7 +1,7 @@
 const path = require('path');
-const { logger } = require('@librechat/data-schemas');
-const { EModelEndpoint } = require('librechat-data-provider');
-const { loadServiceKey, isUserProvided } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { EModelEndpoint } = require('wrangler-data-provider');
+const { loadServiceKey, isUserProvided } = require('@wrangler/api');
 const { config } = require('./EndpointService');
 
 const { openAIApiKey, azureOpenAIApiKey, useAzurePlugins, userProvidedOpenAI, googleKey } = config;

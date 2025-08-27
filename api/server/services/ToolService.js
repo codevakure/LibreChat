@@ -1,7 +1,7 @@
-const { sleep } = require('@librechat/agents');
-const { logger } = require('@librechat/data-schemas');
+const { sleep } = require('@wrangler/agents');
+const { logger } = require('@wrangler/data-schemas');
 const { tool: toolFn, DynamicStructuredTool } = require('@langchain/core/tools');
-const { getToolkitKey, hasCustomUserVars, getUserMCPAuthMap } = require('@librechat/api');
+const { getToolkitKey, hasCustomUserVars, getUserMCPAuthMap } = require('@wrangler/api');
 const {
   Tools,
   Constants,
@@ -15,7 +15,7 @@ const {
   AgentCapabilities,
   defaultAgentCapabilities,
   validateAndParseOpenAPISpec,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   createActionTool,
   decryptMetadata,

@@ -1,12 +1,12 @@
-const { logger } = require('@librechat/data-schemas');
-const { createContentAggregator } = require('@librechat/agents');
-const { validateAgentModel, getCustomEndpointConfig } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { createContentAggregator } = require('@wrangler/agents');
+const { validateAgentModel, getCustomEndpointConfig } = require('@wrangler/api');
 const {
   Constants,
   EModelEndpoint,
   isAgentsEndpoint,
   getResponseSender,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   createToolEndCallback,
   getDefaultHandlers,

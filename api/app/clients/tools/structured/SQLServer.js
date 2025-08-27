@@ -3,7 +3,7 @@ const { z } = require('zod');
 const { logger } = require('~/config');
 
 /**
- * SQL Server Query Tool for LibreChat Agents
+ * SQL Server Query Tool for Wrangler Agents
  * Executes SQL queries against Microsoft SQL Server databases
  * Based on Anything LLM's SQL connector implementation
  */

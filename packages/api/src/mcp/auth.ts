@@ -1,7 +1,7 @@
-import { logger } from '@librechat/data-schemas';
-import { Constants } from 'librechat-data-provider';
-import type { PluginAuthMethods } from '@librechat/data-schemas';
-import type { GenericTool } from '@librechat/agents';
+import { logger } from '@wrangler/data-schemas';
+import { Constants } from 'wrangler-data-provider';
+import type { PluginAuthMethods } from '@wrangler/data-schemas';
+import type { GenericTool } from '@wrangler/agents';
 import { getPluginAuthMap } from '~/agents/auth';
 
 export async function getUserMCPAuthMap({

@@ -1,4 +1,4 @@
-# Please consult our docs for more info: https://wrangler.tcb-internal.com/docs/configuration/docker_override
+# Please consult our docs for more info: https://wrangler.tcb-internal.net/docs/configuration/docker_override
 
 # TO USE THIS FILE, FIRST UNCOMMENT THE LINE ('services:')
 
@@ -15,43 +15,43 @@
 #   api:
 #     volumes:
 #     - type: bind
-#       source: ./librechat.yaml
-#       target: /app/librechat.yaml
-#     image: ghcr.io/danny-avila/librechat:latest
+#       source: ./wrangler.yaml
+#       target: /app/wrangler.yaml
+#     image: ghcr.io/danny-avila/wrangler:latest
 
 # ---------------------------------------------------
 
 # services:
 
-# # USE LIBRECHAT CONFIG FILE
+# # USE WRANGLER CONFIG FILE
 #   api:
 #     volumes:
 #     - type: bind
-#       source: ./librechat.yaml
-#       target: /app/librechat.yaml
+#       source: ./wrangler.yaml
+#       target: /app/wrangler.yaml
 
 # # LOCAL BUILD
 #   api:
-#     image: librechat
+#     image: wrangler
 #     build:
 #       context: .
 #       target: node
 
 # # BUILD FROM LATEST IMAGE
 #   api:
-#     image: ghcr.io/danny-avila/librechat-dev:latest
+#     image: ghcr.io/danny-avila/wrangler-dev:latest
 
 # # BUILD FROM LATEST IMAGE (NUMBERED RELEASE)
 #   api:
-#     image: ghcr.io/danny-avila/librechat:latest
+#     image: ghcr.io/danny-avila/wrangler:latest
 
 # # BUILD FROM LATEST API IMAGE
 #   api:
-#     image: ghcr.io/danny-avila/librechat-dev-api:latest
+#     image: ghcr.io/danny-avila/wrangler-dev-api:latest
 
 # # BUILD FROM LATEST API IMAGE (NUMBERED RELEASE)
 #   api:
-#     image: ghcr.io/danny-avila/librechat-api:latest
+#     image: ghcr.io/danny-avila/wrangler-api:latest
 
 # # ADD SAML CERT FILE
 #   api:
@@ -104,7 +104,7 @@
 
 # # USE RAG API IMAGE WITH LOCAL EMBEDDINGS SUPPORT
 #  rag_api:
-#    image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
+#    image: ghcr.io/danny-avila/wrangler-rag-api-dev:latest
 # # For Linux user:
 #    extra_hosts:
 #      - "host.docker.internal:host-gateway"

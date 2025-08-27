@@ -11,8 +11,8 @@ import {
 import { debounce } from 'lodash';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { setTokenHeader, SystemRoles } from 'librechat-data-provider';
-import type * as t from 'librechat-data-provider';
+import { setTokenHeader, SystemRoles } from 'wrangler-data-provider';
+import type * as t from 'wrangler-data-provider';
 import {
   useGetRole,
   useGetUserQuery,

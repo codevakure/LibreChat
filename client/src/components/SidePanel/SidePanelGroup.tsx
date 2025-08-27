@@ -1,13 +1,13 @@
 import { useState, useRef, useCallback, useEffect, useMemo, memo } from 'react';
 import throttle from 'lodash/throttle';
 import { useRecoilValue } from 'recoil';
-import { getConfigDefaults } from 'librechat-data-provider';
+import { getConfigDefaults } from 'wrangler-data-provider';
 import {
   ResizableHandleAlt,
   ResizablePanel,
   ResizablePanelGroup,
   useMediaQuery,
-} from '@librechat/client';
+} from '@wrangler/client';
 import type { ImperativePanelHandle } from 'react-resizable-panels';
 import { useGetStartupConfig } from '~/data-provider';
 import { normalizeLayout } from '~/utils';

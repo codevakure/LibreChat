@@ -1,6 +1,6 @@
 const { OllamaClient } = require('./OllamaClient');
 const { HttpsProxyAgent } = require('https-proxy-agent');
-const { SplitStreamHandler, CustomOpenAIClient: OpenAI } = require('@librechat/agents');
+const { SplitStreamHandler, CustomOpenAIClient: OpenAI } = require('@wrangler/agents');
 const {
   isEnabled,
   Tokenizer,
@@ -9,7 +9,7 @@ const {
   constructAzureURL,
   genAzureChatCompletion,
   createStreamEventHandlers,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const {
   Constants,
   ImageDetail,
@@ -23,7 +23,7 @@ const {
   getResponseSender,
   validateVisionModel,
   mapModelToAzureConfig,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const {
   truncateText,
   formatMessage,
@@ -640,7 +640,7 @@ class OpenAIClient extends BaseClient {
       configOptions.baseOptions = {
         headers: {
           'HTTP-Referer': 'https://texascapitalbank.com/',
-          'X-Title': 'LibreChat',
+          'X-Title': 'Wrangler',
         },
       };
     }
@@ -1136,7 +1136,7 @@ ${convo}
       if (this.useOpenRouter) {
         opts.defaultHeaders = {
           'HTTP-Referer': 'https://texascapitalbank.com/',
-          'X-Title': 'LibreChat',
+          'X-Title': 'Wrangler',
         };
       }
 

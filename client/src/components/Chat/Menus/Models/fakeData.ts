@@ -1,5 +1,5 @@
-import { EModelEndpoint, AuthType } from 'librechat-data-provider';
-import type { TModelSpec } from 'librechat-data-provider';
+import { EModelEndpoint, AuthType } from 'wrangler-data-provider';
+import type { TModelSpec } from 'wrangler-data-provider';
 
 export const data: TModelSpec[] = [
   {

@@ -1,4 +1,4 @@
-const { EModelEndpoint } = require('librechat-data-provider');
+const { EModelEndpoint } = require('wrangler-data-provider');
 const {
   maxOutputTokensMap,
   findMatchingPattern,

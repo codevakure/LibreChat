@@ -1,6 +1,6 @@
-import { logger } from '@librechat/data-schemas';
-import { removeNullishValues } from 'librechat-data-provider';
-import type { TCustomConfig, TConfigDefaults } from 'librechat-data-provider';
+import { logger } from '@wrangler/data-schemas';
+import { removeNullishValues } from 'wrangler-data-provider';
+import type { TCustomConfig, TConfigDefaults } from 'wrangler-data-provider';
 import type { AppConfig } from '~/types/config';
 import { isMemoryEnabled } from '~/memory/config';
 

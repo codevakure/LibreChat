@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { Import } from 'lucide-react';
-import { Spinner, useToastContext } from '@librechat/client';
-import type { TError } from 'librechat-data-provider';
+import { Spinner, useToastContext } from '@wrangler/client';
+import type { TError } from 'wrangler-data-provider';
 import { useUploadConversationsMutation } from '~/data-provider';
 import { useLocalize } from '~/hooks';
 import { cn } from '~/utils';

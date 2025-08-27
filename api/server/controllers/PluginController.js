@@ -1,12 +1,12 @@
-const { logger } = require('@librechat/data-schemas');
-const { CacheKeys, Constants } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { CacheKeys, Constants } = require('wrangler-data-provider');
 const {
   getToolkitKey,
   checkPluginAuth,
   filterUniquePlugins,
   convertMCPToolToPlugin,
   convertMCPToolsToPlugins,
-} = require('@librechat/api');
+} = require('@wrangler/api');
 const { getCachedTools, setCachedTools, mergeUserTools } = require('~/server/services/Config');
 const { availableTools, toolkits } = require('~/app/clients/tools');
 const { getAppConfig } = require('~/server/services/Config');
@@ -25,7 +25,7 @@ const getAvailablePluginsController = async (req, res) => {
     const appConfig = await getAppConfig({ role: req.user?.role });
     /** @type {{ filteredTools: string[], includedTools: string[] }} */
     const { filteredTools = [], includedTools = [] } = appConfig;
-    /** @type {import('@librechat/api').LCManifestTool[]} */
+    /** @type {import('@wrangler/api').LCManifestTool[]} */
     const pluginManifest = availableTools;
 
     const uniquePlugins = filterUniquePlugins(pluginManifest);
@@ -90,7 +90,7 @@ const getAvailableTools = async (req, res) => {
     let toolDefinitions = await getCachedTools({ includeGlobal: true });
     let prelimCachedTools;
 
-    /** @type {import('@librechat/api').LCManifestTool[]} */
+    /** @type {import('@wrangler/api').LCManifestTool[]} */
     let pluginManifest = availableTools;
 
     const appConfig = req.config ?? (await getAppConfig({ role: req.user?.role }));

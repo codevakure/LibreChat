@@ -6,13 +6,13 @@ import {
   DiscordIcon,
   AppleIcon,
   SamlIcon,
-} from '@librechat/client';
+} from '@wrangler/client';
 
 import SocialButton from './SocialButton';
 
 import { useLocalize } from '~/hooks';
 
-import { TStartupConfig } from 'librechat-data-provider';
+import { TStartupConfig } from 'wrangler-data-provider';
 
 function SocialLoginRender({
   startupConfig,

@@ -1,7 +1,7 @@
 const axios = require('axios');
-const { logger } = require('@librechat/data-schemas');
-const { genAzureEndpoint } = require('@librechat/api');
-const { extractEnvVariable, TTSProviders } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { genAzureEndpoint } = require('@wrangler/api');
+const { extractEnvVariable, TTSProviders } = require('wrangler-data-provider');
 const { getRandomVoiceId, createChunkProcessor, splitTextIntoChunks } = require('./streamAudio');
 const { getAppConfig } = require('~/server/services/Config');
 
@@ -42,7 +42,7 @@ class TTSService {
     const ttsSchema = this.customConfig.speech.tts;
     if (!ttsSchema) {
       throw new Error(
-        'No TTS schema is set. Did you configure TTS in the custom config (librechat.yaml)?',
+        'No TTS schema is set. Did you configure TTS in the custom config (wrangler.yaml)?',
       );
     }
     const providers = Object.entries(ttsSchema).filter(

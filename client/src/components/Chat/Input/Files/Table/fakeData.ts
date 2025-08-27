@@ -1,5 +1,5 @@
-import { FileSources } from 'librechat-data-provider';
-import type { TFile } from 'librechat-data-provider';
+import { FileSources } from 'wrangler-data-provider';
+import type { TFile } from 'wrangler-data-provider';
 
 export const files: TFile[] = [
   {

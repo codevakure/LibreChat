@@ -1,10 +1,10 @@
-jest.mock('librechat-data-provider', () => ({
-  ...jest.requireActual('librechat-data-provider'),
+jest.mock('wrangler-data-provider', () => ({
+  ...jest.requireActual('wrangler-data-provider'),
   extractVariableName: jest.fn(),
 }));
 
-jest.mock('@librechat/data-schemas', () => ({
-  ...jest.requireActual('@librechat/data-schemas'),
+jest.mock('@wrangler/data-schemas', () => ({
+  ...jest.requireActual('@wrangler/data-schemas'),
   logger: {
     debug: jest.fn(),
     warn: jest.fn(),
@@ -12,8 +12,8 @@ jest.mock('@librechat/data-schemas', () => ({
 }));
 
 const { checkWebSearchConfig } = require('./checks');
-const { logger } = require('@librechat/data-schemas');
-const { extractVariableName } = require('librechat-data-provider');
+const { logger } = require('@wrangler/data-schemas');
+const { extractVariableName } = require('wrangler-data-provider');
 
 describe('checkWebSearchConfig', () => {
   let originalEnv;
@@ -144,7 +144,7 @@ describe('checkWebSearchConfig', () => {
 
       expect(logger.warn).toHaveBeenCalledWith(
         expect.stringContaining(
-          'More info: https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/web_search',
+          'More info: https://wrangler.tcb-internal.net/docs/configuration/wrangler_yaml/web_search',
         ),
       );
     });

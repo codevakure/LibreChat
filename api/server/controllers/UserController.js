@@ -1,5 +1,5 @@
-const { logger } = require('@librechat/data-schemas');
-const { webSearchKeys, extractWebSearchEnvVars, normalizeHttpError } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { webSearchKeys, extractWebSearchEnvVars, normalizeHttpError } = require('@wrangler/api');
 const {
   getFiles,
   updateUser,
@@ -14,7 +14,7 @@ const { updateUserPluginAuth, deleteUserPluginAuth } = require('~/server/service
 const { updateUserPluginsService, deleteUserKey } = require('~/server/services/UserService');
 const { verifyEmail, resendVerificationEmail } = require('~/server/services/AuthService');
 const { needsRefresh, getNewS3URL } = require('~/server/services/Files/S3/crud');
-const { Tools, Constants, FileSources } = require('librechat-data-provider');
+const { Tools, Constants, FileSources } = require('wrangler-data-provider');
 const { processDeleteRequest } = require('~/server/services/Files/process');
 const { Transaction, Balance, User } = require('~/db/models');
 const { getAppConfig } = require('~/server/services/Config');

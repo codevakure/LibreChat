@@ -1,13 +1,13 @@
 const { nanoid } = require('nanoid');
-const { checkAccess } = require('@librechat/api');
-const { logger } = require('@librechat/data-schemas');
+const { checkAccess } = require('@wrangler/api');
+const { logger } = require('@wrangler/data-schemas');
 const {
   Tools,
   Permissions,
   FileSources,
   EModelEndpoint,
   PermissionTypes,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 const { getRoleByName } = require('~/models/Role');
 const { Files } = require('~/models');
 

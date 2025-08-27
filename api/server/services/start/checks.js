@@ -1,11 +1,11 @@
-const { logger } = require('@librechat/data-schemas');
-const { isEnabled, webSearchKeys, checkEmailConfig } = require('@librechat/api');
+const { logger } = require('@wrangler/data-schemas');
+const { isEnabled, webSearchKeys, checkEmailConfig } = require('@wrangler/api');
 const {
   Constants,
   extractVariableName,
   deprecatedAzureVariables,
   conflictingAzureVariables,
-} = require('librechat-data-provider');
+} = require('wrangler-data-provider');
 
 const secretDefaults = {
   CREDS_KEY: 'f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0',
@@ -18,12 +18,12 @@ const deprecatedVariables = [
   {
     key: 'CHECK_BALANCE',
     description:
-      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://texascapitalbank.com//docs/configuration/librechat_yaml/object_structure/balance#overview',
+      'Please use the `balance` field in the `wrangler.yaml` config file instead.\nMore info: https://wranger.tcb-internal.com/docs/configuration/wrangler_yaml/object_structure/balance#overview',
   },
   {
     key: 'START_BALANCE',
     description:
-      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://texascapitalbank.com//docs/configuration/librechat_yaml/object_structure/balance#overview',
+      'Please use the `balance` field in the `wrangler.yaml` config file instead.\nMore info: https://wranger.tcb-internal.com/docs/configuration/wrangler_yaml/object_structure/balance#overview',
   },
   {
     key: 'GOOGLE_API_KEY',
@@ -125,7 +125,7 @@ function checkPasswordReset() {
       
       Please configure email service for secure password reset functionality.
       
-      https://wrangler.tcb-internal.com/docs/configuration/authentication/email
+      https://wrangler.tcb-internal.net/docs/configuration/authentication/email
 
       ❗❗❗`,
     );
@@ -166,12 +166,12 @@ function checkWebSearchConfig(webSearchConfig) {
           
           Current value: "${value.substring(0, 10)}..."
           
-          This is incorrect! You should use environment variable references in your librechat.yaml file, such as:
+          This is incorrect! You should use environment variable references in your wrangler.yaml file, such as:
           ${key}: "\${YOUR_ENV_VAR_NAME}"
           
           Then set the actual API key in your .env file or environment variables.
           
-          More info: https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/web_search`,
+          More info: https://wrangler.tcb-internal.net/docs/configuration/wrangler_yaml/web_search`,
         );
       }
     }

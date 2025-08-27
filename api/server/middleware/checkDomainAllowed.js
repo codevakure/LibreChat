@@ -1,4 +1,4 @@
-const { logger } = require('@librechat/data-schemas');
+const { logger } = require('@wrangler/data-schemas');
 const { isEmailDomainAllowed } = require('~/server/services/domains');
 const { getAppConfig } = require('~/server/services/Config');
 

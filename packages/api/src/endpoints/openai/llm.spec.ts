@@ -1,4 +1,4 @@
-import { ReasoningEffort, ReasoningSummary, Verbosity } from 'librechat-data-provider';
+import { ReasoningEffort, ReasoningSummary, Verbosity } from 'wrangler-data-provider';
 import type { RequestInit } from 'undici';
 import { getOpenAIConfig } from './llm';
 
@@ -115,7 +115,7 @@ describe('getOpenAIConfig', () => {
     expect(result.configOptions?.baseURL).toBe(reverseProxyUrl);
     expect(result.configOptions?.defaultHeaders).toMatchObject({
       'HTTP-Referer': 'https://texascapitalbank.com/',
-      'X-Title': 'LibreChat',
+      'X-Title': 'Wrangler',
     });
     expect(result.llmConfig.include_reasoning).toBe(true);
     expect(result.provider).toBe('openrouter');
