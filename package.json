@@ -1,6 +1,6 @@
 {
   "name": "Wrangler",
-  "version": "v0.8.0-rc3",
+  "version": "v1.0.0",
   "description": "",
   "workspaces": [
     "api",

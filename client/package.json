@@ -1,6 +1,6 @@
 {
   "name": "@wrangler/frontend",
-  "version": "v0.8.0-rc3",
+  "version": "v1.0.0",
   "description": "",
   "type": "module",
   "scripts": {

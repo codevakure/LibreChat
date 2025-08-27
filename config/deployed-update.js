@@ -41,7 +41,7 @@ const shouldRebase = process.argv.includes('--rebase');
   execSync(downCommand, { stdio: 'inherit' });
 
   console.purple('Removing all tags for Wrangler `deployed` images...');
-  const repositories = ['ghcr.io/danny-avila/wrangler-dev-api', 'wrangler-client'];
+  const repositories = ['ghcr.io/wrangler-avila/wrangler-dev-api', 'wrangler-client'];
   repositories.forEach((repo) => {
     const tags = execSync(`sudo docker images ${repo} -q`, { encoding: 'utf8' })
       .split('\n')

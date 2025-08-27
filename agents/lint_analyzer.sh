@@ -9,7 +9,7 @@ else
     eslint_output=$(npm run lint 2>&1)
 
     # Extract the last mentioned file path from the ESLint output
-    target_file=$(echo "$eslint_output" | grep -oP '/home/danny/agents/\K.*\.ts' | tail -n 1)
+    target_file=$(echo "$eslint_output" | grep -oP '/home/wrangler-folder/agents/\K.*\.ts' | tail -n 1)
 
     if [ -z "$target_file" ]; then
         echo "No TypeScript files with issues found in the ESLint output."

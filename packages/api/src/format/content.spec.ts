@@ -246,7 +246,7 @@ describe('formatContentStrings', () => {
           content: [
             {
               type: 'text',
-              text: 'Hi Danny! How can I help you today?',
+              text: 'Hi Wrangler! How can I help you today?',
             },
           ],
         }),
@@ -276,7 +276,7 @@ describe('formatContentStrings', () => {
       expect(result[0].getType()).toBe('human');
 
       // AI message (all text) should now also be converted
-      expect(result[1].content).toBe('Hi Danny! How can I help you today?');
+      expect(result[1].content).toBe('Hi Wrangler! How can I help you today?');
       expect(result[1].getType()).toBe('ai');
 
       // Third message (mixed content) should remain unchanged

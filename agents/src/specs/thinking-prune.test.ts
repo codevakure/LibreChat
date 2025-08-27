@@ -52,7 +52,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
       content: [
         {
           type: 'text',
-          text: '/home/danny/Wrangler/gistfile1.txt\n\nread it 200 lines at a time\n\nthere are 5000 lines\n\ndo not stop until done',
+          text: '/home/wrangler-folder/Wrangler/gistfile1.txt\n\nread it 200 lines at a time\n\nthere are 5000 lines\n\ndo not stop until done',
         },
       ],
     });
@@ -61,7 +61,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
       content: [
         {
           type: 'thinking',
-          thinking: 'The user is asking me to read a file located at `/home/danny/Wrangler/gistfile1.txt` in chunks of 200 lines at a time, mentioning that the file has 5000 lines total. They want me to continue reading through the entire file without stopping.\n\nI\'ll need to use the text editor tool to view the file in chunks of 200 lines each. Since the file has 5000 lines, I\'ll need to view it in 25 chunks (5000 ÷ 200 = 25).\n\nI\'ll need to make multiple calls to the text editor with the `view` command, specifying different line ranges for each call.\n\nLet me plan out the approach:\n1. Start with lines 1-200\n2. Then 201-400\n3. Then 401-600\n4. And so on until I reach 4801-5000\n\nFor each call, I\'ll use the `view` command with the specific line range in the `view_range` parameter. I\'ll continue until I\'ve shown all 5000 lines as requested.',
+          thinking: 'The user is asking me to read a file located at `/home/wrangler-folder/Wrangler/gistfile1.txt` in chunks of 200 lines at a time, mentioning that the file has 5000 lines total. They want me to continue reading through the entire file without stopping.\n\nI\'ll need to use the text editor tool to view the file in chunks of 200 lines each. Since the file has 5000 lines, I\'ll need to view it in 25 chunks (5000 ÷ 200 = 25).\n\nI\'ll need to make multiple calls to the text editor with the `view` command, specifying different line ranges for each call.\n\nLet me plan out the approach:\n1. Start with lines 1-200\n2. Then 201-400\n3. Then 401-600\n4. And so on until I reach 4801-5000\n\nFor each call, I\'ll use the `view` command with the specific line range in the `view_range` parameter. I\'ll continue until I\'ve shown all 5000 lines as requested.',
         },
         {
           type: 'text',
@@ -71,7 +71,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
           type: 'tool_use',
           id: 'toolu_01YApWuFsEQCuBFDgYXmcmeZ',
           name: 'text_editor_mcp_textEditor',
-          input: '{"command": "view", "path": "/home/danny/Wrangler/gistfile1.txt", "description": "Viewing lines 1-200 of the file", "view_range": [1,200]}',
+          input: '{"command": "view", "path": "/home/wrangler-folder/Wrangler/gistfile1.txt", "description": "Viewing lines 1-200 of the file", "view_range": [1,200]}',
         },
       ],
     });
@@ -97,7 +97,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
           type: 'tool_use',
           id: 'toolu_01VnyMQ4CvEd6zLDxxtTd6d4',
           name: 'text_editor_mcp_textEditor',
-          input: '{"command": "view", "path": "/home/danny/Wrangler/gistfile1.txt", "description": "Viewing lines 201-400 of the file", "view_range": [201,400]}',
+          input: '{"command": "view", "path": "/home/wrangler-folder/Wrangler/gistfile1.txt", "description": "Viewing lines 201-400 of the file", "view_range": [201,400]}',
         },
       ],
     });
@@ -123,7 +123,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
           type: 'tool_use',
           id: 'toolu_01TZKs4nnBc58BYXKz1Mw4fp',
           name: 'text_editor_mcp_textEditor',
-          input: '{"command": "view", "path": "/home/danny/Wrangler/gistfile1.txt", "description": "Viewing lines 401-600 of the file", "view_range": [401,600]}',
+          input: '{"command": "view", "path": "/home/wrangler-folder/Wrangler/gistfile1.txt", "description": "Viewing lines 401-600 of the file", "view_range": [401,600]}',
         },
       ],
     });
@@ -149,7 +149,7 @@ describe('Prune Messages with Thinking Mode Tests', () => {
           type: 'tool_use',
           id: 'toolu_01TZgBacNxjx1QNUpJg9hca5',
           name: 'text_editor_mcp_textEditor',
-          input: '{"command": "view", "path": "/home/danny/Wrangler/gistfile1.txt", "description": "Viewing lines 601-800 of the file", "view_range": [601,800]}',
+          input: '{"command": "view", "path": "/home/wrangler-folder/Wrangler/gistfile1.txt", "description": "Viewing lines 601-800 of the file", "view_range": [601,800]}',
         },
       ],
     });

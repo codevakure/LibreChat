@@ -141,7 +141,7 @@ html {
   --surface-primary: var(--gray-900);
   --surface-primary-alt: #0C0E10;
   --surface-primary-contrast: var(--gray-850);
-  --surface-secondary: var(--gray-800);
+  --surface-secondary: #141618;
   --surface-secondary-alt: var(--gray-800);
   --surface-tertiary: var(--gray-700);
   --surface-tertiary-alt: var(--gray-700);
