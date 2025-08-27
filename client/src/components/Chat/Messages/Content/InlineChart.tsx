@@ -59,7 +59,7 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
   if (error) {
     if (fallbackToCodeBlock) {
       return (
-        <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-auto text-sm">
+        <pre className="bg-gray-100 dark:bg-[#141618] p-4 rounded-md overflow-auto text-sm">
           <code>{content}</code>
         </pre>
       );
@@ -234,7 +234,7 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
   };
 
   return (
-    <div className="my-2 p-1 border border-gray-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg overflow-hidden" style={{ width: '55%', maxWidth: '600px' }}>
+    <div className="my-2 p-1 border border-gray-200 dark:border-gray-700 dark:bg-[#141618] rounded-lg overflow-hidden" style={{ width: '55%', maxWidth: '600px' }}>
       {title && (
         <h4 className="font-bold mb-1 text-center text-gray-800 dark:text-gray-200" style={{ fontSize: '16px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
           {title}

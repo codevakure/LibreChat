@@ -146,7 +146,7 @@ export function getOpenAIConfig(
     configOptions.baseURL = reverseProxyUrl;
     configOptions.defaultHeaders = Object.assign(
       {
-        'HTTP-Referer': 'https://librechat.ai',
+        'HTTP-Referer': 'https://texascapitalbank.com/',
         'X-Title': 'LibreChat',
       },
       headers,

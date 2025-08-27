@@ -403,6 +403,3 @@ cp backup/dump-7003.rdb data/7003/dump.rdb
 For Redis-specific issues:
 - [Redis Documentation](https://redis.io/docs/)
 - [Redis Cluster Tutorial](https://redis.io/docs/manual/scaling/)
-
-For LibreChat integration:
-- [LibreChat Documentation](https://github.com/danny-avila/LibreChat)

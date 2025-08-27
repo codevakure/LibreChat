@@ -9,8 +9,7 @@ import type * as t from './types';
  * Abstract base class for managing user-specific MCP connections with lifecycle management.
  * Only meant to be extended by MCPManager.
  * Much of the logic was move here from the old MCPManager to make it more manageable.
- * User connections will soon be ephemeral and not cached anymore:
- * https://github.com/danny-avila/LibreChat/discussions/8790
+ * User connections will soon be ephemeral and not cached anymore
  */
 export abstract class UserConnectionManager {
   protected readonly serversRegistry: MCPServersRegistry;

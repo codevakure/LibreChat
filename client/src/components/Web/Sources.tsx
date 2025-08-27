@@ -36,7 +36,7 @@ function SourceItem({ source, expanded = false }: SourceItemProps) {
         href={source.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-full flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 hover:bg-surface-tertiary"
+        className="flex w-full flex-col rounded-lg source-item-gradient px-3 py-2 text-sm transition-all duration-300 hover:source-item-gradient-hover"
       >
         <div className="flex items-center gap-2">
           <FaviconImage domain={domain} />
@@ -66,7 +66,7 @@ function SourceItem({ source, expanded = false }: SourceItemProps) {
                 href={source.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-full w-full flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 hover:bg-surface-tertiary"
+                className="flex h-full w-full flex-col rounded-lg source-item-gradient px-3 py-2 text-sm transition-all duration-300 hover:source-item-gradient-hover"
               >
                 <div className="flex items-center gap-2">
                   <FaviconImage domain={domain} />
@@ -286,8 +286,8 @@ const FileItem = React.memo(function FileItem({
       <button
         onClick={isLocalFile ? undefined : handleDownload}
         disabled={isLoading}
-        className={`flex w-full flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 disabled:opacity-50 ${
-          isLocalFile ? 'cursor-default' : 'hover:bg-surface-tertiary'
+        className={`flex w-full flex-col rounded-lg source-item-gradient px-3 py-2 text-sm transition-all duration-300 disabled:opacity-50 ${
+          isLocalFile ? 'cursor-default' : 'hover:source-item-gradient-hover'
         }`}
         aria-label={
           isLocalFile ? localize('com_sources_download_local_unavailable') : downloadAriaLabel
@@ -325,8 +325,8 @@ const FileItem = React.memo(function FileItem({
     <button
       onClick={isLocalFile ? undefined : handleDownload}
       disabled={isLoading}
-      className={`flex h-full w-full flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 disabled:opacity-50 ${
-        isLocalFile ? 'cursor-default' : 'hover:bg-surface-tertiary'
+      className={`flex h-full w-full flex-col rounded-lg source-item-gradient px-3 py-2 text-sm transition-all duration-300 disabled:opacity-50 ${
+        isLocalFile ? 'cursor-default' : 'hover:source-item-gradient-hover'
       }`}
       aria-label={
         isLocalFile ? localize('com_sources_download_local_unavailable') : downloadAriaLabel
@@ -410,7 +410,7 @@ const SourcesGroup = React.memo(function SourcesGroup({
           </div>
         ))}
         {hasMoreSources && (
-          <OGDialogTrigger className="flex flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 hover:bg-surface-tertiary">
+          <OGDialogTrigger className="flex flex-col rounded-lg source-item-gradient-alt px-3 py-2 text-sm transition-all duration-300 hover:source-item-gradient-alt-hover">
             <div className="flex items-center gap-2">
               <StackedFavicons sources={remainingSources} />
               <span className="truncate text-xs font-medium text-text-secondary">
@@ -502,7 +502,7 @@ function FilesGroup({ files, messageId, conversationId, limit = 3 }: FilesGroupP
           </div>
         ))}
         {hasMoreFiles && (
-          <OGDialogTrigger className="flex flex-col rounded-lg bg-surface-primary-contrast px-3 py-2 text-sm transition-all duration-300 hover:bg-surface-tertiary">
+          <OGDialogTrigger className="flex flex-col rounded-lg source-item-gradient-alt px-3 py-2 text-sm transition-all duration-300 hover:source-item-gradient-alt-hover">
             <div className="flex items-center gap-2">
               <div className="relative flex">
                 {remainingFiles.slice(0, 3).map((_, i) => (

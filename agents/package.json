@@ -1,0 +1,140 @@
+{
+  "name": "@librechat/agents",
+  "version": "2.4.76",
+  "main": "./dist/cjs/main.cjs",
+  "module": "./dist/esm/main.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/main.mjs",
+      "require": "./dist/cjs/main.cjs",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "type": "module",
+  "description": "",
+  "packageManager": "npm@10.5.2",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "node husky-setup.js",
+    "prepublishOnly": "npm run build",
+    "build": "NODE_ENV=production rollup -c && tsc -p tsconfig.build.json",
+    "build:dev": "rollup -c",
+    "start": "node dist/esm/main.js",
+    "clean": "node ./config/clean.js",
+    "script": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/cli.ts",
+    "bun:cli": "bun -r dotenv/config ./src/scripts/cli.ts --provider 'bedrock' --name 'Jo' --location 'New York, NY'",
+    "start:cli": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/cli.ts --provider 'openAI' --name 'Jo' --location 'New York, NY'",
+    "content": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/content.ts --provider 'anthropic' --name 'Jo' --location 'New York, NY'",
+    "stream": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/stream.ts --provider 'anthropic' --name 'Jo' --location 'New York, NY'",
+    "code_exec": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/code_exec.ts --provider 'openAI' --name 'Jo' --location 'New York, NY'",
+    "image": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/image.ts --provider 'google' --name 'Jo' --location 'New York, NY'",
+    "code_exec_files": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/code_exec_files.ts --provider 'openAI' --name 'Jo' --location 'New York, NY'",
+    "code_exec_simple": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/code_exec_simple.ts --provider 'google' --name 'Jo' --location 'New York, NY'",
+    "simple": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/simple.ts --provider 'lmstudio' --name 'Jo' --location 'New York, NY'",
+    "caching": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/caching.ts --name 'Jo' --location 'New York, NY'",
+    "thinking": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/thinking.ts --name 'Jo' --location 'New York, NY'",
+    "memory": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/memory.ts --provider 'openAI' --name 'Jo' --location 'New York, NY'",
+    "tool-test": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/tools.ts --provider 'bedrock' --name 'Jo' --location 'New York, NY'",
+    "search": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/search.ts --provider 'anthropic' --name 'Jo' --location 'New York, NY'",
+    "ant_web_search": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/ant_web_search.ts --name 'Jo' --location 'New York, NY'",
+    "abort": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/abort.ts --provider 'openAI' --name 'Jo' --location 'New York, NY'",
+    "start:cli2": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/cli2.ts --provider 'anthropic' --name 'Jo' --location 'New York, NY'",
+    "script2": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/proto/example_test.ts",
+    "script3": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/proto/example_test_anthropic.ts",
+    "script4": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/cli4.ts --name 'Jo' --location 'New York, NY'",
+    "script5": "node -r dotenv/config --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/cli5.ts --name 'Jo' --location 'New York, NY'",
+    "start:standard": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/standard.ts",
+    "start:cg": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/collab.ts",
+    "start:tasks": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/tasks.ts",
+    "start:collab": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/main.ts",
+    "start:collab5": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/scripts/collab_design_v5.ts",
+    "start:dev": "node --loader ./tsconfig-paths-bootstrap.mjs --experimental-specifier-resolution=node ./src/main.ts",
+    "test": "jest",
+    "test:memory": "NODE_OPTIONS='--expose-gc' npx jest src/specs/title.memory-leak.test.ts",
+    "test:all": "npm test -- --testPathIgnorePatterns=title.memory-leak.test.ts && npm run test:memory",
+    "reinstall": "npm run clean && npm ci && rm -rf ./dist && npm run build",
+    "re": "bun run clean && bun install && rm -rf ./dist && turbo build",
+    "lint": "eslint \"{,!(node_modules|venv)/**/}*.{js,jsx,ts,tsx}\" --fix",
+    "format": "prettier --write ."
+  },
+  "overrides": {
+    "@langchain/openai": "0.5.18",
+    "@browserbasehq/stagehand": {
+      "openai": "$openai"
+    }
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.26",
+    "@langchain/aws": "^0.1.12",
+    "@langchain/community": "^0.3.47",
+    "@langchain/core": "^0.3.62",
+    "@langchain/deepseek": "^0.0.2",
+    "@langchain/google-genai": "^0.2.13",
+    "@langchain/google-vertexai": "^0.2.13",
+    "@langchain/langgraph": "^0.3.4",
+    "@langchain/mistralai": "^0.2.1",
+    "@langchain/ollama": "^0.2.3",
+    "@langchain/openai": "0.5.18",
+    "@langchain/xai": "^0.0.3",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "https-proxy-agent": "^7.0.6",
+    "nanoid": "^3.3.7",
+    "openai": "^5.10.1"
+  },
+  "imports": {
+    "@/*": "./src/*",
+    "~/*": "./*"
+  },
+  "devDependencies": {
+    "@anthropic-ai/vertex-sdk": "^0.12.0",
+    "@eslint/compat": "^1.2.7",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@swc/core": "^1.6.13",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.14.11",
+    "@types/yargs-parser": "^21.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "eslint": "^9.31.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.5.1",
+    "rollup": "^4.34.6",
+    "rollup-plugin-cleandir": "^2.0.0",
+    "rollup-plugin-obfuscator": "^1.1.0",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths": "^4.2.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3",
+    "winston": "^3.17.0"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

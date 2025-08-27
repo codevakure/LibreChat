@@ -18,12 +18,12 @@ const deprecatedVariables = [
   {
     key: 'CHECK_BALANCE',
     description:
-      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://librechat.ai/docs/configuration/librechat_yaml/object_structure/balance#overview',
+      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://texascapitalbank.com//docs/configuration/librechat_yaml/object_structure/balance#overview',
   },
   {
     key: 'START_BALANCE',
     description:
-      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://librechat.ai/docs/configuration/librechat_yaml/object_structure/balance#overview',
+      'Please use the `balance` field in the `librechat.yaml` config file instead.\nMore info: https://texascapitalbank.com//docs/configuration/librechat_yaml/object_structure/balance#overview',
   },
   {
     key: 'GOOGLE_API_KEY',
@@ -113,11 +113,7 @@ function checkConfig(config) {
     logger.info(
       `\nOutdated Config version: ${config.version}
 Latest version: ${Constants.CONFIG_VERSION}
-
-      Check out the Config changelogs for the latest options and features added.
-
-      https://www.librechat.ai/changelog\n\n`,
-    );
+`);
   }
 }
 

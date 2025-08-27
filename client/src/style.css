@@ -125,7 +125,7 @@ html {
 }
 .dark {
   --brand-purple: #ab68ff;
-  --presentation: var(--gray-800);
+  --presentation: #141618;
   --text-primary: var(--gray-100);
   --text-secondary: var(--gray-300);
   --text-secondary-alt: var(--gray-400);
@@ -139,7 +139,7 @@ html {
   --surface-hover: var(--gray-600);
   --surface-hover-alt: var(--gray-600);
   --surface-primary: var(--gray-900);
-  --surface-primary-alt: var(--gray-850);
+  --surface-primary-alt: #0C0E10;
   --surface-primary-contrast: var(--gray-850);
   --surface-secondary: var(--gray-800);
   --surface-secondary-alt: var(--gray-800);
@@ -150,7 +150,7 @@ html {
   --surface-submit-hover: var(--green-800);
   --surface-destructive: var(--red-800);
   --surface-destructive-hover: var(--red-900);
-  --surface-chat: var(--gray-700);
+  --surface-chat: #26282A;
   --border-light: var(--gray-700);
   --border-medium-alt: var(--gray-600);
   --border-medium: var(--gray-600);
@@ -1501,43 +1501,43 @@ html {
 
 .markdown {
   max-width: none;
-  font-size: var(--markdown-font-size, var(--font-size-base));
-  line-height: calc(
-    22px * var(--markdown-font-size, var(--font-size-base)) / var(--font-size-base)
-  );
+}
+
+.dark .markdown {
+  color: rgb(209, 213, 220);
 }
 
 .markdown h1 {
-  font-size: calc(var(--markdown-font-size) * 1.75);
+  font-size: calc(var(--markdown-font-size) * 1.575);
 }
 .markdown h2 {
-  font-size: calc(var(--markdown-font-size) * 1.5);
+  font-size: calc(var(--markdown-font-size) * 1.35);
 }
 
+.markdown h1,
+.markdown h2 {
+  font-weight: 600;
+}
 .markdown h2 {
   margin-bottom: 0.4rem;
   margin-top: 0.8rem;
 }
-
 .markdown h3 {
   font-weight: 600;
-  font-size: calc(var(--markdown-font-size) * 1.25);
+  font-size: calc(var(--markdown-font-size) * 1.125);
 }
-
 .markdown h3,
 .markdown h4 {
   margin-bottom: 0.3rem;
   margin-top: 0.6rem;
 }
-
 .markdown h4 {
   font-weight: 400;
-  font-size: calc(var(--markdown-font-size) * 1.1);
+  font-size: calc(var(--markdown-font-size) * 0.99);
 }
-
 .markdown h5 {
   font-weight: 600;
-  font-size: var(--markdown-font-size);
+  font-size: calc(var(--markdown-font-size) * 0.9);
 }
 
 .markdown blockquote {
@@ -1770,17 +1770,8 @@ html {
 .markdown h2 {
   font-weight: 600;
 }
-.markdown h2 {
-  margin-bottom: 0.4rem;
-  margin-top: 0.8rem;
-}
 .markdown h3 {
   font-weight: 600;
-}
-.markdown h3,
-.markdown h4 {
-  margin-bottom: 0.3rem;
-  margin-top: 0.6rem;
 }
 .markdown h4 {
   font-weight: 400;
@@ -2825,4 +2816,38 @@ html {
 /* Enhanced left shadow for artifact panel container */
 [id="artifacts-panel"] > div {
   box-shadow: -6px 0 20px rgba(0, 0, 0, 0.15), -2px 0 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Subtle gradients for web search sources - Both themes */
+.source-item-gradient {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(147, 197, 253, 0.04) 100%);
+}
+
+.source-item-gradient-hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.06) 100%);
+}
+
+.dark .source-item-gradient {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.dark .source-item-gradient-hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 100%);
+}
+
+/* Alternative gradients for variety - Both themes */
+.source-item-gradient-alt {
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+}
+
+.source-item-gradient-alt-hover {
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.12) 0%, rgba(168, 85, 247, 0.08) 100%);
+}
+
+.dark .source-item-gradient-alt {
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.06) 100%);
+}
+
+.dark .source-item-gradient-alt-hover {
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.16) 0%, rgba(59, 130, 246, 0.08) 100%);
 }
