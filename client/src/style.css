@@ -2815,3 +2815,14 @@ html {
 .sharepoint-picker-bg{
   background-color: #F5F5F5;
 }
+
+/* Artifact Panel Left Shadow */
+#artifacts-panel {
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Enhanced left shadow for artifact panel container */
+[id="artifacts-panel"] > div {
+  box-shadow: -6px 0 20px rgba(0, 0, 0, 0.15), -2px 0 8px rgba(0, 0, 0, 0.08) !important;
+}

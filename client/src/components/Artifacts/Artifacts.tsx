@@ -59,23 +59,23 @@ export default function Artifacts() {
       <div className="flex h-full w-full items-center justify-center">
         {/* Main Container */}
         <div
-          className={`flex h-full w-full flex-col overflow-hidden border border-border-medium bg-surface-primary text-xl text-text-primary shadow-xl transition-all duration-500 ease-in-out ${
+          className={`flex h-full w-full flex-col overflow-hidden bg-surface-primary text-xl text-text-primary shadow-[-4px_0_16px_rgba(0,0,0,0.08)] transition-all duration-500 ease-in-out ${
             isVisible ? 'scale-100 opacity-100 blur-0' : 'scale-105 opacity-0 blur-sm'
           }`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border-medium bg-surface-primary-alt p-2">
+          <div className="flex items-center justify-between p-1.5" style={{ backgroundColor: 'var(--sp-colors-surface1)' }}>
             <div className="flex items-center">
-              <button className="mr-2 text-text-secondary" onClick={closeArtifacts}>
-                <ArrowLeft className="h-4 w-4" />
+              <button className="mr-2 rounded-full p-1 text-gray-400 transition-all duration-200 hover:bg-gray-700 hover:text-gray-200" onClick={closeArtifacts}>
+                <ArrowLeft className="h-3.5 w-3.5" />
               </button>
-              <h3 className="truncate text-sm text-text-primary">{currentArtifact.title}</h3>
+              <h3 className="truncate text-xs font-medium text-gray-200">{currentArtifact.title}</h3>
             </div>
             <div className="flex items-center">
               {/* Refresh button */}
               {activeTab === 'preview' && (
                 <button
-                  className={`mr-2 text-text-secondary transition-transform duration-500 ease-in-out ${
+                  className={`mr-2 rounded-full p-1 text-gray-400 transition-all duration-200 hover:bg-gray-700 hover:text-gray-200 ${
                     isRefreshing ? 'rotate-180' : ''
                   }`}
                   onClick={handleRefresh}
@@ -83,32 +83,32 @@ export default function Artifacts() {
                   aria-label="Refresh"
                 >
                   <RefreshCw
-                    size={16}
+                    size={14}
                     className={`transform ${isRefreshing ? 'animate-spin' : ''}`}
                   />
                 </button>
               )}
               {activeTab !== 'preview' && isMutating && (
-                <RefreshCw size={16} className="mr-2 animate-spin text-text-secondary" />
+                <RefreshCw size={14} className="mr-2 animate-spin text-gray-400" />
               )}
               {/* Tabs */}
-              <Tabs.List className="mr-2 inline-flex h-7 rounded-full border border-border-medium bg-surface-tertiary">
+              <Tabs.List className="mr-2 inline-flex h-6 rounded-lg bg-gray-800 backdrop-blur-sm">
                 <Tabs.Trigger
                   value="preview"
                   disabled={isMutating}
-                  className="border-0.5 flex items-center gap-1 rounded-full border-transparent py-1 pl-2.5 pr-2.5 text-xs font-medium text-text-secondary data-[state=active]:border-border-light data-[state=active]:bg-surface-primary-alt data-[state=active]:text-text-primary"
+                  className="flex items-center gap-1 rounded-lg px-3 py-1 text-xs font-medium text-gray-300 transition-all duration-200 data-[state=active]:bg-gray-600 data-[state=active]:text-white data-[state=active]:shadow-sm"
                 >
                   {localize('com_ui_preview')}
                 </Tabs.Trigger>
                 <Tabs.Trigger
                   value="code"
-                  className="border-0.5 flex items-center gap-1 rounded-full border-transparent py-1 pl-2.5 pr-2.5 text-xs font-medium text-text-secondary data-[state=active]:border-border-light data-[state=active]:bg-surface-primary-alt data-[state=active]:text-text-primary"
+                  className="flex items-center gap-1 rounded-lg px-3 py-1 text-xs font-medium text-gray-300 transition-all duration-200 data-[state=active]:bg-gray-600 data-[state=active]:text-white data-[state=active]:shadow-sm"
                 >
                   {localize('com_ui_code')}
                 </Tabs.Trigger>
               </Tabs.List>
-              <button className="text-text-secondary" onClick={closeArtifacts}>
-                <X className="h-4 w-4" />
+              <button className="rounded-full p-1 text-gray-400 transition-all duration-200 hover:bg-gray-700 hover:text-gray-200" onClick={closeArtifacts}>
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
@@ -120,16 +120,16 @@ export default function Artifacts() {
             previewRef={previewRef as React.MutableRefObject<SandpackPreviewRef>}
           />
           {/* Footer */}
-          <div className="flex items-center justify-between border-t border-border-medium bg-surface-primary-alt p-2 text-sm text-text-secondary">
+          <div className="flex items-center justify-between p-1.5 text-xs text-gray-400" style={{ backgroundColor: 'var(--sp-colors-surface1)' }}>
             <div className="flex items-center">
-              <button onClick={() => cycleArtifact('prev')} className="mr-2 text-text-secondary">
-                <ChevronLeft className="h-4 w-4" />
+              <button onClick={() => cycleArtifact('prev')} className="mr-2 rounded-full p-1 text-gray-400 transition-all duration-200 hover:bg-gray-700 hover:text-gray-200">
+                <ChevronLeft className="h-3.5 w-3.5" />
               </button>
-              <span className="text-xs">{`${currentIndex + 1} / ${
+              <span className="text-xs font-medium">{`${currentIndex + 1} / ${
                 orderedArtifactIds.length
               }`}</span>
-              <button onClick={() => cycleArtifact('next')} className="ml-2 text-text-secondary">
-                <ChevronRight className="h-4 w-4" />
+              <button onClick={() => cycleArtifact('next')} className="ml-2 rounded-full p-1 text-gray-400 transition-all duration-200 hover:bg-gray-700 hover:text-gray-200">
+                <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </div>
             <div className="flex items-center gap-2">

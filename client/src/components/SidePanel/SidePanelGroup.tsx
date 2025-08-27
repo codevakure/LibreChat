@@ -121,7 +121,7 @@ const SidePanelGroup = memo(
           </ResizablePanel>
           {artifacts != null && (
             <>
-              <ResizableHandleAlt withHandle className="ml-3 bg-border-medium text-text-primary" />
+              <ResizableHandleAlt withHandle className="ml-3 bg-transparent text-text-primary" />
               <ResizablePanel
                 defaultSize={currentLayout[1]}
                 minSize={minSizeMain}
