@@ -139,9 +139,6 @@ async function loadDefaultInterface(config, configDefaults) {
           defaultPerms[PermissionTypes.PROMPTS]?.[Permissions.USE],
           defaults.prompts,
         ),
-        [Permissions.SHARED_GLOBAL]:
-          defaultPerms[PermissionTypes.PROMPTS]?.[Permissions.SHARED_GLOBAL],
-        [Permissions.CREATE]: defaultPerms[PermissionTypes.PROMPTS]?.[Permissions.CREATE],
       },
       [PermissionTypes.BOOKMARKS]: {
         [Permissions.USE]: getPermissionValue(
@@ -156,9 +153,6 @@ async function loadDefaultInterface(config, configDefaults) {
           defaultPerms[PermissionTypes.MEMORIES]?.[Permissions.USE],
           defaults.memories,
         ),
-        [Permissions.CREATE]: defaultPerms[PermissionTypes.MEMORIES]?.[Permissions.CREATE],
-        [Permissions.UPDATE]: defaultPerms[PermissionTypes.MEMORIES]?.[Permissions.UPDATE],
-        [Permissions.READ]: defaultPerms[PermissionTypes.MEMORIES]?.[Permissions.READ],
         [Permissions.OPT_OUT]: isPersonalizationEnabled,
       },
       [PermissionTypes.MULTI_CONVO]: {
@@ -174,9 +168,6 @@ async function loadDefaultInterface(config, configDefaults) {
           defaultPerms[PermissionTypes.AGENTS]?.[Permissions.USE],
           defaults.agents,
         ),
-        [Permissions.SHARED_GLOBAL]:
-          defaultPerms[PermissionTypes.AGENTS]?.[Permissions.SHARED_GLOBAL],
-        [Permissions.CREATE]: defaultPerms[PermissionTypes.AGENTS]?.[Permissions.CREATE],
       },
       [PermissionTypes.TEMPORARY_CHAT]: {
         [Permissions.USE]: getPermissionValue(

@@ -165,11 +165,12 @@ export type TCategory = {
   id?: string;
   value: string;
   label: string;
+  description?: string;
+  custom?: boolean;
 };
 
 export type TMarketplaceCategory = TCategory & {
   count: number;
-  description?: string;
 };
 
 export type TError = {
