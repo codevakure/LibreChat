@@ -75,18 +75,21 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
 
   const { type, data, title, xAxis, yAxis, colors = COLORS, height = 400 } = config;
   const chartColors = colors.length > 0 ? colors : COLORS;
+  const adjustedHeight = Math.round(height * 0.65); // Further reduce height to accommodate legend
 
   const renderChart = () => {
     const commonProps = {
       data,
-      margin: { top: 20, right: 30, left: 20, bottom: 5 }
+      margin: { top: 0, right: 10, left: -25, bottom: 0 }
     };
 
     const tooltipStyle = {
       backgroundColor: 'rgb(31, 41, 55)',
       border: '1px solid rgb(55, 65, 81)',
       borderRadius: '6px',
-      color: 'rgb(249, 250, 251)'
+      color: 'rgb(249, 250, 251)',
+      fontSize: '12px',
+      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
     };
 
     switch (type) {
@@ -94,10 +97,10 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
         return (
           <BarChart {...commonProps}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-gray-300 dark:stroke-gray-600" />
-            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" />
-            <YAxis className="fill-gray-600 dark:fill-gray-400" />
+            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
+            <YAxis className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Legend />
+            <Legend wrapperStyle={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             {Array.isArray(yAxis) ? yAxis.map((key, index) => (
               <Bar 
                 key={key} 
@@ -119,10 +122,10 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
         return (
           <LineChart {...commonProps}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-gray-300 dark:stroke-gray-600" />
-            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" />
-            <YAxis className="fill-gray-600 dark:fill-gray-400" />
+            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
+            <YAxis className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Legend />
+            <Legend wrapperStyle={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             {Array.isArray(yAxis) ? yAxis.map((key, index) => (
               <Line 
                 key={key} 
@@ -150,10 +153,10 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
         return (
           <AreaChart {...commonProps}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-gray-300 dark:stroke-gray-600" />
-            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" />
-            <YAxis className="fill-gray-600 dark:fill-gray-400" />
+            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
+            <YAxis className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Legend />
+            <Legend wrapperStyle={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             {Array.isArray(yAxis) ? yAxis.map((key, index) => (
               <Area 
                 key={key} 
@@ -178,23 +181,34 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
 
       case 'pie':
         return (
-          <PieChart margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 35 }}>
             <Pie
               data={data}
               cx="50%"
-              cy="50%"
+              cy="45%"
               labelLine={false}
               label={({ name, percent }) => `${name || 'Unknown'} ${((percent || 0) * 100).toFixed(0)}%`}
-              outerRadius={Math.min(800, height) * 0.3}
+              outerRadius={Math.min(adjustedHeight * 0.3, 80)}
               fill="#8884d8"
               dataKey={Array.isArray(yAxis) ? yAxis[0] : yAxis}
+              style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
               ))}
             </Pie>
             <Tooltip contentStyle={tooltipStyle} />
-            <Legend />
+            <Legend 
+              wrapperStyle={{ 
+                fontSize: '10px', 
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                paddingTop: '10px'
+              }}
+              layout="horizontal"
+              align="center"
+              verticalAlign="bottom"
+              iconSize={8}
+            />
           </PieChart>
         );
 
@@ -202,10 +216,10 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
         return (
           <ScatterChart {...commonProps}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-gray-300 dark:stroke-gray-600" />
-            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" />
-            <YAxis dataKey={Array.isArray(yAxis) ? yAxis[0] : yAxis} className="fill-gray-600 dark:fill-gray-400" />
+            <XAxis dataKey={xAxis} className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
+            <YAxis dataKey={Array.isArray(yAxis) ? yAxis[0] : yAxis} className="fill-gray-600 dark:fill-gray-400" style={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Legend />
+            <Legend wrapperStyle={{ fontSize: '10px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }} />
             <Scatter data={data} fill={chartColors[0]} />
           </ScatterChart>
         );
@@ -220,15 +234,17 @@ const InlineChart: React.FC<InlineChartProps> = ({ content, fallbackToCodeBlock 
   };
 
   return (
-    <div className="my-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900">
+    <div className="my-2 p-1 border border-gray-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg overflow-hidden" style={{ width: '55%', maxWidth: '600px' }}>
       {title && (
-        <h3 className="text-lg font-semibold mb-4 text-center text-gray-800 dark:text-gray-200">
+        <h4 className="font-bold mb-1 text-center text-gray-800 dark:text-gray-200" style={{ fontSize: '16px', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
           {title}
-        </h3>
+        </h4>
       )}
-      <ResponsiveContainer width="100%" height={height}>
-        {renderChart()}
-      </ResponsiveContainer>
+      <div className="overflow-hidden">
+        <ResponsiveContainer width="100%" height={adjustedHeight}>
+          {renderChart()}
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
