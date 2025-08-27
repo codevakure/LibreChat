@@ -47,6 +47,12 @@ export interface IRole extends Document {
     [PermissionTypes.FILE_SEARCH]?: {
       [Permissions.USE]?: boolean;
     };
+    [PermissionTypes.FILE_CITATIONS]?: {
+      [Permissions.USE]?: boolean;
+    };
+    [PermissionTypes.CHARTS]?: {
+      [Permissions.USE]?: boolean;
+    };
   };
 }
 

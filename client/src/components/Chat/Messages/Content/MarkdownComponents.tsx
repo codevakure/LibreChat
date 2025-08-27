@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useRef, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useToastContext } from '@librechat/client';
-import { PermissionTypes, Permissions } from 'librechat-data-provider';
+import { PermissionTypes, Permissions, dataService } from 'librechat-data-provider';
 import CodeBlock from '~/components/Messages/Content/CodeBlock';
 import InlineChart from './InlineChart';
 import useHasAccess from '~/hooks/Roles/useHasAccess';
@@ -157,9 +157,15 @@ export const a: React.ElementType = memo(({ href, children }: TAnchorProps) => {
   props.onClick = handleDownload;
   props.target = '_blank';
 
+  const domainServerBaseUrl = dataService.getDomainServerBaseUrl();
+
   return (
     <a
-      href={filepath?.startsWith('files/') ? `/api/${filepath}` : `/api/files/${filepath}`}
+      href={
+        filepath?.startsWith('files/')
+          ? `${domainServerBaseUrl}/${filepath}`
+          : `${domainServerBaseUrl}/files/${filepath}`
+      }
       {...props}
     >
       {children}
