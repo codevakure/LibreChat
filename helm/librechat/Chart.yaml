@@ -1,7 +1,7 @@
 apiVersion: v2
 name: librechat
 description: A Helm chart for LibreChat
-icon: https://www.librechat.ai/librechat_alt.svg
+icon: https://wrangler.tcb-internal.com/librechat_alt.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -25,7 +25,7 @@ version: 1.8.10
 # renovate: image=ghcr.io/danny-avila/librechat
 appVersion: "v0.8.0-rc3"
 
-home: https://www.librechat.ai
+home: https://wrangler.tcb-internal.com
 
 dependencies:
   - name: mongodb

@@ -18,9 +18,7 @@ import NewChat from './NewChat';
 import { cn } from '~/utils';
 import store from '~/store';
 
-const BookmarkNav = lazy(() => import('./Bookmarks/BookmarkNav'));
 const AccountSettings = lazy(() => import('./AccountSettings'));
-const AgentMarketplaceButton = lazy(() => import('./AgentMarketplaceButton'));
 
 const NAV_WIDTH_DESKTOP = '260px';
 const NAV_WIDTH_MOBILE = '320px';
@@ -61,11 +59,6 @@ const Nav = memo(
     const [newUser, setNewUser] = useLocalStorage('newUser', true);
     const [showLoading, setShowLoading] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
-
-    const hasAccessToBookmarks = useHasAccess({
-      permissionType: PermissionTypes.BOOKMARKS,
-      permission: Permissions.USE,
-    });
 
     const search = useRecoilValue(store.search);
 
@@ -156,22 +149,8 @@ const Nav = memo(
     );
 
     const headerButtons = useMemo(
-      () => (
-        <>
-          <Suspense fallback={null}>
-            <AgentMarketplaceButton isSmallScreen={isSmallScreen} toggleNav={toggleNavVisible} />
-          </Suspense>
-          {hasAccessToBookmarks && (
-            <>
-              <div className="mt-1.5" />
-              <Suspense fallback={null}>
-                <BookmarkNav tags={tags} setTags={setTags} isSmallScreen={isSmallScreen} />
-              </Suspense>
-            </>
-          )}
-        </>
-      ),
-      [hasAccessToBookmarks, tags, isSmallScreen, toggleNavVisible],
+      () => null,
+      [],
     );
 
     const [isSearchLoading, setIsSearchLoading] = useState(
@@ -218,6 +197,7 @@ const Nav = memo(
                         toggleNav={toggleNavVisible}
                         headerButtons={headerButtons}
                         isSmallScreen={isSmallScreen}
+                        navVisible={navVisible}
                       />
                       <Conversations
                         conversations={conversations}

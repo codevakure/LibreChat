@@ -144,7 +144,7 @@ describe('checkWebSearchConfig', () => {
 
       expect(logger.warn).toHaveBeenCalledWith(
         expect.stringContaining(
-          'More info: https://www.librechat.ai/docs/configuration/librechat_yaml/web_search',
+          'More info: https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/web_search',
         ),
       );
     });

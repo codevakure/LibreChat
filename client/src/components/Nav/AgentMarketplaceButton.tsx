@@ -51,15 +51,14 @@ export default function AgentMarketplaceButton({
     <TooltipAnchor
       description={localize('com_agents_marketplace')}
       render={
-        <Button
-          variant="outline"
+        <button
           data-testid="nav-agents-marketplace-button"
           aria-label={localize('com_agents_marketplace')}
-          className="rounded-full border-none bg-transparent p-2 hover:bg-surface-hover md:rounded-xl"
+          className="inline-flex size-10 flex-shrink-0 items-center justify-center rounded-xl border border-border-light bg-transparent text-text-primary transition-all ease-in-out hover:bg-surface-tertiary disabled:pointer-events-none disabled:opacity-50"
           onClick={handleAgentMarketplace}
         >
-          <LayoutGrid className="icon-lg text-text-primary" />
-        </Button>
+          <LayoutGrid className="h-4 w-4 text-text-primary" />
+        </button>
       }
     />
   );

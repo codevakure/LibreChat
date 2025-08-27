@@ -10,6 +10,7 @@ import ExportAndShareMenu from './ExportAndShareMenu';
 import BookmarkMenu from './Menus/BookmarkMenu';
 import { TemporaryChat } from './TemporaryChat';
 import AddMultiConvo from './AddMultiConvo';
+import AgentMarketplaceButton from '../Nav/AgentMarketplaceButton';
 import { useHasAccess } from '~/hooks';
 
 const defaultInterface = getConfigDefaults().interface;
@@ -35,6 +36,10 @@ export default function Header() {
 
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
+  const toggleNav = () => {
+    setNavVisible(!navVisible);
+  };
+
   return (
     <div className="sticky top-0 z-10 flex h-14 w-full items-center justify-between bg-white p-2 font-semibold text-text-primary dark:bg-[#141618]">
       <div className="hide-scrollbar flex w-full items-center justify-between gap-2 overflow-x-auto">
@@ -58,13 +63,14 @@ export default function Header() {
           >
             <ModelSelector startupConfig={startupConfig} />
             {interfaceConfig.presets === true && interfaceConfig.modelSelect && <PresetsMenu />}
-            {hasAccessToBookmarks === true && <BookmarkMenu />}
-            {hasAccessToMultiConvo === true && <AddMultiConvo />}
             {isSmallScreen && (
               <>
                 <ExportAndShareMenu
                   isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
                 />
+                <AgentMarketplaceButton isSmallScreen={isSmallScreen} toggleNav={toggleNav} />
+                {hasAccessToBookmarks === true && <BookmarkMenu />}
+                {hasAccessToMultiConvo === true && <AddMultiConvo />}
                 <TemporaryChat />
               </>
             )}
@@ -75,6 +81,9 @@ export default function Header() {
             <ExportAndShareMenu
               isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
             />
+            <AgentMarketplaceButton isSmallScreen={isSmallScreen} toggleNav={toggleNav} />
+            {hasAccessToBookmarks === true && <BookmarkMenu />}
+            {hasAccessToMultiConvo === true && <AddMultiConvo />}
             <TemporaryChat />
           </div>
         )}

@@ -49,6 +49,13 @@ export default function MobileNav({
           />
         </svg>
       </button>
+      <div className="flex items-center mr-2">
+        <img
+          src="/assets/logo.png"
+          alt="Logo"
+          className="h-8 w-8 object-contain"
+        />
+      </div>
       <h1 className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-normal">
         {title ?? localize('com_ui_new_chat')}
       </h1>

@@ -128,7 +128,7 @@ Follow one of the [four documented methods](https://www.mongodb.com/docs/atlas/a
 
 ### Proxy Configuration
 
-When using the RAG API with LibreChat and you need to configure proxy settings, you can set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the [`docker-compose.override.yml`](https://www.librechat.ai/docs/configuration/docker_override) file (from the LibreChat repository):
+When using the RAG API with LibreChat and you need to configure proxy settings, you can set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables in the [`docker-compose.override.yml`](https://wrangler.tcb-internal.com/docs/configuration/docker_override) file (from the LibreChat repository):
 
 ```yaml
 rag_api:

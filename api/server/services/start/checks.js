@@ -48,12 +48,6 @@ function checkVariables() {
 
   if (hasDefaultSecrets) {
     logger.info('Please replace any default secret values.');
-    logger.info(`\u200B
-
-    For your convenience, use this tool to generate your own secret values:
-    https://www.librechat.ai/toolkit/creds_generator
-
-    \u200B`);
   }
 
   deprecatedVariables.forEach(({ key, description }) => {
@@ -131,7 +125,7 @@ function checkPasswordReset() {
       
       Please configure email service for secure password reset functionality.
       
-      https://www.librechat.ai/docs/configuration/authentication/email
+      https://wrangler.tcb-internal.com/docs/configuration/authentication/email
 
       ❗❗❗`,
     );
@@ -177,7 +171,7 @@ function checkWebSearchConfig(webSearchConfig) {
           
           Then set the actual API key in your .env file or environment variables.
           
-          More info: https://www.librechat.ai/docs/configuration/librechat_yaml/web_search`,
+          More info: https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/web_search`,
         );
       }
     }

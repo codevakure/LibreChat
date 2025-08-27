@@ -34,7 +34,7 @@ librechat:
     # - MEILI_MASTER_KEY
   existingSecretName: "librechat-credentials-env"
   
-  # For adding a custom config yaml-file you can set the contents in this var. See https://www.librechat.ai/docs/configuration/librechat_yaml/example
+  # For adding a custom config yaml-file you can set the contents in this var. See https://wrangler.tcb-internal.com/docs/configuration/librechat_yaml/example
   configYamlContent: ""
   # configYamlContent: |
   #   version: 1.0.8

@@ -2,9 +2,10 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { QueryKeys, Constants } from 'librechat-data-provider';
-import { TooltipAnchor, NewChatIcon, MobileSidebar, Sidebar, Button } from '@librechat/client';
+import { TooltipAnchor, NewChatIcon, MobileSidebar, Button, Sidebar } from '@librechat/client';
 import type { TMessage } from 'librechat-data-provider';
 import { useLocalize, useNewConvo } from '~/hooks';
+import { cn } from '~/utils';
 import store from '~/store';
 
 export default function NewChat({
@@ -13,12 +14,14 @@ export default function NewChat({
   subHeaders,
   isSmallScreen,
   headerButtons,
+  navVisible = true,
 }: {
   index?: number;
   toggleNav: () => void;
   isSmallScreen?: boolean;
   subHeaders?: React.ReactNode;
   headerButtons?: React.ReactNode;
+  navVisible?: boolean;
 }) {
   const queryClient = useQueryClient();
   /** Note: this component needs an explicit index passed if using more than one */
@@ -50,40 +53,77 @@ export default function NewChat({
   return (
     <>
       <div className="flex items-center justify-between py-[2px] md:py-2">
-        <TooltipAnchor
-          description={localize('com_nav_close_sidebar')}
-          render={
-            <Button
-              size="icon"
-              variant="outline"
-              data-testid="close-sidebar-button"
-              aria-label={localize('com_nav_close_sidebar')}
-              className="rounded-full border-none bg-transparent p-2 hover:bg-surface-hover md:rounded-xl"
-              onClick={toggleNav}
-            >
-              <Sidebar className="max-md:hidden" />
-              <MobileSidebar className="m-1 inline-flex size-10 items-center justify-center md:hidden" />
-            </Button>
-          }
-        />
-        <div className="flex gap-0.5">
-          {headerButtons}
-
+        {/* Left section: Logo only */}
+        <div className="flex items-center">
+          <div className="flex items-center flex-shrink-0">
+            <img
+              src={navVisible ? "/assets/branding.png" : "/assets/logo.png"}
+              alt="Logo"
+              className={cn(
+                "object-contain transition-all duration-200",
+                navVisible ? "h-8 w-auto max-w-[160px]" : "h-8 w-8"
+              )}
+            />
+          </div>
+        </div>
+        
+        {/* Right section: New Chat + Sidebar Toggle (rightmost) + Mobile Menu + Header Buttons */}
+        <div className="flex items-center gap-1">
+          {/* New Chat Icon - 2nd rightmost */}
           <TooltipAnchor
             description={localize('com_ui_new_chat')}
             render={
               <Button
                 size="icon"
-                variant="outline"
+                variant="ghost"
                 data-testid="nav-new-chat-button"
                 aria-label={localize('com_ui_new_chat')}
-                className="rounded-full border-none bg-transparent p-2 hover:bg-surface-hover md:rounded-xl"
+                className="h-8 w-8 p-1 hover:bg-surface-hover flex items-center justify-center"
                 onClick={clickHandler}
               >
-                <NewChatIcon className="icon-lg text-text-primary" />
+                <NewChatIcon className="h-4 w-4 text-text-primary" />
               </Button>
             }
           />
+
+          {/* Sidebar Toggle Button - RIGHTMOST, always visible */}
+          <Button
+            size="icon"
+            variant="ghost"
+            data-testid="sidebar-toggle-button"
+            title={navVisible ? localize('com_nav_close_sidebar') : localize('com_nav_open_sidebar')}
+            aria-label={navVisible ? localize('com_nav_close_sidebar') : localize('com_nav_open_sidebar')}
+            className={cn(
+              'h-8 w-8 p-1 transition-transform flex items-center justify-center',
+              'text-text-primary opacity-100 visible',
+              'hover:bg-surface-hover hover:text-text-primary',
+              !navVisible && 'rotate-180'
+            )}
+            onClick={toggleNav}
+          >
+            <Sidebar className="h-4 w-4 text-current opacity-100" />
+          </Button>
+
+          {/* Mobile hamburger menu - only show on small screens */}
+          {isSmallScreen && (
+            <TooltipAnchor
+              description={localize('com_nav_close_sidebar')}
+              render={
+                <Button
+                  size="icon"
+                  variant="outline"
+                  data-testid="close-sidebar-button"
+                  aria-label={localize('com_nav_close_sidebar')}
+                  className="rounded-full border-none bg-transparent p-2 hover:bg-surface-hover md:hidden"
+                  onClick={toggleNav}
+                >
+                  <MobileSidebar className="m-1 inline-flex size-10 items-center justify-center" />
+                </Button>
+              }
+            />
+          )}
+
+          {headerButtons}
         </div>
       </div>
       {subHeaders != null ? subHeaders : null}

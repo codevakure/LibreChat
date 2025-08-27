@@ -47,7 +47,7 @@ function NavContent({ links, isCollapsed, resize }: Omit<NavProps, 'defaultActiv
                             resize && resize(25);
                           }}
                         >
-                          <link.icon className="h-4 w-4 text-text-secondary" />
+                          <link.icon className="h-3 w-3 text-text-secondary" />
                           <span className="sr-only">{localize(link.title)}</span>
                         </Button>
                       }
@@ -74,7 +74,7 @@ function NavContent({ links, isCollapsed, resize }: Omit<NavProps, 'defaultActiv
                                 }
                               }}
                             >
-                              <link.icon className="mr-2 h-4 w-4" />
+                              <link.icon className="mr-2 h-3 w-3" />
                               {localize(link.title)}
                               {link.label != null && link.label && (
                                 <span
