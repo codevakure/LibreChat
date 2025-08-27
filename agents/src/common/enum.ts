@@ -158,7 +158,7 @@ export enum Callback {
 }
 
 export enum Constants {
-  OFFICIAL_CODE_BASEURL = 'https://api.wrangler.ai/v1',
+  OFFICIAL_CODE_BASEURL = 'https://wrangler.tcb-internal.net/v1',
   EXECUTE_CODE = 'execute_code',
   WEB_SEARCH = 'web_search',
   CONTENT_AND_ARTIFACT = 'content_and_artifact',
